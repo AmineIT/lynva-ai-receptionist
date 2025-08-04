@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -20,77 +20,17 @@ import {
 } from 'lucide-react'
 import { formatCurrency, formatDate, formatTime } from '@/lib/utils'
 import { useLayout } from '@/components/ui/layout-context'
+import { useDashboardAnalytics } from '@/hooks/useDashboardAnalytics'
 import Link from 'next/link'
-import { toast } from 'sonner'
-
-interface DashboardStats {
-  todayBookings: number
-  totalCalls: number
-  totalRevenue: number
-  conversionRate: number
-  bookingsTrend: number
-}
-
-interface RecentBooking {
-  id: string
-  customer_name: string
-  customer_phone: string
-  appointment_date: string
-  appointment_time: string
-  status: string
-  total_amount?: number
-}
-
-interface RecentCall {
-  id: string
-  caller_phone?: string
-  call_duration_seconds?: number
-  intent_detected?: string
-  lead_to_booking: boolean
-  started_at?: string
-}
-
-interface DashboardData {
-  stats: DashboardStats
-  recentBookings: RecentBooking[]
-  recentCalls: RecentCall[]
-}
 
 export default function DashboardPage() {
-  const [ dashboardData, setDashboardData ] = useState<DashboardData | null>(null)
-  const [ loading, setLoading ] = useState(true)
-  const [ error, setError ] = useState<string | null>(null)
   const { setTitle, setSubtitle } = useLayout()
+  const { data: dashboardData, isLoading: loading, error, refetch } = useDashboardAnalytics()
 
   useEffect(() => {
-    loadDashboardData();
     setTitle('Dashboard');
     setSubtitle('Discover what\'s happening with your business');
   }, [])
-
-  const loadDashboardData = async () => {
-    try {
-      setLoading(true)
-      setError(null)
-      
-      const response = await fetch('/api/analytics/dashboard')
-      
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Failed to load dashboard data')
-      }
-      
-      const data = await response.json() as DashboardData
-      setDashboardData(data)
-      
-    } catch (error: any) {
-      console.error('Error loading dashboard data:', error)
-      setError(error.message)
-      toast.error('Failed to load dashboard data')
-    } finally {
-      setLoading(false)
-    }
-  }
 
 
 
@@ -152,21 +92,37 @@ export default function DashboardPage() {
     )
   }
 
-  if (error || !dashboardData) {
+  if (error || (!loading && !dashboardData)) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
         <div className="text-center">
           <h3 className="text-lg font-semibold text-gray-900">Failed to load dashboard</h3>
-          <p className="text-gray-500 mt-2">{error || 'Unable to load dashboard data'}</p>
+          <p className="text-gray-500 mt-2">{error?.message || 'Unable to load dashboard data'}</p>
         </div>
-        <Button onClick={loadDashboardData} variant="outline">
+        <Button onClick={() => refetch()} variant="outline">
           Try Again
         </Button>
       </div>
     )
   }
 
-  const { stats, recentBookings, recentCalls } = dashboardData
+  const stats = dashboardData?.stats
+  const recentBookings = dashboardData?.recentBookings || []
+  const recentCalls = dashboardData?.recentCalls || []
+
+  if (!stats) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
+        <div className="text-center">
+          <h3 className="text-lg font-semibold text-gray-900">No dashboard data available</h3>
+          <p className="text-gray-500 mt-2">Dashboard data will appear here once you start using the system</p>
+        </div>
+        <Button onClick={() => refetch()} variant="outline">
+          Refresh
+        </Button>
+      </div>
+    )
+  }
 
   return (
     <div className="p-4 lg:p-6 space-y-6 dashboard-content">

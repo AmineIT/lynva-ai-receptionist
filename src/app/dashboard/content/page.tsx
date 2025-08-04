@@ -8,39 +8,9 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import { useLayout } from '@/components/ui/layout-context'
-
-interface FAQItem {
-  id: string
-  question: string
-  answer: string
-  category: string
-  isActive: boolean
-}
+import { useFaqs } from '@/hooks/useFaqs'
 
 export default function ContentPage() {
-  const [faqs, setFaqs] = useState<FAQItem[]>([
-    {
-      id: '1',
-      question: 'What are your business hours?',
-      answer: 'We are open Monday to Friday from 9 AM to 6 PM, and Saturday from 10 AM to 4 PM.',
-      category: 'General',
-      isActive: true
-    },
-    {
-      id: '2', 
-      question: 'How do I book an appointment?',
-      answer: 'You can book an appointment by calling us directly or through our online booking system.',
-      category: 'Booking',
-      isActive: true
-    },
-    {
-      id: '3',
-      question: 'What is your cancellation policy?',
-      answer: 'Please provide at least 24 hours notice for cancellations to avoid any fees.',
-      category: 'Policy',
-      isActive: true
-    }
-  ])
   const [isAddingFAQ, setIsAddingFAQ] = useState(false)
   const [editingFAQ, setEditingFAQ] = useState<string | null>(null)
   const [newFAQ, setNewFAQ] = useState({
@@ -49,6 +19,21 @@ export default function ContentPage() {
     category: 'General'
   })
   const { setTitle, setSubtitle } = useLayout()
+
+  // Use the FAQs hook
+  const { 
+    faqs, 
+    isLoading: loading, 
+    error,
+    createFaq,
+    updateFaq,
+    deleteFaq,
+    toggleFaqStatus,
+    isCreating,
+    isUpdating,
+    isDeleting,
+    isToggling
+  } = useFaqs();
 
   useEffect(() => {
     setTitle('Content Management');
@@ -59,27 +44,20 @@ export default function ContentPage() {
 
   const handleAddFAQ = () => {
     if (newFAQ.question && newFAQ.answer) {
-      const faq: FAQItem = {
-        id: Date.now().toString(),
-        question: newFAQ.question,
-        answer: newFAQ.answer,
-        category: newFAQ.category,
-        isActive: true
-      }
-      setFaqs([...faqs, faq])
+      createFaq(newFAQ)
       setNewFAQ({ question: '', answer: '', category: 'General' })
       setIsAddingFAQ(false)
     }
   }
 
   const handleDeleteFAQ = (id: string) => {
-    setFaqs(faqs.filter(faq => faq.id !== id))
+    deleteFaq(id)
   }
 
-  const toggleFAQStatus = (id: string) => {
-    setFaqs(faqs.map(faq => 
-      faq.id === id ? { ...faq, isActive: !faq.isActive } : faq
-    ))
+  const handleToggleStatus = (faqId: string) => {
+    const faq = faqs.find(f => f.id === faqId)
+    if (!faq) return
+    toggleFaqStatus({ faqId, isActive: !faq.is_active })
   }
 
   const getCategoryColor = (category: string) => {
@@ -91,6 +69,16 @@ export default function ContentPage() {
       'Billing': 'bg-red-100 text-red-800'
     }
     return colors[category as keyof typeof colors] || 'bg-gray-100 text-gray-800'
+  }
+
+  if (loading) {
+    return (
+      <div className="p-6">
+        <div className="flex items-center justify-center min-h-96">
+          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -115,7 +103,7 @@ export default function ContentPage() {
           <CardHeader className="pb-2">
             <CardDescription>Active FAQs</CardDescription>
             <CardTitle className="text-2xl text-green-600">
-              {faqs.filter(faq => faq.isActive).length}
+              {faqs.filter(faq => faq.is_active).length}
             </CardTitle>
           </CardHeader>
         </Card>
@@ -123,7 +111,7 @@ export default function ContentPage() {
           <CardHeader className="pb-2">
             <CardDescription>Categories</CardDescription>
             <CardTitle className="text-2xl">
-              {new Set(faqs.map(faq => faq.category)).size}
+              {new Set(faqs.map(faq => faq.category).filter(Boolean)).size}
             </CardTitle>
           </CardHeader>
         </Card>
@@ -169,7 +157,9 @@ export default function ContentPage() {
               />
             </div>
             <div className="flex gap-2">
-              <Button onClick={handleAddFAQ}>Add FAQ</Button>
+              <Button onClick={handleAddFAQ} disabled={isCreating}>
+                {isCreating ? 'Creating...' : 'Add FAQ'}
+              </Button>
               <Button variant="outline" onClick={() => setIsAddingFAQ(false)}>Cancel</Button>
             </div>
           </CardContent>
@@ -193,16 +183,16 @@ export default function ContentPage() {
             <div className="space-y-4">
               {faqs.map((faq) => (
                 <div key={faq.id} className={`p-4 border rounded-lg ${
-                  faq.isActive ? 'border-gray-200 bg-white' : 'border-gray-100 bg-gray-50'
+                  faq.is_active ? 'border-gray-200 bg-white' : 'border-gray-100 bg-gray-50'
                 }`}>
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <Badge className={getCategoryColor(faq.category)}>
-                          {faq.category}
+                        <Badge className={getCategoryColor(faq.category || 'General')}>
+                          {faq.category || 'General'}
                         </Badge>
-                        <Badge variant={faq.isActive ? 'default' : 'secondary'}>
-                          {faq.isActive ? 'Active' : 'Inactive'}
+                        <Badge variant={faq.is_active ? 'default' : 'secondary'}>
+                          {faq.is_active ? 'Active' : 'Inactive'}
                         </Badge>
                       </div>
                       <h3 className="font-medium text-gray-900 mb-2">{faq.question}</h3>
@@ -212,9 +202,10 @@ export default function ContentPage() {
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => toggleFAQStatus(faq.id)}
+                        onClick={() => handleToggleStatus(faq.id)}
+                        disabled={isToggling}
                       >
-                        {faq.isActive ? 'Deactivate' : 'Activate'}
+                        {faq.is_active ? 'Deactivate' : 'Activate'}
                       </Button>
                       <Button variant="outline" size="sm">
                         <Edit2 className="w-4 h-4" />
@@ -223,6 +214,7 @@ export default function ContentPage() {
                         variant="outline" 
                         size="sm"
                         onClick={() => handleDeleteFAQ(faq.id)}
+                        disabled={isDeleting}
                       >
                         <Trash2 className="w-4 h-4" />
                       </Button>
