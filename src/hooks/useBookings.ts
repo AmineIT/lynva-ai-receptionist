@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/auth'
+import { useUserProfile } from './useUserProfile'
 import { toast } from 'react-hot-toast'
 import { useEffect } from 'react'
 import type { Booking } from '@/lib/supabase'
@@ -33,26 +34,9 @@ interface BookingFilters {
 
 export function useBookings(filters: BookingFilters = {}) {
   const { user } = useAuth()
+  const { businessId } = useUserProfile()
   const queryClient = useQueryClient()
   
-  // Get user's business ID
-  const { data: userData } = useQuery({
-    queryKey: ['user', user?.id],
-    queryFn: async () => {
-      if (!user?.id) return null
-      const { data, error } = await supabase
-        .from('users')
-        .select('business_id')
-        .eq('id', user.id)
-        .maybeSingle()
-      
-      if (error) throw error
-      return data
-    },
-    enabled: !!user?.id
-  })
-  
-  const businessId = userData?.business_id
   const queryKey = ['bookings', businessId, filters]
   
   // Set up real-time subscription for bookings

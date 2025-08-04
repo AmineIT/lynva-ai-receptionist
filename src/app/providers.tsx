@@ -1,6 +1,7 @@
 'use client'
 
 import { AuthProvider } from '@/lib/auth'
+import { UserProfileProvider } from '@/components/UserProfileProvider'
 import { ThemeProvider } from 'next-themes'
 import { Toaster } from 'sonner'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -21,7 +22,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
         <AuthProvider>
-          {children}
+          <UserProfileProvider>
+            {children}
+          </UserProfileProvider>
           <Toaster />
           <HotToaster 
             position="top-right"
