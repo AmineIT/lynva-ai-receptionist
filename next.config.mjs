@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: 'export',
+  // Remove output: 'export' to enable API routes
   trailingSlash: true,
   images: {
     unoptimized: true
