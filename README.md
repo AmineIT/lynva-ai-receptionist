@@ -1,1 +1,1 @@
-# Lynva AI Receptionist - Local Development Guide
+# Lynva AI Receptionist
