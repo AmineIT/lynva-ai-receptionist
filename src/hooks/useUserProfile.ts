@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { useQuery, useMutation } from '@tanstack/react-query'
+import { useEffect, useState, useCallback } from 'react'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/auth'
 import { toast } from 'react-hot-toast'
@@ -20,6 +20,8 @@ interface CreateBusinessData {
 
 export function useUserProfile() {
   const { user } = useAuth()
+  const queryClient = useQueryClient()
+  const [hasAttemptedSetup, setHasAttemptedSetup] = useState(false)
 
   // Check if user profile exists in custom users table
   const { data: userProfile, isLoading, refetch } = useQuery({
@@ -92,60 +94,71 @@ export function useUserProfile() {
     },
     onSuccess: () => {
       toast.success('Welcome! Your business profile has been set up.')
-      refetch()
+      queryClient.invalidateQueries({ queryKey: ['user-profile', user?.id] })
     },
     onError: (error: any) => {
       toast.error(`Setup error: ${error.message}`)
+      setHasAttemptedSetup(false) // Allow retry on error
     }
   })
 
-  // Auto-create user profile and business on first login
-  useEffect(() => {
-    const setupUserProfile = async () => {
-      if (!user || isLoading || userProfile) return
-
-      try {
-        // Extract business name from email domain or use user email
-        const emailDomain = user.email?.split('@')[1] || 'business'
-        const businessName = emailDomain.includes('.') 
-          ? emailDomain.split('.')[0].charAt(0).toUpperCase() + emailDomain.split('.')[0].slice(1)
-          : user.email?.split('@')[0] || 'My Business'
-
-        console.log('Setting up new user profile and business...')
-        
-        // First create the business
-        const business = await createBusiness.mutateAsync({
-          name: `${businessName} Clinic`,
-          email: user.email || '',
-          description: `Medical/Wellness Business - ${businessName}`,
-          country: 'UAE',
-          timezone: 'Asia/Dubai'
-        })
-
-        // Then create the user profile linked to the business
-        await createUserProfile.mutateAsync({
-          userData: {
-            id: user.id,
-            email: user.email || '',
-            full_name: user.user_metadata?.full_name || user.email?.split('@')[0]
-          },
-          businessId: business.id
-        })
-
-      } catch (error) {
-        console.error('Error setting up user profile:', error)
-        toast.error('Error setting up your profile. Please try again.')
-      }
+  // Setup user profile function
+  const setupUserProfile = useCallback(async () => {
+    if (!user || hasAttemptedSetup || userProfile || createBusiness.isPending || createUserProfile.isPending) {
+      return
     }
 
-    setupUserProfile()
-  }, [user, userProfile, isLoading])
+    setHasAttemptedSetup(true)
+
+    try {
+      // Extract business name from email domain or use user email
+      const emailDomain = user.email?.split('@')[1] || 'business'
+      const businessName = emailDomain.includes('.') 
+        ? emailDomain.split('.')[0].charAt(0).toUpperCase() + emailDomain.split('.')[0].slice(1)
+        : user.email?.split('@')[0] || 'My Business'
+
+      console.log('Setting up new user profile and business...')
+      
+      // First create the business
+      const business = await createBusiness.mutateAsync({
+        name: `${businessName} Clinic`,
+        email: user.email || '',
+        description: `Medical/Wellness Business - ${businessName}`,
+        country: 'UAE',
+        timezone: 'Asia/Dubai'
+      })
+
+      // Then create the user profile linked to the business
+      await createUserProfile.mutateAsync({
+        userData: {
+          id: user.id,
+          email: user.email || '',
+          full_name: user.user_metadata?.full_name || user.email?.split('@')[0]
+        },
+        businessId: business.id
+      })
+
+    } catch (error) {
+      console.error('Error setting up user profile:', error)
+      toast.error('Error setting up your profile. Please try again.')
+      setHasAttemptedSetup(false) // Allow retry on error
+    }
+  }, [user, hasAttemptedSetup, userProfile, createBusiness, createUserProfile])
+
+  // Auto-setup user profile when needed
+  useEffect(() => {
+    if (user && !isLoading && !userProfile && !hasAttemptedSetup) {
+      setupUserProfile()
+    }
+  }, [user, isLoading, userProfile, hasAttemptedSetup, setupUserProfile])
 
   return {
     userProfile,
-    isLoading: isLoading || createBusiness.isPending || createUserProfile.isPending,
+    isLoading,
     hasProfile: !!userProfile,
     businessId: userProfile?.business_id,
-    refetch
+    isCreatingProfile: createBusiness.isPending || createUserProfile.isPending,
+    refetch,
+    setupUserProfile
   }
 }

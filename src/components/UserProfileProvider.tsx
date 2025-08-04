@@ -12,10 +12,10 @@ export function UserProfileProvider({ children }: UserProfileProviderProps) {
   const { user } = useAuth()
   
   // This hook will automatically create user profile and business if they don't exist
-  const { isLoading, hasProfile } = useUserProfile()
+  const { hasProfile, isCreatingProfile } = useUserProfile()
 
-  // Show loading while setting up user profile for first-time users
-  if (user && isLoading && !hasProfile) {
+  // Show loading only while actively creating the profile, not during regular loading
+  if (user && !hasProfile && isCreatingProfile) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center space-y-4">
