@@ -7,11 +7,29 @@ import { LayoutProvider } from '@/components/ui/layout-context'
 import { useUserProfile } from '@/hooks/useUserProfile'
 import { BusinessSetupModal } from '@/components/ui/business-setup-modal'
 import { useState, useEffect } from 'react'
+import { useDashboardAnalytics } from '@/hooks/useDashboardAnalytics'
 
 function DashboardLayout({ children }: { children: React.ReactNode }) {
   // Load user profile without redirects - we'll handle the setup via modal
-  const { isLoading, hasProfile } = useUserProfile({ enableRedirect: false })
+  const { isLoading, hasProfile, refetch } = useUserProfile({ enableRedirect: false })
+  const { refetch: refetchDashboardAnalytics } = useDashboardAnalytics()
   const [showBusinessSetup, setShowBusinessSetup] = useState(false)
+
+  // Show business setup modal if user doesn't have a profile
+  // Use useEffect to prevent setting state during render
+  useEffect(() => {
+    let timer: NodeJS.Timeout | undefined;
+    if (!isLoading && !hasProfile) {
+      timer = setTimeout(() => {
+        setShowBusinessSetup(true);
+      }, 2000);
+    } else if (hasProfile) {
+      setShowBusinessSetup(false);
+    }
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [isLoading, hasProfile]);
 
   // Show loading while checking profile
   if (isLoading) {
@@ -25,18 +43,9 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
     )
   }
 
-  // Show business setup modal if user doesn't have a profile
-  useEffect(() => {
-    if (!isLoading && !hasProfile) {
-      setShowBusinessSetup(true)
-    } else if (hasProfile) {
-      setShowBusinessSetup(false)
-    }
-  }, [isLoading, hasProfile])
-
   const handleBusinessSetupComplete = () => {
-    // The modal handles cache invalidation, so hasProfile will become true
-    // and the useEffect above will close the modal automatically
+    refetch()
+    refetchDashboardAnalytics()
   }
 
   return (
