@@ -4,11 +4,8 @@ import { createServerClient, type CookieOptions } from '@supabase/ssr'
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   
-  // Protect dashboard routes and business-setup (both require authentication)
-  const protectedRoutes = ['/dashboard', '/business-setup']
-  const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route))
-  
-  if (!isProtectedRoute) {
+  // Only protect dashboard routes, let client handle business-setup flow
+  if (!pathname.startsWith('/dashboard')) {
     return NextResponse.next()
   }
 
@@ -77,7 +74,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/dashboard/:path*',
-    '/business-setup'
+    '/dashboard/:path*'
   ],
 }
