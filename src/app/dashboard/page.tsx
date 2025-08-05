@@ -30,9 +30,7 @@ export default function DashboardPage() {
   useEffect(() => {
     setTitle('Dashboard');
     setSubtitle('Discover what\'s happening with your business');
-  }, [])
-
-
+  }, []);
 
   if (loading) {
     return (
@@ -125,9 +123,9 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="p-4 lg:p-6 space-y-6 dashboard-content">
+    <div className="space-y-6 dashboard-content">
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="border">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-gray-600">

@@ -134,7 +134,6 @@ export function RegisterForm({
                                     onChange={(e) => setEmail(e.target.value)}
                                     disabled={isLoading}
                                     autoComplete="email"
-                                    autoFocus
                                 />
                             </div>
                             <div className="grid gap-3">
