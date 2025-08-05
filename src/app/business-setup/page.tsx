@@ -14,7 +14,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { AlertCircle, AudioWaveform } from 'lucide-react'
 import { useAuth } from '@/lib/auth'
-import { createClient } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase'
 
 export default function BusinessSetupPage() {
   const [businessName, setBusinessName] = useState('')
@@ -40,8 +40,6 @@ export default function BusinessSetupPage() {
     setIsLoading(true)
 
     try {
-      const supabase = createClient()
-
       // Create business
       const { data: business, error: businessError } = await supabase
         .from('businesses')
