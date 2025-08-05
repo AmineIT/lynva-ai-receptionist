@@ -1,0 +1,381 @@
+
+> react_repo@0.0.0 build
+> next build
+
+   ▲ Next.js 14.1.3
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types  .   Linting and checking validity of types  ..   Linting and checking validity of types  ...   Linting and checking validity of types  .   Linting and checking validity of types  ..   Linting and checking validity of types  ...   Linting and checking validity of types  .   Linting and checking validity of types  ..   Linting and checking validity of types  ...   Linting and checking validity of types  .   Linting and checking validity of types  ..   Linting and checking validity of types  ...   Linting and checking validity of types  .   Linting and checking validity of types  ..   Linting and checking validity of types  ...   Linting and checking validity of types  .   Linting and checking validity of types  ..   Linting and checking validity of types  ...   Linting and checking validity of types  .   Linting and checking validity of types  ..   Linting and checking validity of types  ...   Linting and checking validity of types  .   Linting and checking validity of types  ..   Linting and checking validity of types  ...   Linting and checking validity of types  .   Linting and checking validity of types  ..   Linting and checking validity of types  ...   Linting and checking validity of types  .   Linting and checking validity of types     ✓ Linting and checking validity of types 
+   Collecting page data  .   Collecting page data  ..   Collecting page data  ...   Collecting page data  .   Collecting page data  ..   Collecting page data  ...   Collecting page data  .   Collecting page data  ..   Collecting page data  ...   Collecting page data  .   Collecting page data  ..   Collecting page data  ...   Collecting page data  .   Collecting page data  ..   Collecting page data  ...   Collecting page data  .   Collecting page data  ..   Collecting page data  ...   Collecting page data  .   Collecting page data  ..⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+   Collecting page data  ...⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+   Collecting page data     ✓ Collecting page data 
+   Generating static pages (0/21)  [    ]   Generating static pages (0/21)  [=   ]GET /api/calls error: n [Error]: Dynamic server usage: Page couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at u (/workspace/lynva-updated/.next/server/chunks/682.js:1:4397)
+    at d (/workspace/lynva-updated/.next/server/chunks/682.js:1:1853)
+    at n (/workspace/lynva-updated/.next/server/app/api/services/[id]/route.js:1:4245)
+    at u (/workspace/lynva-updated/.next/server/app/api/services/[id]/route.js:1:4419)
+    at l (/workspace/lynva-updated/.next/server/app/api/calls/route.js:1:1422)
+    at /workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:42490
+    at /workspace/lynva-updated/node_modules/next/dist/server/lib/trace/tracer.js:133:36
+    at NoopContextManager.with (/workspace/lynva-updated/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+    at ContextAPI.with (/workspace/lynva-updated/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+    at NoopTracer.startActiveSpan (/workspace/lynva-updated/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093) {
+  description: "Page couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+GET /api/analytics/dashboard error: n [Error]: Dynamic server usage: Page couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at u (/workspace/lynva-updated/.next/server/chunks/682.js:1:4397)
+    at d (/workspace/lynva-updated/.next/server/chunks/682.js:1:1853)
+    at a (/workspace/lynva-updated/.next/server/app/api/business/route.js:1:3222)
+    at u (/workspace/lynva-updated/.next/server/app/api/business/route.js:1:3396)
+    at u (/workspace/lynva-updated/.next/server/app/api/analytics/dashboard/route.js:1:1412)
+    at /workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:42490
+    at /workspace/lynva-updated/node_modules/next/dist/server/lib/trace/tracer.js:133:36
+    at NoopContextManager.with (/workspace/lynva-updated/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+    at ContextAPI.with (/workspace/lynva-updated/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+    at NoopTracer.startActiveSpan (/workspace/lynva-updated/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093) {
+  description: "Page couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+   Generating static pages (0/21)  [==  ]    Generating static pages (5/21) 
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9967 (/workspace/lynva-updated/.next/server/chunks/801.js:1:7697)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 1978 (/workspace/lynva-updated/.next/server/chunks/801.js:1:486)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at j (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:93244)
+    at rP (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:33905)
+    at nL (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:62423)
+
+Error occurred prerendering page "/auth/register". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9967 (/workspace/lynva-updated/.next/server/chunks/801.js:1:7697)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 1978 (/workspace/lynva-updated/.next/server/chunks/801.js:1:486)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at j (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:93244)
+    at rP (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:33905)
+    at nL (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:62423)
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9967 (/workspace/lynva-updated/.next/server/chunks/801.js:1:7697)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 1978 (/workspace/lynva-updated/.next/server/chunks/801.js:1:486)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at j (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:93244)
+    at rP (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:33905)
+    at nL (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:62423)
+
+Error occurred prerendering page "/dashboard/help". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9967 (/workspace/lynva-updated/.next/server/chunks/801.js:1:7697)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 1978 (/workspace/lynva-updated/.next/server/chunks/801.js:1:486)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at j (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:93244)
+    at rP (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:33905)
+    at nL (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:62423)
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9967 (/workspace/lynva-updated/.next/server/chunks/801.js:1:7697)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 1978 (/workspace/lynva-updated/.next/server/chunks/801.js:1:486)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at j (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:93244)
+    at rP (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:33905)
+    at nL (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:62423)
+
+Error occurred prerendering page "/dashboard/analytics". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9967 (/workspace/lynva-updated/.next/server/chunks/801.js:1:7697)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 1978 (/workspace/lynva-updated/.next/server/chunks/801.js:1:486)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at j (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:93244)
+    at rP (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:33905)
+    at nL (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:62423)
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9967 (/workspace/lynva-updated/.next/server/chunks/801.js:1:7697)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 1978 (/workspace/lynva-updated/.next/server/chunks/801.js:1:486)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at j (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:93244)
+    at rP (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:33905)
+    at nL (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:62423)
+
+Error occurred prerendering page "/dashboard/settings". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9967 (/workspace/lynva-updated/.next/server/chunks/801.js:1:7697)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 1978 (/workspace/lynva-updated/.next/server/chunks/801.js:1:486)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at j (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:93244)
+    at rP (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:33905)
+    at nL (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:62423)
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 6121 (/workspace/lynva-updated/.next/server/app/dashboard/services/page.js:31:394)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+    at W._fromJSON (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97546)
+    at JSON.parse (<anonymous>)
+    at L (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94414)
+    at t (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:100799)
+
+Error occurred prerendering page "/dashboard/services". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 6121 (/workspace/lynva-updated/.next/server/app/dashboard/services/page.js:31:394)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+    at W._fromJSON (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97546)
+    at JSON.parse (<anonymous>)
+    at L (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94414)
+    at t (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:100799)
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+   Generating static pages (0/21)  [=== ]    Generating static pages (9/21) 
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/app/_not-found.js:1:8020)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9967 (/workspace/lynva-updated/.next/server/app/_not-found.js:1:6684)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 1978 (/workspace/lynva-updated/.next/server/app/_not-found.js:1:2705)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at j (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:93244)
+    at rP (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:33905)
+    at nL (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:62423)
+
+Error occurred prerendering page "/_not-found". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/app/_not-found.js:1:8020)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9967 (/workspace/lynva-updated/.next/server/app/_not-found.js:1:6684)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 1978 (/workspace/lynva-updated/.next/server/app/_not-found.js:1:2705)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at j (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:93244)
+    at rP (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:33905)
+    at nL (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:62423)
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9967 (/workspace/lynva-updated/.next/server/chunks/801.js:1:7697)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 1978 (/workspace/lynva-updated/.next/server/chunks/801.js:1:486)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at j (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:93244)
+    at rP (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:33905)
+    at nL (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:62423)
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 6383 (/workspace/lynva-updated/.next/server/app/dashboard/calls/page.js:16:493)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+    at W._fromJSON (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97546)
+    at JSON.parse (<anonymous>)
+    at L (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94414)
+    at t (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:100799)
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9967 (/workspace/lynva-updated/.next/server/chunks/801.js:1:7697)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 1978 (/workspace/lynva-updated/.next/server/chunks/801.js:1:486)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at j (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:93244)
+    at rP (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:33905)
+    at nL (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:62423)
+   Generating static pages (0/21)  [ ===]    Generating static pages (14/21) 
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9073 (/workspace/lynva-updated/.next/server/app/dashboard/page.js:41:121)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+    at W._fromJSON (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97546)
+    at JSON.parse (<anonymous>)
+    at L (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94414)
+    at t (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:100799)
+
+Error occurred prerendering page "/". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9967 (/workspace/lynva-updated/.next/server/chunks/801.js:1:7697)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 1978 (/workspace/lynva-updated/.next/server/chunks/801.js:1:486)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at j (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:93244)
+    at rP (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:33905)
+    at nL (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:62423)
+
+Error occurred prerendering page "/dashboard/calls". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 6383 (/workspace/lynva-updated/.next/server/app/dashboard/calls/page.js:16:493)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+    at W._fromJSON (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97546)
+    at JSON.parse (<anonymous>)
+    at L (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94414)
+    at t (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:100799)
+
+Error occurred prerendering page "/auth/login". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9967 (/workspace/lynva-updated/.next/server/chunks/801.js:1:7697)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 1978 (/workspace/lynva-updated/.next/server/chunks/801.js:1:486)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at j (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:93244)
+    at rP (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:33905)
+    at nL (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:62423)
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 4857 (/workspace/lynva-updated/.next/server/app/dashboard/content/page.js:21:526)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+    at W._fromJSON (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97546)
+    at JSON.parse (<anonymous>)
+    at L (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94414)
+    at t (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:100799)
+
+Error occurred prerendering page "/dashboard". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9073 (/workspace/lynva-updated/.next/server/app/dashboard/page.js:41:121)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+    at W._fromJSON (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97546)
+    at JSON.parse (<anonymous>)
+    at L (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94414)
+    at t (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:100799)
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9708 (/workspace/lynva-updated/.next/server/app/dashboard/bookings/page.js:46:261)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+    at W._fromJSON (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97546)
+    at JSON.parse (<anonymous>)
+    at L (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94414)
+    at t (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:100799)
+
+Error occurred prerendering page "/dashboard/content". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 4857 (/workspace/lynva-updated/.next/server/app/dashboard/content/page.js:21:526)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+    at W._fromJSON (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97546)
+    at JSON.parse (<anonymous>)
+    at L (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94414)
+    at t (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:100799)
+   Generating static pages (0/21)  [  ==]    Generating static pages (20/21) 
+
+Error occurred prerendering page "/dashboard/bookings". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Missing Supabase environment variables. Please check your .env file.
+    at 8704 (/workspace/lynva-updated/.next/server/chunks/801.js:1:9033)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at 9708 (/workspace/lynva-updated/.next/server/app/dashboard/bookings/page.js:46:261)
+    at t (/workspace/lynva-updated/.next/server/webpack-runtime.js:1:128)
+    at F (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+    at W._fromJSON (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97546)
+    at JSON.parse (<anonymous>)
+    at L (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94414)
+    at t (/workspace/lynva-updated/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:100799)
+ ✓ Generating static pages (21/21) 
+
+> Export encountered errors on following paths:
+	/_not-found
+	/auth/login/page: /auth/login
+	/auth/register/page: /auth/register
+	/dashboard/analytics/page: /dashboard/analytics
+	/dashboard/bookings/page: /dashboard/bookings
+	/dashboard/calls/page: /dashboard/calls
+	/dashboard/content/page: /dashboard/content
+	/dashboard/help/page: /dashboard/help
+	/dashboard/page: /dashboard
+	/dashboard/services/page: /dashboard/services
+	/dashboard/settings/page: /dashboard/settings
+	/page: /
