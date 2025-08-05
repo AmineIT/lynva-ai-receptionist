@@ -43,20 +43,32 @@ export default function BusinessSetupPage() {
       // Create business
       const { data: business, error: businessError } = await supabase
         .from('businesses')
-        .insert([{ name: businessName.trim() }])
+        .insert([{ 
+          name: businessName.trim(),
+          description: '',
+          country: 'UAE',
+          timezone: 'Asia/Dubai',
+          is_active: true,
+          subscription_status: 'trial'
+        }])
         .select()
         .single()
 
       if (businessError) throw businessError
 
-      // Create user profile
+      // Create or update user profile (use upsert to handle edge cases)
       const { error: userError } = await supabase
         .from('users')
-        .insert([{
+        .upsert([{
           id: user.id,
-          email: user.email,
+          email: user.email || '',
           business_id: business.id,
-        }])
+          role: 'owner',
+          is_active: true,
+          email_verified: true
+        }], {
+          onConflict: 'id'
+        })
 
       if (userError) throw userError
 

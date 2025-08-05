@@ -24,7 +24,6 @@ export function RegisterForm({
     ...props
 }: React.ComponentProps<"div">) {
     const [ email, setEmail ] = useState('');
-    const [ businessName, setBusinessName ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmPassword, setConfirmPassword ] = useState('');
     const [ showPassword, setShowPassword ] = useState(false);
@@ -43,10 +42,6 @@ export function RegisterForm({
         // Validation
         if (!email.trim()) {
             setError('Please enter your email address');
-            return;
-        }
-        if (!businessName.trim()) {
-            setError('Please enter your business name');
             return;
         }
         if (!password) {
@@ -111,19 +106,6 @@ export function RegisterForm({
                             </div>
                         )}
                         <div className="flex flex-col gap-5">
-                            <div className="grid gap-3">
-                                <Label htmlFor="email" required>Business Name</Label>
-                                <Input
-                                    id="businessName"
-                                    type="text"
-                                    placeholder="Enter your business name"
-                                    value={businessName}
-                                    onChange={(e) => setBusinessName(e.target.value)}
-                                    disabled={isLoading}
-                                    autoComplete="email"
-                                    autoFocus
-                                />
-                            </div>
                             <div className="grid gap-3">
                                 <Label htmlFor="email" required>Email Address</Label>
                                 <Input

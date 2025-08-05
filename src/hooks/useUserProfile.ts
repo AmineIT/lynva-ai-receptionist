@@ -2,11 +2,13 @@ import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/auth'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 
-export function useUserProfile() {
+export function useUserProfile(options?: { enableRedirect?: boolean }) {
   const { user } = useAuth()
   const router = useRouter()
+  const pathname = usePathname()
+  const enableRedirect = options?.enableRedirect ?? false
 
   // Check if user profile exists in custom users table
   const { data: userProfile, isLoading, refetch } = useQuery({
@@ -26,12 +28,19 @@ export function useUserProfile() {
     enabled: !!user?.id
   })
 
-  // Redirect to business setup if user doesn't have a profile
+  // Only redirect to business setup if explicitly enabled and not already on auth/setup pages
   useEffect(() => {
-    if (user && !isLoading && !userProfile) {
+    if (
+      enableRedirect &&
+      user && 
+      !isLoading && 
+      !userProfile && 
+      !pathname?.startsWith('/auth') && 
+      !pathname?.startsWith('/business-setup')
+    ) {
       router.push('/business-setup')
     }
-  }, [user, isLoading, userProfile, router])
+  }, [user, isLoading, userProfile, router, pathname, enableRedirect])
 
   return {
     userProfile,

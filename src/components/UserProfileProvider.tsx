@@ -9,8 +9,9 @@ interface UserProfileProviderProps {
 }
 
 export function UserProfileProvider({ children }: UserProfileProviderProps) {
-  // The useUserProfile hook will handle redirection to business setup if needed
-  useUserProfile()
+  // Load user profile data without automatic redirects
+  // Individual pages can enable redirects if needed
+  useUserProfile({ enableRedirect: false })
 
   return <>{children}</>
 }
