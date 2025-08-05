@@ -46,10 +46,10 @@ export default function BusinessSetupPage() {
         .insert([{ 
           name: businessName.trim(),
           description: '',
-          country: 'US',
-          timezone: 'America/New_York',
+          country: 'UAE',
+          timezone: 'Asia/Dubai',
           is_active: true,
-          subscription_status: 'active'
+          subscription_status: 'trial'
         }])
         .select()
         .single()
