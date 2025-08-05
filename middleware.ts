@@ -1,75 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServerClient, type CookieOptions } from '@supabase/ssr'
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   
-  // Only protect dashboard routes, let client handle business-setup flow
+  // Only protect dashboard routes
   if (!pathname.startsWith('/dashboard')) {
     return NextResponse.next()
   }
 
-  let response = NextResponse.next({
-    request: {
-      headers: request.headers,
-    },
-  })
-
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return request.cookies.get(name)?.value
-        },
-        set(name: string, value: string, options: CookieOptions) {
-          request.cookies.set({
-            name,
-            value,
-            ...options,
-          })
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          })
-          response.cookies.set({
-            name,
-            value,
-            ...options,
-          })
-        },
-        remove(name: string, options: CookieOptions) {
-          request.cookies.set({
-            name,
-            value: '',
-            ...options,
-          })
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          })
-          response.cookies.set({
-            name,
-            value: '',
-            ...options,
-          })
-        },
-      },
-    }
+  // Check for any Supabase auth cookies
+  const cookies = request.cookies.getAll()
+  const hasAuthCookie = cookies.some(cookie => 
+    cookie.name.includes('sb-') && cookie.name.includes('auth-token')
   )
-
-  const { data: { user } } = await supabase.auth.getUser()
-
-  // Redirect to login if not authenticated
-  if (!user) {
+  
+  // If no auth cookie, redirect to login
+  if (!hasAuthCookie) {
     const redirectUrl = new URL('/auth/login', request.url)
     return NextResponse.redirect(redirectUrl)
   }
 
-  return response
+  return NextResponse.next()
 }
 
 export const config = {
