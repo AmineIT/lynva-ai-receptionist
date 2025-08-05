@@ -78,7 +78,7 @@ export function RegisterForm({
 
         try {
             await signUp(email, password);
-            router.push('/dashboard');
+            router.push('/auth/login');
         } catch (error: any) {
             console.error('Login error:', error);
             setError(error.message || 'Failed to sign in. Please check your credentials.');
