@@ -7,147 +7,66 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
-import { supabase } from '@/lib/supabase'
 import { useLayout } from '@/components/ui/layout-context'
-
-interface Service {
-  id: string
-  name: string
-  description?: string
-  duration_minutes: number
-  price?: number
-  currency: string
-  is_active: boolean
-  category?: string
-  practitioner_name?: string
-}
+import { useServices } from '@/hooks/useServices'
 
 export default function ServicesPage() {
-  const [services, setServices] = useState<Service[]>([])
-  const [loading, setLoading] = useState(true)
   const [isAddingService, setIsAddingService] = useState(false)
   const [newService, setNewService] = useState({
     name: '',
     description: '',
     duration_minutes: 60,
     price: 0,
-    currency: 'USD',
+    currency: 'AED',
     category: 'General',
     practitioner_name: ''
   })
   const { setTitle, setSubtitle } = useLayout()
 
+  // Use the services hook
+  const { 
+    services, 
+    isLoading: loading, 
+    error,
+    createService,
+    updateService,
+    deleteService,
+    toggleServiceStatus,
+    isCreating,
+    isUpdating,
+    isDeleting,
+    isToggling
+  } = useServices();
+
   useEffect(() => {
-    fetchServices();
     setTitle('Services');
     setSubtitle('Manage your business services and pricing');
   }, [])
 
-  const fetchServices = async () => {
-    try {
-      // Get the first business from the database as default
-      const { data: businessData } = await supabase
-        .from('businesses')
-        .select('id')
-        .limit(1)
-        .single()
-
-      if (businessData) {
-        const { data, error } = await supabase
-          .from('services')
-          .select('*')
-          .eq('business_id', businessData.id)
-          .order('created_at', { ascending: false })
-
-        if (error) throw error
-        setServices(data || [])
-      }
-    } catch (error) {
-      console.error('Error fetching services:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const handleAddService = async () => {
+  const handleAddService = () => {
     if (!newService.name) return
 
-    try {
-      // Get the first business from the database as default
-      const { data: businessData } = await supabase
-        .from('businesses')
-        .select('id')
-        .limit(1)
-        .single()
-
-      if (!businessData) {
-        console.error('No business found')
-        return
-      }
-
-      const { data, error } = await supabase
-        .from('services')
-        .insert([{
-          ...newService,
-          business_id: businessData.id,
-          is_active: true,
-          booking_buffer_minutes: 15,
-          max_advance_booking_days: 30
-        }])
-        .select()
-
-      if (error) throw error
-      
-      if (data) {
-        setServices([...services, data[0]])
-        setNewService({
-          name: '',
-          description: '',
-          duration_minutes: 60,
-          price: 0,
-          currency: 'USD',
-          category: 'General',
-          practitioner_name: ''
-        })
-        setIsAddingService(false)
-      }
-    } catch (error) {
-      console.error('Error adding service:', error)
-    }
+    createService(newService)
+    setNewService({
+      name: '',
+      description: '',
+      duration_minutes: 60,
+      price: 0,
+      currency: 'AED',
+      category: 'General',
+      practitioner_name: ''
+    })
+    setIsAddingService(false)
   }
 
-  const handleDeleteService = async (id: string) => {
-    try {
-      const { error } = await supabase
-        .from('services')
-        .delete()
-        .eq('id', id)
-
-      if (error) throw error
-      setServices(services.filter(service => service.id !== id))
-    } catch (error) {
-      console.error('Error deleting service:', error)
-    }
+  const handleDeleteService = (id: string) => {
+    deleteService(id)
   }
 
-  const toggleServiceStatus = async (id: string) => {
-    const service = services.find(s => s.id === id)
+  const handleToggleStatus = (serviceId: string) => {
+    const service = services.find(s => s.id === serviceId)
     if (!service) return
-
-    try {
-      const { error } = await supabase
-        .from('services')
-        .update({ is_active: !service.is_active })
-        .eq('id', id)
-
-      if (error) throw error
-      
-      setServices(services.map(s => 
-        s.id === id ? { ...s, is_active: !s.is_active } : s
-      ))
-    } catch (error) {
-      console.error('Error updating service:', error)
-    }
+    toggleServiceStatus({ serviceId, isActive: !service.is_active })
   }
 
   const categories = ['General', 'Consultation', 'Treatment', 'Therapy', 'Wellness']
@@ -292,7 +211,9 @@ export default function ServicesPage() {
               </div>
             </div>
             <div className="flex gap-2">
-              <Button onClick={handleAddService}>Add Service</Button>
+              <Button onClick={handleAddService} disabled={isCreating}>
+                {isCreating ? 'Creating...' : 'Add Service'}
+              </Button>
               <Button variant="outline" onClick={() => setIsAddingService(false)}>Cancel</Button>
             </div>
           </CardContent>
@@ -352,7 +273,8 @@ export default function ServicesPage() {
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => toggleServiceStatus(service.id)}
+                        onClick={() => handleToggleStatus(service.id)}
+                        disabled={isToggling}
                       >
                         {service.is_active ? 'Deactivate' : 'Activate'}
                       </Button>
@@ -363,6 +285,7 @@ export default function ServicesPage() {
                         variant="outline" 
                         size="sm"
                         onClick={() => handleDeleteService(service.id)}
+                        disabled={isDeleting}
                       >
                         <Trash2 className="w-4 h-4" />
                       </Button>

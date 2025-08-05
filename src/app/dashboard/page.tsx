@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Calendar,
   Phone,
@@ -13,181 +14,118 @@ import {
   DollarSign,
   Activity,
   Plus,
-  Eye
+  Eye,
+  ArrowUp,
+  ArrowDown
 } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
 import { formatCurrency, formatDate, formatTime } from '@/lib/utils'
 import { useLayout } from '@/components/ui/layout-context'
+import { useDashboardAnalytics } from '@/hooks/useDashboardAnalytics'
 import Link from 'next/link'
 
-interface DashboardStats {
-  todayBookings: number
-  totalCalls: number
-  totalRevenue: number
-  conversionRate: number
-}
-
-interface RecentBooking {
-  id: string
-  customer_name: string
-  customer_phone: string
-  appointment_date: string
-  appointment_time: string
-  status: string
-  total_amount?: number
-}
-
-interface RecentCall {
-  id: string
-  caller_phone?: string
-  call_duration_seconds?: number
-  intent_detected?: string
-  lead_to_booking: boolean
-  started_at?: string
-}
-
 export default function DashboardPage() {
-  const [ stats, setStats ] = useState<DashboardStats>({
-    todayBookings: 0,
-    totalCalls: 0,
-    totalRevenue: 0,
-    conversionRate: 0
-  })
-  const [ recentBookings, setRecentBookings ] = useState<RecentBooking[]>([])
-  const [ recentCalls, setRecentCalls ] = useState<RecentCall[]>([])
-  const [ loading, setLoading ] = useState(true)
   const { setTitle, setSubtitle } = useLayout()
+  const { data: dashboardData, isLoading: loading, error, refetch } = useDashboardAnalytics()
 
   useEffect(() => {
-    loadDashboardData();
     setTitle('Dashboard');
     setSubtitle('Discover what\'s happening with your business');
-  }, [])
-
-  const loadDashboardData = async () => {
-    try {
-      setLoading(true)
-
-      // Get current user's business (for demo, we'll use the first business)
-      const { data: businesses } = await supabase
-        .from('businesses')
-        .select('id')
-        .eq('is_active', true)
-        .limit(1)
-
-      const businessId = businesses?.[ 0 ]?.id
-
-      if (!businessId) {
-        console.log('No business found')
-        return
-      }
-
-      // Load stats
-      await Promise.all([
-        loadStats(businessId),
-        loadRecentBookings(businessId),
-        loadRecentCalls(businessId)
-      ])
-
-    } catch (error) {
-      console.error('Error loading dashboard data:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const loadStats = async (businessId: string) => {
-    try {
-      const today = new Date().toISOString().split('T')[ 0 ]
-
-      // Today's bookings
-      const { data: todayBookings } = await supabase
-        .from('bookings')
-        .select('id, total_amount')
-        .eq('business_id', businessId)
-        .eq('appointment_date', today)
-        .eq('status', 'confirmed')
-
-      // Total calls this month
-      const firstOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString()
-      const { data: monthCalls } = await supabase
-        .from('call_logs')
-        .select('id, lead_to_booking')
-        .eq('business_id', businessId)
-        .gte('created_at', firstOfMonth)
-
-      // Calculate stats
-      const todayRevenue = todayBookings?.reduce((sum, booking) => sum + (booking.total_amount || 0), 0) || 0
-      const totalCalls = monthCalls?.length || 0
-      const successfulCalls = monthCalls?.filter(call => call.lead_to_booking)?.length || 0
-      const conversionRate = totalCalls > 0 ? (successfulCalls / totalCalls) * 100 : 0
-
-      setStats({
-        todayBookings: todayBookings?.length || 0,
-        totalCalls,
-        totalRevenue: todayRevenue,
-        conversionRate
-      })
-
-    } catch (error) {
-      console.error('Error loading stats:', error)
-    }
-  }
-
-  const loadRecentBookings = async (businessId: string) => {
-    try {
-      const { data: bookings } = await supabase
-        .from('bookings')
-        .select('id, customer_name, customer_phone, appointment_date, appointment_time, status, total_amount')
-        .eq('business_id', businessId)
-        .order('created_at', { ascending: false })
-        .limit(5)
-
-      setRecentBookings(bookings || [])
-    } catch (error) {
-      console.error('Error loading recent bookings:', error)
-    }
-  }
-
-  const loadRecentCalls = async (businessId: string) => {
-    try {
-      const { data: calls } = await supabase
-        .from('call_logs')
-        .select('id, caller_phone, call_duration_seconds, intent_detected, lead_to_booking, started_at')
-        .eq('business_id', businessId)
-        .order('created_at', { ascending: false })
-        .limit(5)
-
-      setRecentCalls(calls || [])
-    } catch (error) {
-      console.error('Error loading recent calls:', error)
-    }
-  }
+  }, []);
 
   if (loading) {
     return (
       <div className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {Array.from({ length: 4 }).map((_, i) => (
-            <Card key={i} className="animate-pulse">
+            <Card key={i}>
               <CardHeader className="pb-2">
-                <div className="h-4 bg-gray-100 rounded w-3/4" />
+                <Skeleton className="h-4 w-3/4" />
               </CardHeader>
               <CardContent>
-                <div className="h-8 bg-gray-100 rounded w-1/2 mb-2" />
-                <div className="h-3 bg-gray-100 rounded w-full" />
+                <Skeleton className="h-8 w-1/2 mb-2" />
+                <Skeleton className="h-3 w-full" />
               </CardContent>
             </Card>
           ))}
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Card>
+            <CardHeader>
+              <Skeleton className="h-6 w-1/3" />
+              <Skeleton className="h-4 w-2/3" />
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex-1">
+                      <Skeleton className="h-4 w-1/2 mb-2" />
+                      <Skeleton className="h-3 w-3/4" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <Skeleton className="h-6 w-1/3" />
+              <Skeleton className="h-4 w-2/3" />
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex-1">
+                      <Skeleton className="h-4 w-1/2 mb-2" />
+                      <Skeleton className="h-3 w-3/4" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     )
   }
 
+  if (error || (!loading && !dashboardData)) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
+        <div className="text-center">
+          <h3 className="text-lg font-semibold text-gray-900">Failed to load dashboard</h3>
+          <p className="text-gray-500 mt-2">{error?.message || 'Unable to load dashboard data'}</p>
+        </div>
+        <Button onClick={() => refetch()} variant="outline">
+          Try Again
+        </Button>
+      </div>
+    )
+  }
+
+  const stats = dashboardData?.stats
+  const recentBookings = dashboardData?.recentBookings || []
+  const recentCalls = dashboardData?.recentCalls || []
+
+  if (!stats) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
+        <div className="text-center">
+          <h3 className="text-lg font-semibold text-gray-900">No dashboard data available</h3>
+          <p className="text-gray-500 mt-2">Dashboard data will appear here once you start using the system</p>
+        </div>
+        <Button onClick={() => refetch()} variant="outline">
+          Refresh
+        </Button>
+      </div>
+    )
+  }
+
   return (
-    <div className="p-4 lg:p-6 space-y-6 dashboard-content">
+    <div className="space-y-6 dashboard-content">
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="border">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-gray-600">
@@ -197,8 +135,15 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-gray-900">{stats.todayBookings}</div>
-            <p className="text-xs text-gray-500">
-              {stats.todayBookings > 0 ? '+12% from yesterday' : 'No bookings yet today'}
+            <p className="text-xs text-gray-500 flex items-center gap-1">
+              {stats.bookingsTrend !== 0 && (
+                stats.bookingsTrend > 0 ? (
+                  <><ArrowUp className="w-3 h-3 text-green-500" /> +{stats.bookingsTrend}% from yesterday</>
+                ) : (
+                  <><ArrowDown className="w-3 h-3 text-red-500" /> {stats.bookingsTrend}% from yesterday</>
+                )
+              )}
+              {stats.bookingsTrend === 0 && 'Same as yesterday'}
             </p>
           </CardContent>
         </Card>
@@ -230,7 +175,7 @@ export default function DashboardPage() {
               {formatCurrency(stats.totalRevenue)}
             </div>
             <p className="text-xs text-gray-500">
-              {stats.totalRevenue > 0 ? '+8% from yesterday' : 'No revenue yet today'}
+              {stats.totalRevenue > 0 ? 'This month' : 'No revenue this month'}
             </p>
           </CardContent>
         </Card>

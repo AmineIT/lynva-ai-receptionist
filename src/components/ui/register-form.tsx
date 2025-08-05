@@ -41,18 +41,36 @@ export function RegisterForm({
         setError('');
 
         // Validation
-        if (!email || !password || !businessName || !confirmPassword || !terms) {
-            setError('Please fill in all fields');
+        if (!email.trim()) {
+            setError('Please enter your email address');
             return;
         }
-
+        if (!businessName.trim()) {
+            setError('Please enter your business name');
+            return;
+        }
+        if (!password) {
+            setError('Please enter a password');
+            return;
+        }
+        if (password.length < 6) {
+            setError('Password must be at least 6 characters long');
+            return;
+        }
+        if (!confirmPassword) {
+            setError('Please confirm your password');
+            return;
+        }
         if (password !== confirmPassword) {
             setError('Passwords do not match');
             return;
         }
-
-        if (!isValidEmail(email)) {
+        if (!isValidEmail(email.trim())) {
             setError('Please enter a valid email address');
+            return;
+        }
+        if (!terms) {
+            setError('Please accept the Terms of Service and Privacy Policy');
             return;
         }
 
@@ -116,7 +134,6 @@ export function RegisterForm({
                                     onChange={(e) => setEmail(e.target.value)}
                                     disabled={isLoading}
                                     autoComplete="email"
-                                    autoFocus
                                 />
                             </div>
                             <div className="grid gap-3">
@@ -164,7 +181,12 @@ export function RegisterForm({
                                 </div>
                             </div>
                             <div className="flex items-center gap-2">
-                                <Checkbox id="terms" className="w-4 h-4 bg-primary/10 border-primary/20" checked={terms} onCheckedChange={(checked) => setTerms(checked === 'indeterminate' ? false : checked)} />
+                                <Checkbox 
+                                    id="terms" 
+                                    className="w-4 h-4 bg-primary/10 border-primary/20" 
+                                    checked={terms} 
+                                    onCheckedChange={(checked) => setTerms(!!checked)} 
+                                />
                                 <Label htmlFor="terms" className="text-xs">I agree to the <Link href="/terms" className="underline underline-offset-4 text-primary">Terms of Service</Link> and <Link href="/privacy" className="underline underline-offset-4 text-primary">Privacy Policy</Link>.</Label>
                             </div>
                             <div className="flex flex-col gap-3">

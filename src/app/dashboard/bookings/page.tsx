@@ -25,79 +25,36 @@ import {
   Edit,
   Trash2
 } from 'lucide-react'
-import { supabase, type Booking } from '@/lib/supabase'
 import { formatDate, formatTime, formatCurrency, formatPhoneNumber } from '@/lib/utils'
 import { useLayout } from '@/components/ui/layout-context'
+import { useBookings } from '@/hooks/useBookings'
 
 export default function BookingsPage() {
-  const [bookings, setBookings] = useState<Booking[]>([]);
-  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [showCreateForm, setShowCreateForm] = useState(false);
   const { setTitle, setSubtitle } = useLayout();
 
+  // Use the bookings hook with filters
+  const { 
+    bookings, 
+    isLoading: loading, 
+    error,
+    createBooking,
+    updateBooking,
+    deleteBooking,
+    isCreating,
+    isUpdating,
+    isDeleting
+  } = useBookings({
+    status: statusFilter !== 'all' ? statusFilter : undefined,
+    search: searchTerm || undefined
+  });
+
   useEffect(() => {
-    loadBookings();
     setTitle('Bookings');
     setSubtitle('Manage your appointment bookings');
   }, [])
-
-  const loadBookings = async () => {
-    try {
-      setLoading(true)
-      
-      // Get current user's business (for demo, we'll use the first business)
-      const { data: businesses } = await supabase
-        .from('businesses')
-        .select('id')
-        .eq('is_active', true)
-        .limit(1)
-      
-      const businessId = businesses?.[0]?.id
-      
-      if (!businessId) {
-        console.log('No business found')
-        return
-      }
-
-      let query = supabase
-        .from('bookings')
-        .select('*')
-        .eq('business_id', businessId)
-        .order('appointment_date', { ascending: false })
-        .order('appointment_time', { ascending: false })
-      
-      if (statusFilter !== 'all') {
-        query = query.eq('status', statusFilter)
-      }
-      
-      const { data, error } = await query
-      
-      if (error) throw error
-      
-      let filteredBookings = data || []
-      
-      if (searchTerm) {
-        filteredBookings = filteredBookings.filter(booking => 
-          booking.customer_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          booking.customer_phone.includes(searchTerm) ||
-          (booking.customer_email && booking.customer_email.toLowerCase().includes(searchTerm.toLowerCase()))
-        )
-      }
-      
-      setBookings(filteredBookings)
-      
-    } catch (error) {
-      console.error('Error loading bookings:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    loadBookings()
-  }, [statusFilter, searchTerm])
 
   const getStatusBadge = (status: string) => {
     const styles = {

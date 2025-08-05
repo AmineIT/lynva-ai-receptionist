@@ -7,12 +7,24 @@ import {
   SidebarMenu,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Navigation } from '@/hooks/use-navigation'
 import { Separator } from './separator'
 import { LogOut } from 'lucide-react'
 import { Button } from './button'
+import { useAuth } from '@/lib/auth'
+import { useRouter } from 'next/navigation'
 
-export function NavUser({ user }: { user: Navigation[ 'user' ] }) {
+export function NavUser({ user }: { user: { email: string } }) {
+  const { signOut } = useAuth();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      router.push('/auth/login');
+    } catch (error) {
+      console.error('Sign out error:', error);
+    }
+  }
 
   return (
     <SidebarMenu>
@@ -34,7 +46,7 @@ export function NavUser({ user }: { user: Navigation[ 'user' ] }) {
       </SidebarMenuItem>
 
       <SidebarMenuItem>
-        <Button variant="outline" size="sm" className="w-full">
+        <Button variant="outline" size="sm" className="w-full" onClick={handleSignOut}>
           <LogOut className="w-4 h-4" />
           Logout
         </Button>

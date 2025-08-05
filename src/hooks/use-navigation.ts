@@ -11,9 +11,6 @@ interface NavigationItem {
 }
 
 export interface Navigation {
-    user: {
-        email: string
-    }
     navMain: NavigationItem[]
     navSecondary: NavigationItem[]
 }
@@ -23,58 +20,55 @@ export function useNavigation() {
     const pathname = usePathname()
 
     const navigation: Navigation = {
-        user: {
-            email: "",
-        },
         navMain: [
             {
                 title: "Dashboard",
                 url: '/dashboard',
                 onClick: () => router.push('/dashboard'),
                 icon: LayoutDashboard,
-                isActive: pathname === '/dashboard',
+                isActive: pathname === '/dashboard/',
             },
             {
                 title: "Bookings",
                 url: '/dashboard/bookings',
                 onClick: () => router.push('/dashboard/bookings'),
                 icon: Calendar,
-                isActive: pathname === '/dashboard/bookings',
+                isActive: pathname === '/dashboard/bookings/',
             },
             {
                 title: "Call Logs",
                 url: '/dashboard/calls',
                 onClick: () => router.push('/dashboard/calls'),
                 icon: PhoneCall,
-                isActive: pathname === '/dashboard/calls',
+                isActive: pathname === '/dashboard/calls/',
             },
             {
                 title: "Content",
                 url: '/dashboard/content',
                 onClick: () => router.push('/dashboard/content'),
                 icon: BotMessageSquare,
-                isActive: pathname === '/dashboard/content',
+                isActive: pathname === '/dashboard/content/',
             },
             {
                 title: "Services",
                 url: '/dashboard/services',
                 onClick: () => router.push('/dashboard/services'),
                 icon: Blocks,
-                isActive: pathname === '/dashboard/services',
+                isActive: pathname === '/dashboard/services/',
             },
             {
                 title: "Analytics",
                 url: '/dashboard/analytics',
                 onClick: () => router.push('/dashboard/analytics'),
                 icon: BarChart,
-                isActive: pathname === '/dashboard/analytics',
+                isActive: pathname === '/dashboard/analytics/',
             },
             {
                 title: "Settings",
                 url: '/dashboard/settings',
                 onClick: () => router.push('/dashboard/settings'),
                 icon: Settings2,
-                isActive: pathname === '/dashboard/settings',
+                isActive: pathname === '/dashboard/settings/',
             },
         ],
         navSecondary: [
@@ -83,7 +77,7 @@ export function useNavigation() {
                 url: '/dashboard/help',
                 onClick: () => router.push('/dashboard/help'),
                 icon: LifeBuoy,
-                isActive: pathname === '/dashboard/help',
+                isActive: pathname === '/dashboard/help/',
             },
         ],
     }
