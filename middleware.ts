@@ -4,8 +4,11 @@ import { createServerClient, type CookieOptions } from '@supabase/ssr'
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   
-  // Only protect dashboard routes
-  if (!pathname.startsWith('/dashboard')) {
+  // Protect dashboard routes and business-setup (both require authentication)
+  const protectedRoutes = ['/dashboard', '/business-setup']
+  const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route))
+  
+  if (!isProtectedRoute) {
     return NextResponse.next()
   }
 
@@ -74,13 +77,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - public folder
-     */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/dashboard/:path*',
+    '/business-setup'
   ],
 }
