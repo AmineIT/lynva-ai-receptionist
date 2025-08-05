@@ -15,6 +15,7 @@ import { Label } from '@/components/ui/label'
 import { AlertCircle, AudioWaveform } from 'lucide-react'
 import { useAuth } from '@/lib/auth'
 import { supabase } from '@/lib/supabase'
+import { useQueryClient } from '@tanstack/react-query'
 
 interface BusinessSetupModalProps {
   isOpen: boolean
@@ -26,6 +27,7 @@ export function BusinessSetupModal({ isOpen, onComplete }: BusinessSetupModalPro
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const { user } = useAuth()
+  const queryClient = useQueryClient()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -76,6 +78,9 @@ export function BusinessSetupModal({ isOpen, onComplete }: BusinessSetupModalPro
 
       if (userError) throw userError
 
+      // Invalidate user profile cache to refresh the data
+      queryClient.invalidateQueries({ queryKey: ['user-profile', user.id] })
+      
       // Success! Call completion callback
       onComplete()
     } catch (error: any) {
