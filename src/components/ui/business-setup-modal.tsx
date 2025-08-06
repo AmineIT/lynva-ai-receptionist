@@ -80,11 +80,7 @@ export function BusinessSetupModal({ isOpen, onComplete }: BusinessSetupModalPro
 
       // Invalidate user profile cache to refresh the data
       queryClient.invalidateQueries({ queryKey: ['user-profile', user.id] })
-<<<<<<< HEAD
-      
-=======
 
->>>>>>> 157b9c6 (Enhance dashboard layout with business setup modal integration)
       // Success! Call completion callback
       onComplete()
     } catch (error: any) {
