@@ -351,37 +351,23 @@ function calculateCustomerSatisfaction(satisfactionData: any[]) {
 }
 
 function getEmptyAnalyticsData(): AnalyticsData {
-  // Return sample data for testing/development until real data is populated
   return {
-    totalCalls: 156,
-    callsThisWeek: 23,
-    callsLastWeek: 18,
-    totalBookings: 89,
-    bookingsThisWeek: 12,
-    bookingsLastWeek: 8,
-    revenue: 4250,
-    conversionRate: 57.1,
-    avgCallDuration: 245,
-    popularServices: [
-      { name: 'Initial Consultation', bookings: 34 },
-      { name: 'Wellness Check', bookings: 28 },
-      { name: 'Therapy Session', bookings: 15 },
-      { name: 'Treatment Plan Review', bookings: 12 }
-    ],
-    callsByDay: [
-      { day: 'Mon', calls: 8 },
-      { day: 'Tue', calls: 12 },
-      { day: 'Wed', calls: 15 },
-      { day: 'Thu', calls: 18 },
-      { day: 'Fri', calls: 22 },
-      { day: 'Sat', calls: 16 },
-      { day: 'Sun', calls: 9 }
-    ],
+    totalCalls: 0,
+    callsThisWeek: 0,
+    callsLastWeek: 0,
+    totalBookings: 0,
+    bookingsThisWeek: 0,
+    bookingsLastWeek: 0,
+    revenue: 0,
+    conversionRate: 0,
+    avgCallDuration: 0,
+    popularServices: [],
+    callsByDay: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => ({ day, calls: 0 })),
     bookingsByStatus: [
-      { status: 'Confirmed', count: 45, color: 'bg-green-100 text-green-800' },
-      { status: 'Pending', count: 23, color: 'bg-yellow-100 text-yellow-800' },
-      { status: 'Completed', count: 15, color: 'bg-blue-100 text-blue-800' },
-      { status: 'Cancelled', count: 6, color: 'bg-red-100 text-red-800' }
+      { status: 'Confirmed', count: 0, color: 'bg-green-100 text-green-800' },
+      { status: 'Pending', count: 0, color: 'bg-yellow-100 text-yellow-800' },
+      { status: 'Completed', count: 0, color: 'bg-blue-100 text-blue-800' },
+      { status: 'Cancelled', count: 0, color: 'bg-red-100 text-red-800' }
     ],
     peakHours: "2-4 PM",
     customerSatisfaction: 4.8

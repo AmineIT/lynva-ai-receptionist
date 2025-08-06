@@ -140,37 +140,7 @@ export function useBusinessSettings() {
       whatsapp: { enabled: false, connected: false },
       vapi: { enabled: false, connected: false }
     }
-  } : {
-    // Sample data for testing/development when no real data exists
-    name: 'Wellness Center',
-    description: 'Professional wellness and therapy services',
-    phone: '+1 (555) 123-4567',
-    email: 'contact@wellnesscenter.com',
-    address: '123 Health Street',
-    city: 'San Francisco',
-    country: 'United States',
-    timezone: 'America/Los_Angeles',
-    website: 'https://wellnesscenter.com',
-    businessHours: {
-      monday: { open: '09:00', close: '18:00', isOpen: true },
-      tuesday: { open: '09:00', close: '18:00', isOpen: true },
-      wednesday: { open: '09:00', close: '18:00', isOpen: true },
-      thursday: { open: '09:00', close: '18:00', isOpen: true },
-      friday: { open: '09:00', close: '18:00', isOpen: true },
-      saturday: { open: '10:00', close: '16:00', isOpen: true },
-      sunday: { open: '10:00', close: '16:00', isOpen: false }
-    },
-    notifications: {
-      emailBookings: true,
-      smsReminders: true,
-      callAlerts: true
-    },
-    integrations: {
-      googleCalendar: { enabled: true, connected: true },
-      whatsapp: { enabled: true, connected: false },
-      vapi: { enabled: true, connected: true }
-    }
-  }
+  } : null
   
   // Update business info mutation
   const updateBusinessInfo = useMutation({
