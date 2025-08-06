@@ -190,7 +190,7 @@ export function useAnalytics(timeRange: string = '7d') {
       
       // Process popular services
       const serviceIds = popularServicesResult.data?.map(booking => booking.service_id) || []
-      const uniqueServiceIds = [...new Set(serviceIds)]
+      const uniqueServiceIds = Array.from(new Set(serviceIds))
       
       // Fetch service names if there are any service IDs
       let popularServices: { name: string; bookings: number }[] = []
@@ -259,8 +259,8 @@ export function useAnalytics(timeRange: string = '7d') {
 
 function getDateRanges(timeRange: string, today: Date) {
   let daysToShow = 7
-  let currentPeriodStart = new Date(today)
-  let previousPeriodStart = new Date(today)
+  const currentPeriodStart = new Date(today)
+  const previousPeriodStart = new Date(today)
   
   // Set appropriate date ranges based on selected time range
   switch (timeRange) {
@@ -327,9 +327,6 @@ function processBookingsByStatus(bookingsData: any[], statusColors: Record<strin
   }))
 }
 
-// This function is no longer needed as we're processing the services data directly
-// in the main function after fetching service names separately
-
 function calculateAvgCallDuration(callDurationData: any[]) {
   if (callDurationData.length === 0) return 0
   
@@ -370,6 +367,6 @@ function getEmptyAnalyticsData(): AnalyticsData {
       { status: 'Cancelled', count: 0, color: 'bg-red-100 text-red-800' }
     ],
     peakHours: "2-4 PM", // Default value to match the UI expectation
-    customerSatisfaction: 4.8 // Default value to match the UI expectation
+    customerSatisfaction: 0 // Default value to match the UI expectation
   }
 }

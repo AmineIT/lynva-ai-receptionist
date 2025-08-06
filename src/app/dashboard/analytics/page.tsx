@@ -33,7 +33,9 @@ export default function AnalyticsPage() {
     avgCallDuration: 0,
     popularServices: [],
     callsByDay: [],
-    bookingsByStatus: []
+    bookingsByStatus: [],
+    peakHours: '',
+    customerSatisfaction: 0
   }
 
   const calculateTrend = (current: number, previous: number) => {
@@ -166,7 +168,7 @@ export default function AnalyticsPage() {
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Calls by Day */}
-        <Card className="border py-0 overflow-hidden h-full shadow-none">
+        <Card className="border pt-0 overflow-hidden h-full shadow-none">
           <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
             <div className="flex items-center justify-between">
               <div>
@@ -199,7 +201,7 @@ export default function AnalyticsPage() {
         </Card>
 
         {/* Booking Status */}
-        <Card className="border py-0 overflow-hidden h-full shadow-none">
+        <Card className="border pt-0 overflow-hidden h-full shadow-none">
           <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
             <div className="flex items-center justify-between">
               <div>
@@ -210,7 +212,7 @@ export default function AnalyticsPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {analytics.bookingsByStatus.map((status) => (
+              {analytics.bookingsByStatus.length > 0 ? analytics.bookingsByStatus.map((status) => (
                 <div key={status.status} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Badge className={status.color}>
@@ -221,14 +223,18 @@ export default function AnalyticsPage() {
                     {status.count}
                   </div>
                 </div>
-              ))}
+              )) : (
+                <div className="flex items-center justify-center h-48">
+                  <p className="text-gray-500 text-sm text-center w-full">No bookings found</p>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>
       </div>
 
       {/* Popular Services */}
-      <Card className="border py-0 overflow-hidden h-full shadow-none">
+      <Card className="border pt-0 overflow-hidden h-full shadow-none">
         <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
           <div className="flex items-center justify-between">
             <div>
@@ -239,7 +245,7 @@ export default function AnalyticsPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {analytics.popularServices.map((service, index) => {
+            {analytics.popularServices.length > 0 ? analytics.popularServices.map((service, index) => {
               const maxBookings = Math.max(...analytics.popularServices.map(s => s.bookings))
               const percentage = (service.bookings / maxBookings) * 100
               
@@ -262,7 +268,11 @@ export default function AnalyticsPage() {
                   </div>
                 </div>
               )
-            })}
+            }) : (
+              <div className="flex items-center justify-center h-48">
+                <p className="text-gray-500 text-sm text-center w-full">No services found</p>
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
