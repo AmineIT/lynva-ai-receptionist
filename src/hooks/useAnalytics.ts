@@ -282,10 +282,19 @@ function getDateRanges(timeRange: string, today: Date) {
   }
   
   // Format dates to ISO string
-  const currentPeriodStartStr = currentPeriodStart.toISOString()
-  const currentPeriodEndStr = today.toISOString()
+  const currentPeriodStartStr = currentPeriodStart.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })
+  const currentPeriodEndStr = today.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })
   const previousPeriodEndStr = currentPeriodStartStr
-  const previousPeriodStartStr = previousPeriodStart.toISOString()
+  const previousPeriodStartStr = previousPeriodStart.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })
+
+  console.log({
+    currentPeriodStartStr,
+    currentPeriodEndStr,
+    previousPeriodStartStr,
+    previousPeriodEndStr,
+    today,
+    daysToShow
+  })
   
   return {
     currentPeriodStart: currentPeriodStartStr,

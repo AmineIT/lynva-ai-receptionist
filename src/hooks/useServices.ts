@@ -4,7 +4,6 @@ import { useAuth } from '@/lib/auth'
 import { useUserProfile } from './useUserProfile'
 import { toast } from 'react-hot-toast'
 import { useEffect } from 'react'
-import type { Service } from '@/lib/supabase'
 
 interface CreateServiceData {
   name: string
@@ -32,7 +31,6 @@ interface ServiceFilters {
 }
 
 export function useServices(filters: ServiceFilters = {}) {
-  const { user } = useAuth()
   const { businessId } = useUserProfile()
   const queryClient = useQueryClient()
   const queryKey = ['services', businessId, filters]

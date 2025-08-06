@@ -3,7 +3,6 @@ import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/auth'
 import { toast } from 'react-hot-toast'
 import { useEffect } from 'react'
-import type { FAQ } from '@/lib/supabase'
 
 interface CreateFaqData {
   question: string

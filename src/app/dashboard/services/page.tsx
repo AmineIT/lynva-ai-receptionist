@@ -210,7 +210,7 @@ export default function ServicesPage() {
       )}
 
       {/* Services List */}
-      <Card className="border py-0 overflow-hidden h-full shadow-none">
+      <Card className="border pt-0 overflow-hidden h-full shadow-none">
         <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
           <div className="flex items-center justify-between">
             <div>

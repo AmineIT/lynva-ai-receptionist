@@ -143,7 +143,7 @@ export default function DashboardPage() {
       {/* Recent Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Bookings */}
-        <Card className="border py-0 overflow-hidden">
+        <Card className="border pt-0 overflow-hidden">
           <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
             <div className="flex items-center justify-between">
               <div>
@@ -205,7 +205,7 @@ export default function DashboardPage() {
         </Card>
 
         {/* Recent Calls */}
-        <Card className="border py-0 overflow-hidden">
+        <Card className="border pt-0 overflow-hidden">
           <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
             <div className="flex items-center justify-between">
               <div>

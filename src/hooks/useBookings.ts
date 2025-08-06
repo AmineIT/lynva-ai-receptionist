@@ -4,7 +4,6 @@ import { useAuth } from '@/lib/auth'
 import { useUserProfile } from './useUserProfile'
 import { toast } from 'react-hot-toast'
 import { useEffect } from 'react'
-import type { Booking } from '@/lib/supabase'
 
 interface CreateBookingData {
   service_id?: string
@@ -33,7 +32,6 @@ interface BookingFilters {
 }
 
 export function useBookings(filters: BookingFilters = {}) {
-  const { user } = useAuth()
   const { businessId } = useUserProfile()
   const queryClient = useQueryClient()
   

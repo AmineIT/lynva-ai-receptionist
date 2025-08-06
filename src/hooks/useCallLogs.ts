@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/auth'
-import type { CallLog } from '@/lib/supabase'
 
 interface CallLogFilters {
   date_from?: string

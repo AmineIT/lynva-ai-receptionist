@@ -77,11 +77,11 @@ export function useDashboardAnalytics() {
       
       // Get current date information
       const today = new Date()
-      const todayStr = today.toISOString().split('T')[0]
+      const todayStr = today.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })
       const yesterday = new Date(today)
       yesterday.setDate(yesterday.getDate() - 1)
-      const yesterdayStr = yesterday.toISOString().split('T')[0]
-      const firstOfMonth = new Date(today.getFullYear(), today.getMonth(), 1).toISOString().split('T')[0]
+      const yesterdayStr = yesterday.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })
+      const firstOfMonth = new Date(today.getFullYear(), today.getMonth(), 1).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })
       
       // Parallel data fetching for better performance
       const [
