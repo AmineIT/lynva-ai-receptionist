@@ -1,0 +1,114 @@
+⠋ Resolving dependencies...                                                     ⠙ Resolving dependencies...                                                     ⠋ Resolving dependencies...                                                     ⠙ Resolving dependencies...                                                     ⠹ Resolving dependencies...                                                     ⠸ Resolving dependencies...                                                     ⠸ supabase==2.18.0                                                              ⠼ supabase==2.18.0                                                              ⠴ supabase==2.18.0                                                              ⠦ supabase==2.18.0                                                              ⠧ supabase==2.18.0                                                              ⠇ supabase==2.18.0                                                              ⠇ postgrest==1.1.1                                                              ⠋ postgrest==1.1.1                                                              ⠙ postgrest==1.1.1                                                              ⠙ realtime==2.7.0                                                               ⠙ gotrue==2.12.3                                                                ⠙ storage3==0.12.1                                                              ⠙ supafunc==0.10.1                                                              ⠙ httpx==0.28.1                                                                 ⠙ httpx==0.28.1                                                                 ⠹ httpx==0.28.1                                                                 ⠸ httpx==0.28.1                                                                 ⠸ deprecation==2.1.0                                                            ⠼ deprecation==2.1.0                                                            ⠴ deprecation==2.1.0                                                            ⠦ deprecation==2.1.0                                                            ⠦ pydantic==2.11.7                                                              ⠦ pydantic-core==2.33.2                                                         ⠦ typing-extensions==4.14.0                                                     ⠦ websockets==15.0.1                                                            ⠦ pyjwt==2.10.1                                                                 ⠦ python-dateutil==2.9.0.post0                                                  ⠦ strenum==0.4.15                                                               ⠦ anyio==4.10.0                                                                 ⠦ typing-extensions==4.14.0                                                     ⠦ certifi==2025.8.3                                                             ⠦ httpcore==1.0.9                                                               ⠦ idna==3.10                                                                    ⠦ h2==4.2.0                                                                     ⠦ packaging==25.0                                                               ⠦ annotated-types==0.7.0                                                        ⠦ typing-inspection==0.4.1                                                      ⠦ six==1.17.0                                                                   ⠦ sniffio==1.3.1                                                                ⠦ h11==0.16.0                                                                   ⠧ h11==0.16.0                                                                   ⠇ h11==0.16.0                                                                   ⠇ hyperframe==6.1.0                                                             ⠋ hyperframe==6.1.0                                                             ⠋ hpack==4.1.0                                                                  ⠋                                                                               Resolved 28 packages in 3.49s
+⠋ Preparing packages... (0/0)                                                   ⠋ Preparing packages... (0/13)                                                  ⠙ Preparing packages... (0/13)                                                  ⠙ Preparing packages... (0/13)
+hyperframe ------------------------------     0 B/12.70 KiB                     ⠙ Preparing packages... (0/13)
+hyperframe ------------------------------ 8.00 KiB/12.70 KiB                    ⠙ Preparing packages... (0/13)
+hyperframe ------------------------------ 12.70 KiB/12.70 KiB                   ⠙ Preparing packages... (0/13)
+hyperframe ------------------------------ 12.70 KiB/12.70 KiB
+websockets ------------------------------     0 B/178.25 KiB                    ⠙ Preparing packages... (0/13)
+hyperframe ------------------------------ 12.70 KiB/12.70 KiB
+websockets ------------------------------ 8.00 KiB/178.25 KiB                   ⠙ Preparing packages... (0/13)
+websockets ------------------------------ 8.00 KiB/178.25 KiB                   ⠙ Preparing packages... (0/13)
+hpack      ------------------------------     0 B/33.55 KiB
+websockets ------------------------------ 8.00 KiB/178.25 KiB                   ⠙ Preparing packages... (0/13)
+hpack      ------------------------------ 8.00 KiB/33.55 KiB
+websockets ------------------------------ 8.00 KiB/178.25 KiB                   ⠙ Preparing packages... (0/13)
+hpack      ------------------------------ 8.00 KiB/33.55 KiB
+websockets ------------------------------ 16.00 KiB/178.25 KiB                  ⠙ Preparing packages... (0/13)
+hpack      ------------------------------ 16.00 KiB/33.55 KiB
+websockets ------------------------------ 16.00 KiB/178.25 KiB                  ⠙ Preparing packages... (0/13)
+hpack      ------------------------------ 16.00 KiB/33.55 KiB
+websockets ------------------------------ 24.00 KiB/178.25 KiB                  ⠙ Preparing packages... (0/13)
+hpack      ------------------------------ 24.00 KiB/33.55 KiB
+websockets ------------------------------ 24.00 KiB/178.25 KiB                  ⠙ Preparing packages... (0/13)
+hpack      ------------------------------ 30.63 KiB/33.55 KiB
+websockets ------------------------------ 24.00 KiB/178.25 KiB                  ⠙ Preparing packages... (0/13)
+hpack      ------------------------------ 30.63 KiB/33.55 KiB
+websockets ------------------------------ 31.19 KiB/178.25 KiB                  ⠙ Preparing packages... (0/13)
+hpack      ------------------------------ 30.63 KiB/33.55 KiB
+websockets ------------------------------ 39.19 KiB/178.25 KiB                  ⠙ Preparing packages... (0/13)
+hpack      ------------------------------ 30.63 KiB/33.55 KiB
+websockets ------------------------------ 47.19 KiB/178.25 KiB                  ⠙ Preparing packages... (0/13)
+hpack      ------------------------------ 30.63 KiB/33.55 KiB
+websockets ------------------------------ 55.19 KiB/178.25 KiB                  ⠙ Preparing packages... (0/13)
+hpack      ------------------------------ 30.63 KiB/33.55 KiB
+websockets ------------------------------ 63.19 KiB/178.25 KiB                  ⠙ Preparing packages... (0/13)
+supafunc   ------------------------------ 7.84 KiB/7.84 KiB
+strenum    ------------------------------ 8.00 KiB/8.64 KiB
+deprecation ------------------------------ 8.00 KiB/10.92 KiB
+storage3   ------------------------------ 8.00 KiB/17.99 KiB
+supabase   ------------------------------ 8.00 KiB/18.24 KiB
+postgrest  ------------------------------ 21.84 KiB/21.84 KiB
+realtime   ------------------------------ 8.00 KiB/21.88 KiB
+pyjwt      ------------------------------ 22.46 KiB/22.46 KiB
+hpack      ------------------------------ 33.55 KiB/33.55 KiB
+gotrue     ------------------------------ 8.00 KiB/42.99 KiB
+h2         ------------------------------ 59.53 KiB/59.53 KiB                   ⠙ Preparing packages... (0/13)
+supafunc   ------------------------------ 7.84 KiB/7.84 KiB
+strenum    ------------------------------ 8.00 KiB/8.64 KiB
+deprecation ------------------------------ 8.00 KiB/10.92 KiB
+storage3   ------------------------------ 8.00 KiB/17.99 KiB
+supabase   ------------------------------ 16.00 KiB/18.24 KiB
+postgrest  ------------------------------ 21.84 KiB/21.84 KiB
+realtime   ------------------------------ 16.00 KiB/21.88 KiB
+pyjwt      ------------------------------ 22.46 KiB/22.46 KiB
+gotrue     ------------------------------ 16.00 KiB/42.99 KiB
+h2         ------------------------------ 59.53 KiB/59.53 KiB                   ⠙ Preparing packages... (0/13)
+supafunc   ------------------------------ 7.84 KiB/7.84 KiB
+strenum    ------------------------------ 8.00 KiB/8.64 KiB
+deprecation ------------------------------ 10.92 KiB/10.92 KiB
+storage3   ------------------------------ 8.00 KiB/17.99 KiB
+supabase   ------------------------------ 16.00 KiB/18.24 KiB
+realtime   ------------------------------ 16.00 KiB/21.88 KiB
+pyjwt      ------------------------------ 22.46 KiB/22.46 KiB
+gotrue     ------------------------------ 16.00 KiB/42.99 KiB
+h2         ------------------------------ 59.53 KiB/59.53 KiB                   ⠙ Preparing packages... (0/13)
+supafunc   ------------------------------ 7.84 KiB/7.84 KiB
+strenum    ------------------------------ 8.00 KiB/8.64 KiB
+deprecation ------------------------------ 10.92 KiB/10.92 KiB
+storage3   ------------------------------ 8.00 KiB/17.99 KiB
+supabase   ------------------------------ 16.00 KiB/18.24 KiB
+realtime   ------------------------------ 16.00 KiB/21.88 KiB
+pyjwt      ------------------------------ 22.46 KiB/22.46 KiB
+gotrue     ------------------------------ 16.00 KiB/42.99 KiB                   ⠙ Preparing packages... (0/13)
+supafunc   ------------------------------ 7.84 KiB/7.84 KiB
+strenum    ------------------------------ 8.00 KiB/8.64 KiB
+storage3   ------------------------------ 16.00 KiB/17.99 KiB
+supabase   ------------------------------ 16.00 KiB/18.24 KiB
+realtime   ------------------------------ 16.00 KiB/21.88 KiB
+pyjwt      ------------------------------ 22.46 KiB/22.46 KiB
+gotrue     ------------------------------ 16.00 KiB/42.99 KiB                   ⠙ Preparing packages... (0/13)
+strenum    ------------------------------ 8.00 KiB/8.64 KiB
+storage3   ------------------------------ 16.00 KiB/17.99 KiB
+supabase   ------------------------------ 16.00 KiB/18.24 KiB
+realtime   ------------------------------ 16.00 KiB/21.88 KiB
+pyjwt      ------------------------------ 22.46 KiB/22.46 KiB
+gotrue     ------------------------------ 24.00 KiB/42.99 KiB                   ⠙ Preparing packages... (0/13)
+strenum    ------------------------------ 8.00 KiB/8.64 KiB
+storage3   ------------------------------ 16.00 KiB/17.99 KiB
+supabase   ------------------------------ 16.00 KiB/18.24 KiB
+realtime   ------------------------------ 16.00 KiB/21.88 KiB
+gotrue     ------------------------------ 31.26 KiB/42.99 KiB                   ⠙ Preparing packages... (0/13)
+storage3   ------------------------------ 16.00 KiB/17.99 KiB
+supabase   ------------------------------ 16.00 KiB/18.24 KiB
+realtime   ------------------------------ 16.00 KiB/21.88 KiB
+gotrue     ------------------------------ 31.26 KiB/42.99 KiB                   ⠙ Preparing packages... (0/13)
+storage3   ------------------------------ 16.00 KiB/17.99 KiB
+realtime   ------------------------------ 21.88 KiB/21.88 KiB
+gotrue     ------------------------------ 31.26 KiB/42.99 KiB                   ⠙ Preparing packages... (0/13)
+realtime   ------------------------------ 21.88 KiB/21.88 KiB
+gotrue     ------------------------------ 39.26 KiB/42.99 KiB                   ⠙ Preparing packages... (0/13)
+gotrue     ------------------------------ 39.26 KiB/42.99 KiB                   ⠙ Preparing packages... (0/13)                                                  Prepared 13 packages in 30ms
+░░░░░░░░░░░░░░░░░░░░ [0/0] Installing wheels...                                 ░░░░░░░░░░░░░░░░░░░░ [0/13] Installing wheels...                                ░░░░░░░░░░░░░░░░░░░░ [0/13] hyperframe==6.1.0                                   █░░░░░░░░░░░░░░░░░░░ [1/13] hyperframe==6.1.0                                   █░░░░░░░░░░░░░░░░░░░ [1/13] supafunc==0.10.1                                    ███░░░░░░░░░░░░░░░░░ [2/13] supafunc==0.10.1                                    ███░░░░░░░░░░░░░░░░░ [2/13] pyjwt==2.10.1                                       ████░░░░░░░░░░░░░░░░ [3/13] pyjwt==2.10.1                                       ████░░░░░░░░░░░░░░░░ [3/13] strenum==0.4.15                                     ██████░░░░░░░░░░░░░░ [4/13] strenum==0.4.15                                     ██████░░░░░░░░░░░░░░ [4/13] websockets==15.0.1                                  ███████░░░░░░░░░░░░░ [5/13] websockets==15.0.1                                  ███████░░░░░░░░░░░░░ [5/13] supabase==2.18.0                                    █████████░░░░░░░░░░░ [6/13] supabase==2.18.0                                    █████████░░░░░░░░░░░ [6/13] hpack==4.1.0                                        ██████████░░░░░░░░░░ [7/13] hpack==4.1.0                                        ██████████░░░░░░░░░░ [7/13] storage3==0.12.1                                    ████████████░░░░░░░░ [8/13] storage3==0.12.1                                    ████████████░░░░░░░░ [8/13] postgrest==1.1.1                                    █████████████░░░░░░░ [9/13] postgrest==1.1.1                                    Installed 13 packages in 4ms
+ + deprecation==2.1.0
+ + gotrue==2.12.3
+ + h2==4.2.0
+ + hpack==4.1.0
+ + hyperframe==6.1.0
+ + postgrest==1.1.1
+ + pyjwt==2.10.1
+ + realtime==2.7.0
+ + storage3==0.12.1
+ + strenum==0.4.15
+ + supabase==2.18.0
+ + supafunc==0.10.1
+ + websockets==15.0.1

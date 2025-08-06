@@ -1,0 +1,35 @@
+Starting data seeding process...
+Authentication error: 'NoneType' object has no attribute 'session'
+Seeding services...
+No existing services found. Creating new services...
+Error creating service Initial Consultation: {'message': 'new row violates row-level security policy for table "services"', 'code': '42501', 'hint': None, 'details': None}
+Error creating service Wellness Check: {'message': 'new row violates row-level security policy for table "services"', 'code': '42501', 'hint': None, 'details': None}
+Error creating service Therapy Session: {'message': 'new row violates row-level security policy for table "services"', 'code': '42501', 'hint': None, 'details': None}
+Error creating service Treatment Plan Review: {'message': 'new row violates row-level security policy for table "services"', 'code': '42501', 'hint': None, 'details': None}
+Successfully created/fetched 0 services
+No services available to create bookings
+Seeding call logs...
+Error creating call log 1: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 2: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 3: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 4: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 5: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 6: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 7: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 8: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 9: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 10: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 11: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 12: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 13: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 14: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 15: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 16: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 17: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 18: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 19: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Error creating call log 20: {'message': 'new row violates row-level security policy for table "call_logs"', 'code': '42501', 'hint': None, 'details': None}
+Call logs creation completed
+Seeding business settings...
+Error creating business settings: {'message': 'new row violates row-level security policy for table "business_settings"', 'code': '42501', 'hint': None, 'details': None}
+Data seeding completed!
