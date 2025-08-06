@@ -89,9 +89,14 @@ export default function SettingsPage() {
   // Initialize settings when data is loaded
   useEffect(() => {
     if (fetchedSettings && !isLoading) {
-      setSettings(fetchedSettings)
+      // Only update if the settings have actually changed
+      const isEqual = JSON.stringify(settings) === JSON.stringify(fetchedSettings)
+      if (!isEqual) {
+        setSettings(fetchedSettings)
+        setHasChanges(false)
+      }
     }
-  }, [fetchedSettings, isLoading])
+  }, [fetchedSettings, isLoading, settings])
 
   useEffect(() => {
     setTitle('Settings');
@@ -487,24 +492,5 @@ export default function SettingsPage() {
         </TabsContent>
       </Tabs>
     </div>
-    
-    {/* Loading state */}
-    {isLoading && (
-      <div className="fixed inset-0 bg-white/60 flex items-center justify-center z-50">
-        <div className="flex items-center gap-2 p-4 bg-white rounded-lg shadow-lg">
-          <Loader2 className="w-5 h-5 animate-spin text-primary" />
-          <p className="text-sm font-medium">Loading settings...</p>
-        </div>
-      </div>
-    )}
-    
-    {/* Error state */}
-    {error && (
-      <Card className="mt-6 border-red-200 bg-red-50">
-        <CardContent className="pt-6">
-          <p className="text-red-700">Error loading settings. Please try again later.</p>
-        </CardContent>
-      </Card>
-    )}
   )
 }
