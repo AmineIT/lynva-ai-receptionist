@@ -31,18 +31,6 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
     };
   }, [isLoading, hasProfile]);
 
-  // Show loading while checking profile
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 border-2 border-gray-300 border-t-blue-600 rounded-full animate-spin" />
-          <span>Loading...</span>
-        </div>
-      </div>
-    )
-  }
-
   const handleBusinessSetupComplete = () => {
     refetch()
     refetchDashboardAnalytics()

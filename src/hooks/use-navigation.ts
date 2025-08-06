@@ -1,6 +1,6 @@
 import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
-import { LayoutDashboard, Calendar, PhoneCall, BotMessageSquare, Blocks, Settings2, LifeBuoy, LucideIcon, BarChart } from 'lucide-react'
+import { LayoutDashboard, Calendar, PhoneCall, BotMessageSquare, Blocks, Settings2, LifeBuoy, LucideIcon, BarChart, BarChart2 } from 'lucide-react'
 
 interface NavigationItem {
     title: string
@@ -60,7 +60,7 @@ export function useNavigation() {
                 title: "Analytics",
                 url: '/dashboard/analytics',
                 onClick: () => router.push('/dashboard/analytics'),
-                icon: BarChart,
+                icon: BarChart2,
                 isActive: pathname === '/dashboard/analytics/',
             },
             {

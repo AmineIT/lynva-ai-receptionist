@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import { useLayout } from '@/components/ui/layout-context'
 import { useFaqs } from '@/hooks/useFaqs'
+import { ContentSkeleton } from '@/components/ui/content-skeleton'
 
 export default function ContentPage() {
   const [isAddingFAQ, setIsAddingFAQ] = useState(false)
@@ -73,34 +74,22 @@ export default function ContentPage() {
 
   if (loading) {
     return (
-      <div className="p-6">
-        <div className="flex items-center justify-center min-h-96">
-          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-        </div>
-      </div>
+      <ContentSkeleton />
     )
   }
 
   return (
-    <div className="p-4 lg:p-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-end justify-end">
-        <Button onClick={() => setIsAddingFAQ(true)}>
-          <Plus className="w-4 h-4 mr-2" />
-          Add FAQ
-        </Button>
-      </div>
-
+    <div className="space-y-6">
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription>Total FAQs</CardDescription>
             <CardTitle className="text-2xl">{faqs.length}</CardTitle>
           </CardHeader>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription>Active FAQs</CardDescription>
             <CardTitle className="text-2xl text-green-600">
               {faqs.filter(faq => faq.is_active).length}
@@ -108,7 +97,7 @@ export default function ContentPage() {
           </CardHeader>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription>Categories</CardDescription>
             <CardTitle className="text-2xl">
               {new Set(faqs.map(faq => faq.category).filter(Boolean)).size}
@@ -167,17 +156,27 @@ export default function ContentPage() {
       )}
 
       {/* FAQ List */}
-      <Card>
-        <CardHeader>
-          <CardTitle>FAQ Management</CardTitle>
-          <CardDescription>Manage your frequently asked questions</CardDescription>
+      <Card className="border py-0 overflow-hidden h-full shadow-none">
+        <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle className="text-gray-900 text-sm font-semibold">FAQ Management</CardTitle>
+              <CardDescription className="text-gray-500 text-xs">Manage your frequently asked questions</CardDescription>
+            </div>
+            <div className="flex items-end justify-end">
+              <Button onClick={() => setIsAddingFAQ(true)} size="sm">
+                <Plus className="w-3 h-3 mr-2" />
+                <p className="text-xs">Add FAQ</p>
+              </Button>
+            </div>
+          </div>
         </CardHeader>
         <CardContent>
           {faqs.length === 0 ? (
             <div className="text-center py-12">
-              <MessageSquare className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No FAQs yet</h3>
-              <p className="text-gray-500">Add your first FAQ to get started.</p>
+              <MessageSquare className="w-6 h-6 text-gray-600 mx-auto mb-4" strokeWidth={1.5} />
+              <h3 className="text-sm font-semibold text-gray-600">No FAQs yet</h3>
+              <p className="text-gray-400 text-xs mb-4">Add your first FAQ to get started.</p>
             </div>
           ) : (
             <div className="space-y-4">

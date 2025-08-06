@@ -9,7 +9,6 @@ import {
   Phone,
   MessageSquare,
   TrendingUp,
-  Users,
   Clock,
   DollarSign,
   Activity,
@@ -22,9 +21,12 @@ import { formatCurrency, formatDate, formatTime } from '@/lib/utils'
 import { useLayout } from '@/components/ui/layout-context'
 import { useDashboardAnalytics } from '@/hooks/useDashboardAnalytics'
 import Link from 'next/link'
+import { useUserProfile } from '@/hooks/useUserProfile'
+import { DashboardSkeleton } from '@/components/ui/dashboard-skeleton'
 
 export default function DashboardPage() {
   const { setTitle, setSubtitle } = useLayout()
+  const { isLoading: isLoadingUserProfile } = useUserProfile({ enableRedirect: false })
   const { data: dashboardData, isLoading: loading, error, refetch } = useDashboardAnalytics()
 
   useEffect(() => {
@@ -32,65 +34,13 @@ export default function DashboardPage() {
     setSubtitle('Discover what\'s happening with your business');
   }, []);
 
-  if (loading) {
+  if (loading || isLoadingUserProfile) {
     return (
-      <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <Card key={i}>
-              <CardHeader className="pb-2">
-                <Skeleton className="h-4 w-3/4" />
-              </CardHeader>
-              <CardContent>
-                <Skeleton className="h-8 w-1/2 mb-2" />
-                <Skeleton className="h-3 w-full" />
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card>
-            <CardHeader>
-              <Skeleton className="h-6 w-1/3" />
-              <Skeleton className="h-4 w-2/3" />
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {Array.from({ length: 3 }).map((_, i) => (
-                  <div key={i} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div className="flex-1">
-                      <Skeleton className="h-4 w-1/2 mb-2" />
-                      <Skeleton className="h-3 w-3/4" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <Skeleton className="h-6 w-1/3" />
-              <Skeleton className="h-4 w-2/3" />
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {Array.from({ length: 3 }).map((_, i) => (
-                  <div key={i} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div className="flex-1">
-                      <Skeleton className="h-4 w-1/2 mb-2" />
-                      <Skeleton className="h-3 w-3/4" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
+      <DashboardSkeleton />
     )
   }
 
-  if (error || (!loading && !dashboardData)) {
+  if (error && !loading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
         <div className="text-center">
@@ -104,23 +54,15 @@ export default function DashboardPage() {
     )
   }
 
-  const stats = dashboardData?.stats
+  const stats = dashboardData?.stats || {
+    todayBookings: 0,
+    bookingsTrend: 0,
+    totalCalls: 0,
+    totalRevenue: 0,
+    conversionRate: 0
+  }
   const recentBookings = dashboardData?.recentBookings || []
   const recentCalls = dashboardData?.recentCalls || []
-
-  if (!stats) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
-        <div className="text-center">
-          <h3 className="text-lg font-semibold text-gray-900">No dashboard data available</h3>
-          <p className="text-gray-500 mt-2">Dashboard data will appear here once you start using the system</p>
-        </div>
-        <Button onClick={() => refetch()} variant="outline">
-          Refresh
-        </Button>
-      </div>
-    )
-  }
 
   return (
     <div className="space-y-6 dashboard-content">
@@ -201,34 +143,36 @@ export default function DashboardPage() {
       {/* Recent Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Bookings */}
-        <Card className="border">
-          <CardHeader>
+        <Card className="border py-0 overflow-hidden">
+          <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-gray-900">Recent Bookings</CardTitle>
-                <CardDescription className="text-gray-500">
+                <CardTitle className="text-gray-900 text-sm font-semibold">Recent Bookings ({recentBookings.length})</CardTitle>
+                <CardDescription className="text-gray-500 text-xs">
                   Latest appointment requests
                 </CardDescription>
               </div>
               <Button asChild variant="outline" size="sm">
-                <Link href="/dashboard/bookings">
-                  <Eye className="w-4 h-4 mr-2" />
-                  View All
-                </Link>
+                {recentBookings.length > 0 && (
+                  <Link href="/dashboard/bookings">
+                    <Eye className="w-4 h-4 mr-2" />
+                    View All
+                  </Link>
+                )}
               </Button>
             </div>
           </CardHeader>
           <CardContent>
             {recentBookings.length > 0 ? (
               <div className="space-y-4">
-                {recentBookings.map((booking) => (
+                {recentBookings.slice(0, 3).map((booking) => (
                   <div key={booking.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <h4 className="font-medium text-gray-900">{booking.customer_name}</h4>
                         <span className={`px-2 py-1 text-xs rounded-full ${booking.status === 'confirmed'
-                            ? 'bg-green-100 text-green-800'
-                            : 'bg-yellow-100 text-yellow-800'
+                          ? 'bg-green-100 text-green-800'
+                          : 'bg-yellow-100 text-yellow-800'
                           }`}>
                           {booking.status}
                         </span>
@@ -250,41 +194,40 @@ export default function DashboardPage() {
               </div>
             ) : (
               <div className="text-center py-8">
-                <Calendar className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-                <p className="text-gray-500 mb-4">No bookings yet</p>
-                <Button asChild size="sm">
-                  <Link href="/dashboard/bookings">
-                    <Plus className="w-4 h-4 mr-2" />
-                    Create Booking
-                  </Link>
-                </Button>
+                <Calendar className="w-6 h-6 text-gray-600 mx-auto mb-4" strokeWidth={1.5} />
+                <p className="text-gray-600 text-sm font-semibold">No bookings yet</p>
+                <p className="text-gray-400 text-xs">
+                  Your bookings will appear here once you start receiving them
+                </p>
               </div>
             )}
           </CardContent>
         </Card>
 
         {/* Recent Calls */}
-        <Card className="border">
-          <CardHeader>
+        <Card className="border py-0 overflow-hidden">
+          <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-gray-900">Recent Calls</CardTitle>
-                <CardDescription className="text-gray-500">
+                <CardTitle className="text-gray-900 text-sm font-semibold">Recent Calls ({recentCalls.length})</CardTitle>
+                <CardDescription className="text-gray-500 text-xs">
                   Latest AI call interactions
                 </CardDescription>
               </div>
               <Button asChild variant="outline" size="sm">
-                <Link href="/dashboard/calls">
-                  <Eye className="w-4 h-4 mr-2" />
-                  View All
-                </Link>
+                {recentCalls.length > 0 && (
+                  <Link href="/dashboard/calls">
+                    <Eye className="w-4 h-4 mr-2" />
+                    View All
+                  </Link>
+                )}
               </Button>
             </div>
           </CardHeader>
           <CardContent>
             {recentCalls.length > 0 ? (
               <div className="space-y-4">
-                {recentCalls.map((call) => (
+                {recentCalls.slice(0, 3).map((call) => (
                   <div key={call.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
@@ -319,9 +262,9 @@ export default function DashboardPage() {
               </div>
             ) : (
               <div className="text-center py-8">
-                <Phone className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-                <p className="text-gray-500 mb-4">No calls yet</p>
-                <p className="text-sm text-gray-400">
+                <Phone className="w-6 h-6 text-gray-600 mx-auto mb-4" strokeWidth={1.5} />
+                <p className="text-gray-600 text-sm font-semibold">No calls yet</p>
+                <p className="text-gray-400 text-xs">
                   Your AI receptionist will appear here once you start receiving calls
                 </p>
               </div>
@@ -332,9 +275,9 @@ export default function DashboardPage() {
 
       {/* Quick Actions */}
       <Card className="border">
-        <CardHeader>
-          <CardTitle className="text-gray-900">Quick Actions</CardTitle>
-          <CardDescription className="text-gray-500">
+        <CardHeader className="gap-0">
+          <CardTitle className="text-gray-900 text-sm font-semibold">Quick Actions</CardTitle>
+          <CardDescription className="text-gray-500 text-xs">
             Manage your business operations
           </CardDescription>
         </CardHeader>

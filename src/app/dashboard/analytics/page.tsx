@@ -80,7 +80,7 @@ export default function AnalyticsPage() {
   }
 
   return (
-    <div className="p-4 lg:p-6 space-y-6">
+    <div className="space-y-6">
       {/* Header */}
       <div className="flex items-end justify-end">
         <div className="flex gap-2">
@@ -111,7 +111,7 @@ export default function AnalyticsPage() {
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription className="flex items-center gap-2">
               <Phone className="w-4 h-4" />
               Total Calls
@@ -134,7 +134,7 @@ export default function AnalyticsPage() {
         </Card>
 
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
               Total Bookings
@@ -157,7 +157,7 @@ export default function AnalyticsPage() {
         </Card>
 
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription className="flex items-center gap-2">
               <DollarSign className="w-4 h-4" />
               Revenue
@@ -174,7 +174,7 @@ export default function AnalyticsPage() {
         </Card>
 
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription className="flex items-center gap-2">
               <BarChart3 className="w-4 h-4" />
               Conversion Rate
@@ -194,10 +194,14 @@ export default function AnalyticsPage() {
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Calls by Day */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Calls This Week</CardTitle>
-            <CardDescription>Daily call volume distribution</CardDescription>
+        <Card className="border py-0 overflow-hidden h-full shadow-none">
+          <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="text-gray-900 text-sm font-semibold">Calls This Week</CardTitle>
+                <CardDescription className="text-gray-500 text-xs">Daily call volume distribution</CardDescription>
+              </div>
+            </div>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
@@ -208,7 +212,7 @@ export default function AnalyticsPage() {
                 return (
                   <div key={data.day} className="flex items-center gap-3">
                     <div className="w-8 text-sm font-medium text-gray-600">{data.day}</div>
-                    <div className="flex-1 h-6 bg-gray-100 rounded-full overflow-hidden">
+                    <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
                       <div 
                         className="h-full bg-primary rounded-full transition-all duration-300"
                         style={{ width: `${percentage}%` }}
@@ -223,10 +227,14 @@ export default function AnalyticsPage() {
         </Card>
 
         {/* Booking Status */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Booking Status</CardTitle>
-            <CardDescription>Current booking distribution</CardDescription>
+        <Card className="border py-0 overflow-hidden h-full shadow-none">
+          <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="text-gray-900 text-sm font-semibold">Booking Status</CardTitle>
+                <CardDescription className="text-gray-500 text-xs">Current booking distribution</CardDescription>
+              </div>
+            </div>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
@@ -248,10 +256,14 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Popular Services */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Popular Services</CardTitle>
-          <CardDescription>Most booked services this month</CardDescription>
+      <Card className="border py-0 overflow-hidden h-full shadow-none">
+        <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle className="text-gray-900 text-sm font-semibold">Popular Services</CardTitle>
+              <CardDescription className="text-gray-500 text-xs">Most booked services this month</CardDescription>
+            </div>
+          </div>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -286,7 +298,7 @@ export default function AnalyticsPage() {
       {/* Additional Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription>Average Call Duration</CardDescription>
             <CardTitle className="text-2xl">{formatDuration(analytics.avgCallDuration)}</CardTitle>
           </CardHeader>
@@ -296,7 +308,7 @@ export default function AnalyticsPage() {
         </Card>
 
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription>Peak Hours</CardDescription>
             <CardTitle className="text-2xl">2-4 PM</CardTitle>
           </CardHeader>
@@ -306,7 +318,7 @@ export default function AnalyticsPage() {
         </Card>
 
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription>Customer Satisfaction</CardDescription>
             <CardTitle className="text-2xl">4.8/5</CardTitle>
           </CardHeader>

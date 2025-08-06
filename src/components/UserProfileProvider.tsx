@@ -2,7 +2,6 @@
 
 import React from 'react'
 import { useUserProfile } from '@/hooks/useUserProfile'
-import { useAuth } from '@/lib/auth'
 
 interface UserProfileProviderProps {
   children: React.ReactNode

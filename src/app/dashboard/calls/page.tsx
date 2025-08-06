@@ -1,12 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Phone, Clock, MessageSquare } from 'lucide-react'
+import { Phone, Clock, MessageSquare, RefreshCcw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { supabase } from '@/lib/supabase'
 import { useLayout } from '@/components/ui/layout-context'
+import { CallsSkeleton } from '@/components/ui/calls-skeleton'
 
 interface CallLog {
   id: string
@@ -21,8 +22,8 @@ interface CallLog {
 }
 
 export default function CallLogsPage() {
-  const [callLogs, setCallLogs] = useState<CallLog[]>([])
-  const [loading, setLoading] = useState(true)
+  const [ callLogs, setCallLogs ] = useState<CallLog[]>([])
+  const [ loading, setLoading ] = useState(true)
   const { setTitle, setSubtitle } = useLayout()
 
   useEffect(() => {
@@ -75,34 +76,22 @@ export default function CallLogsPage() {
 
   if (loading) {
     return (
-      <div className="p-6">
-        <div className="flex items-center justify-center min-h-96">
-          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-        </div>
-      </div>
+      <CallsSkeleton />
     )
   }
 
   return (
-    <div className="p-4 lg:p-4 lg:p-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-end justify-end">
-        <Button onClick={fetchCallLogs}>
-          <Phone className="w-4 h-4 mr-2" />
-          Refresh
-        </Button>
-      </div>
-
+    <div className="space-y-6">
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription>Total Calls</CardDescription>
             <CardTitle className="text-2xl">{callLogs.length}</CardTitle>
           </CardHeader>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription>Completed</CardDescription>
             <CardTitle className="text-2xl text-green-600">
               {callLogs.filter(log => log.call_status === 'completed').length}
@@ -110,7 +99,7 @@ export default function CallLogsPage() {
           </CardHeader>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription>Missed</CardDescription>
             <CardTitle className="text-2xl text-red-600">
               {callLogs.filter(log => log.call_status === 'missed').length}
@@ -118,7 +107,7 @@ export default function CallLogsPage() {
           </CardHeader>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription>Avg Duration</CardDescription>
             <CardTitle className="text-2xl">
               {callLogs.length > 0 ? formatDuration(
@@ -130,17 +119,27 @@ export default function CallLogsPage() {
       </div>
 
       {/* Call Logs List */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Recent Calls</CardTitle>
-          <CardDescription>Latest incoming calls and their details</CardDescription>
+      <Card className="border py-0 overflow-hidden h-full shadow-none">
+        <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle className="text-gray-900 text-sm font-semibold">Recent Calls</CardTitle>
+              <CardDescription className="text-gray-500 text-xs">Latest incoming calls and their details</CardDescription>
+            </div>
+            <div className="flex items-end justify-end">
+              <Button onClick={fetchCallLogs} size="sm">
+                <RefreshCcw className="w-3 h-3 mr-2" />
+                <p className="text-xs">Refresh</p>
+              </Button>
+            </div>
+          </div>
         </CardHeader>
         <CardContent>
           {callLogs.length === 0 ? (
             <div className="text-center py-12">
-              <Phone className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-muted-foreground mb-2">No call logs yet</h3>
-              <p className="text-muted-foreground">Call logs will appear here once you start receiving calls through Vapi.</p>
+              <Phone className="w-6 h-6 text-gray-600 mx-auto mb-4" strokeWidth={1.5} />
+              <h3 className="text-sm font-semibold text-gray-600">No call logs yet</h3>
+              <p className="text-gray-400 text-xs mb-4">Call logs will appear here once you start receiving calls through Vapi.</p>
             </div>
           ) : (
             <div className="space-y-4">

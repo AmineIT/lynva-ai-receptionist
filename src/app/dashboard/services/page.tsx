@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import { useLayout } from '@/components/ui/layout-context'
 import { useServices } from '@/hooks/useServices'
+import { ServicesSkeleton } from '@/components/ui/services-skeleton'
 
 export default function ServicesPage() {
   const [isAddingService, setIsAddingService] = useState(false)
@@ -84,34 +85,22 @@ export default function ServicesPage() {
 
   if (loading) {
     return (
-      <div className="p-6">
-        <div className="flex items-center justify-center min-h-96">
-          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-        </div>
-      </div>
+      <ServicesSkeleton />
     )
   }
 
   return (
-    <div className="p-4 lg:p-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-end justify-end">
-        <Button onClick={() => setIsAddingService(true)}>
-          <Plus className="w-4 h-4 mr-2" />
-          Add Service
-        </Button>
-      </div>
-
+    <div className="space-y-6">
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription>Total Services</CardDescription>
             <CardTitle className="text-2xl">{services.length}</CardTitle>
           </CardHeader>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription>Active Services</CardDescription>
             <CardTitle className="text-2xl text-green-600">
               {services.filter(s => s.is_active).length}
@@ -119,7 +108,7 @@ export default function ServicesPage() {
           </CardHeader>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription>Avg Duration</CardDescription>
             <CardTitle className="text-2xl">
               {services.length > 0 ? Math.round(
@@ -129,7 +118,7 @@ export default function ServicesPage() {
           </CardHeader>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader>
             <CardDescription>Avg Price</CardDescription>
             <CardTitle className="text-2xl">
               ${services.length > 0 ? Math.round(
@@ -221,17 +210,27 @@ export default function ServicesPage() {
       )}
 
       {/* Services List */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Service Management</CardTitle>
-          <CardDescription>Manage your available services</CardDescription>
+      <Card className="border py-0 overflow-hidden h-full shadow-none">
+        <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle className="text-gray-900 text-sm font-semibold">Service Management</CardTitle>
+              <CardDescription className="text-gray-500 text-xs">Manage your available services</CardDescription>
+            </div>
+            <div className="flex items-end justify-end">
+              <Button onClick={() => setIsAddingService(true)} size="sm">
+                <Plus className="w-3 h-3 mr-2" />
+                <p className="text-xs">Add Service</p>
+              </Button>
+            </div>
+          </div>
         </CardHeader>
         <CardContent>
           {services.length === 0 ? (
             <div className="text-center py-12">
-              <Users className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No services yet</h3>
-              <p className="text-gray-500">Add your first service to get started.</p>
+              <Users className="w-6 h-6 text-gray-600 mx-auto mb-4" strokeWidth={1.5} />
+              <h3 className="text-sm font-semibold text-gray-600">No services yet</h3>
+              <p className="text-gray-400 text-xs mb-4">Add your first service to get started.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

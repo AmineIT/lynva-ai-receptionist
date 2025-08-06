@@ -4,8 +4,7 @@ import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { 
+import {
   Table,
   TableBody,
   TableCell,
@@ -13,32 +12,35 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { 
-  Plus, 
+import {
+  Plus,
   Search,
-  Calendar as CalendarIcon, 
-  Phone, 
+  Calendar as CalendarIcon,
+  Phone,
   Mail,
   Clock,
   DollarSign,
   Eye,
   Edit,
-  Trash2
+  Trash2,
+  CalendarPlus
 } from 'lucide-react'
 import { formatDate, formatTime, formatCurrency, formatPhoneNumber } from '@/lib/utils'
 import { useLayout } from '@/components/ui/layout-context'
 import { useBookings } from '@/hooks/useBookings'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { BookingsSkeleton } from '@/components/ui/bookings-skeleton'
 
 export default function BookingsPage() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [statusFilter, setStatusFilter] = useState('all');
-  const [showCreateForm, setShowCreateForm] = useState(false);
+  const [ searchTerm, setSearchTerm ] = useState('');
+  const [ statusFilter, setStatusFilter ] = useState('all');
+  const [ showCreateForm, setShowCreateForm ] = useState(false);
   const { setTitle, setSubtitle } = useLayout();
 
   // Use the bookings hook with filters
-  const { 
-    bookings, 
-    isLoading: loading, 
+  const {
+    bookings,
+    isLoading: loading,
     error,
     createBooking,
     updateBooking,
@@ -63,9 +65,9 @@ export default function BookingsPage() {
       cancelled: 'bg-red-100 text-red-800',
       completed: 'bg-blue-100 text-blue-800'
     }
-    
+
     return (
-      <span className={`px-2 py-1 text-xs rounded-full ${styles[status as keyof typeof styles] || 'bg-gray-100 text-gray-800'}`}>
+      <span className={`px-2 py-1 text-xs rounded-full ${styles[ status as keyof typeof styles ] || 'bg-gray-100 text-gray-800'}`}>
         {status.charAt(0).toUpperCase() + status.slice(1)}
       </span>
     )
@@ -73,79 +75,57 @@ export default function BookingsPage() {
 
   if (loading) {
     return (
-      <div className="space-y-6">
-        <div className="flex justify-between items-center">
-          <div className="h-8 bg-gray-100 rounded w-48 animate-pulse" />
-          <div className="h-10 bg-gray-100 rounded w-32 animate-pulse" />
-        </div>
-        <Card>
-          <CardContent className="p-6">
-            <div className="space-y-4">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <div key={i} className="h-16 bg-gray-100 rounded animate-pulse" />
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      <BookingsSkeleton />
     )
   }
 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col justify-end items-end">
-        <Button onClick={() => setShowCreateForm(true)}>
-          <Plus className="w-4 h-4 mr-2" />
-          New Booking
-        </Button>
+      <div className="flex flex-col sm:flex-row justify-between items-end gap-4">
+        <div className="flex-1 w-full">
+          <div className="relative mt-1">
+            <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <Input
+              id="search"
+              placeholder="Search by name, phone, or email..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+        </div>
+        <div className="sm:w-40 w-full">
+          <Select value={statusFilter} onValueChange={(value) => setStatusFilter(value)}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Status" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="confirmed">Confirmed</SelectItem>
+              <SelectItem value="pending">Pending</SelectItem>
+              <SelectItem value="cancelled">Cancelled</SelectItem>
+              <SelectItem value="completed">Completed</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
-      {/* Filters */}
-      <Card className="border-0 shadow-sm">
-        <CardContent className="p-6">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1">
-              <Label htmlFor="search" className="text-sm font-medium text-gray-700">Search</Label>
-              <div className="relative mt-1">
-                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                <Input
-                  id="search"
-                  placeholder="Search by name, phone, or email..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-            </div>
-            <div className="sm:w-48">
-              <Label htmlFor="status" className="text-sm font-medium text-gray-700">Status</Label>
-              <select
-                id="status"
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="mt-1 w-full px-3 py-2 border border-gray-100 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
-              >
-                <option value="all">All Status</option>
-                <option value="confirmed">Confirmed</option>
-                <option value="pending">Pending</option>
-                <option value="cancelled">Cancelled</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
       {/* Bookings Table */}
-      <Card className="border-0 shadow-sm">
-        <CardHeader>
+      <Card className="border py-0 overflow-hidden h-full shadow-none">
+        <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-gray-900">All Bookings</CardTitle>
-              <CardDescription className="text-gray-500">
+              <CardTitle className="text-gray-900 text-sm font-semibold">All Bookings</CardTitle>
+              <CardDescription className="text-gray-500 text-xs">
                 {bookings.length} booking{bookings.length !== 1 ? 's' : ''} found
               </CardDescription>
+            </div>
+            <div className="flex items-end justify-end">
+              <Button onClick={() => setShowCreateForm(true)} size="sm">
+                <CalendarPlus className="w-3 h-3 mr-2" />
+                <p className="text-xs">Create Booking</p>
+              </Button>
             </div>
           </div>
         </CardHeader>
@@ -241,20 +221,13 @@ export default function BookingsPage() {
             </div>
           ) : (
             <div className="text-center py-12">
-              <CalendarIcon className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No bookings found</h3>
-              <p className="text-gray-500 mb-6">
-                {searchTerm || statusFilter !== 'all' 
-                  ? 'Try adjusting your search or filter criteria' 
+              <CalendarIcon className="w-6 h-6 text-gray-600 mx-auto mb-4" strokeWidth={1.5} />
+              <h3 className="text-sm font-semibold text-gray-600">No bookings found</h3>
+              <p className="text-gray-400 text-xs mb-4">
+                {searchTerm || statusFilter !== 'all'
+                  ? 'Try adjusting your search or filter criteria'
                   : 'Your appointment bookings will appear here'}
               </p>
-              <Button 
-                onClick={() => setShowCreateForm(true)}
-                className="bg-primary hover:bg-primary/90"
-              >
-                <Plus className="w-4 h-4 mr-2" />
-                Create First Booking
-              </Button>
             </div>
           )}
         </CardContent>

@@ -93,8 +93,8 @@ export function BusinessSetupModal({ isOpen, onComplete }: BusinessSetupModalPro
 
   return (
     <Dialog open={isOpen} onOpenChange={() => {}}>
-      <DialogContent className="sm:max-w-md" closeButton={false}>
-        <DialogHeader className="text-center">
+      <DialogContent className="sm:max-w-xl gap-12" closeButton={false}>
+        <DialogHeader className="text-center sm:text-center">
           <div className="flex items-center justify-center mb-4">
             <div className="rounded-full bg-primary/10 p-4">
               <AudioWaveform className="w-6 h-6 text-primary" />
