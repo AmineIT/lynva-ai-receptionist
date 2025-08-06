@@ -1,68 +1,42 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { BarChart3, TrendingUp, TrendingDown, Calendar, Phone, DollarSign } from 'lucide-react'
+import { BarChart3, TrendingUp, TrendingDown, Calendar, Phone, DollarSign, Loader2 } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { useLayout } from '@/components/ui/layout-context'
-
-interface AnalyticsData {
-  totalCalls: number
-  callsThisWeek: number
-  callsLastWeek: number
-  totalBookings: number
-  bookingsThisWeek: number
-  bookingsLastWeek: number
-  revenue: number
-  conversionRate: number
-  avgCallDuration: number
-  popularServices: { name: string; bookings: number }[]
-  callsByDay: { day: string; calls: number }[]
-  bookingsByStatus: { status: string; count: number; color: string }[]
-}
+import { useAnalytics } from '@/hooks/useAnalytics'
 
 export default function AnalyticsPage() {
   const { setTitle, setSubtitle } = useLayout()
+  const [timeRange, setTimeRange] = useState('7d')
+  
+  // Use the new analytics hook
+  const { data: analyticsData, isLoading, error } = useAnalytics(timeRange)
 
   useEffect(() => {
     setTitle('Analytics');
     setSubtitle('Business performance insights and metrics');
   }, []);
 
-  const [analytics, setAnalytics] = useState<AnalyticsData>({
-    totalCalls: 156,
-    callsThisWeek: 23,
-    callsLastWeek: 18,
-    totalBookings: 89,
-    bookingsThisWeek: 12,
-    bookingsLastWeek: 8,
-    revenue: 4250,
-    conversionRate: 57.1,
-    avgCallDuration: 245,
-    popularServices: [
-      { name: 'Consultation', bookings: 34 },
-      { name: 'Wellness Check', bookings: 28 },
-      { name: 'Treatment', bookings: 15 },
-      { name: 'Therapy', bookings: 12 }
-    ],
-    callsByDay: [
-      { day: 'Mon', calls: 8 },
-      { day: 'Tue', calls: 12 },
-      { day: 'Wed', calls: 15 },
-      { day: 'Thu', calls: 18 },
-      { day: 'Fri', calls: 22 },
-      { day: 'Sat', calls: 16 },
-      { day: 'Sun', calls: 9 }
-    ],
-    bookingsByStatus: [
-      { status: 'Confirmed', count: 45, color: 'bg-green-100 text-green-800' },
-      { status: 'Pending', count: 23, color: 'bg-yellow-100 text-yellow-800' },
-      { status: 'Completed', count: 15, color: 'bg-blue-100 text-blue-800' },
-      { status: 'Cancelled', count: 6, color: 'bg-red-100 text-red-800' }
-    ]
-  })
-  const [timeRange, setTimeRange] = useState('7d')
+  // Use the data from the hook, or fall back to empty values if loading
+  const analytics = analyticsData || {
+    totalCalls: 0,
+    callsThisWeek: 0,
+    callsLastWeek: 0,
+    totalBookings: 0,
+    bookingsThisWeek: 0,
+    bookingsLastWeek: 0,
+    revenue: 0,
+    conversionRate: 0,
+    avgCallDuration: 0,
+    popularServices: [],
+    callsByDay: [],
+    bookingsByStatus: [],
+    peakHours: '',
+    customerSatisfaction: 0
+  }
 
   const calculateTrend = (current: number, previous: number) => {
     if (previous === 0) return { percentage: 0, isPositive: true }
@@ -194,7 +168,7 @@ export default function AnalyticsPage() {
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Calls by Day */}
-        <Card className="border py-0 overflow-hidden h-full shadow-none">
+        <Card className="border pt-0 overflow-hidden h-full shadow-none">
           <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
             <div className="flex items-center justify-between">
               <div>
@@ -227,7 +201,7 @@ export default function AnalyticsPage() {
         </Card>
 
         {/* Booking Status */}
-        <Card className="border py-0 overflow-hidden h-full shadow-none">
+        <Card className="border pt-0 overflow-hidden h-full shadow-none">
           <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
             <div className="flex items-center justify-between">
               <div>
@@ -238,7 +212,7 @@ export default function AnalyticsPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {analytics.bookingsByStatus.map((status) => (
+              {analytics.bookingsByStatus.length > 0 ? analytics.bookingsByStatus.map((status) => (
                 <div key={status.status} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Badge className={status.color}>
@@ -249,14 +223,18 @@ export default function AnalyticsPage() {
                     {status.count}
                   </div>
                 </div>
-              ))}
+              )) : (
+                <div className="flex items-center justify-center h-48">
+                  <p className="text-gray-500 text-sm text-center w-full">No bookings found</p>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>
       </div>
 
       {/* Popular Services */}
-      <Card className="border py-0 overflow-hidden h-full shadow-none">
+      <Card className="border pt-0 overflow-hidden h-full shadow-none">
         <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
           <div className="flex items-center justify-between">
             <div>
@@ -267,7 +245,7 @@ export default function AnalyticsPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {analytics.popularServices.map((service, index) => {
+            {analytics.popularServices.length > 0 ? analytics.popularServices.map((service, index) => {
               const maxBookings = Math.max(...analytics.popularServices.map(s => s.bookings))
               const percentage = (service.bookings / maxBookings) * 100
               
@@ -290,7 +268,11 @@ export default function AnalyticsPage() {
                   </div>
                 </div>
               )
-            })}
+            }) : (
+              <div className="flex items-center justify-center h-48">
+                <p className="text-gray-500 text-sm text-center w-full">No services found</p>
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -310,7 +292,7 @@ export default function AnalyticsPage() {
         <Card>
           <CardHeader>
             <CardDescription>Peak Hours</CardDescription>
-            <CardTitle className="text-2xl">2-4 PM</CardTitle>
+            <CardTitle className="text-2xl">{analytics.peakHours || 'N/A'}</CardTitle>
           </CardHeader>
           <CardContent>
               <p className="text-sm text-gray-500">Highest call volume period</p>
@@ -320,13 +302,30 @@ export default function AnalyticsPage() {
         <Card>
           <CardHeader>
             <CardDescription>Customer Satisfaction</CardDescription>
-            <CardTitle className="text-2xl">4.8/5</CardTitle>
+            <CardTitle className="text-2xl">{analytics.customerSatisfaction}/5</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-gray-500">Based on post-call surveys</p>
           </CardContent>
         </Card>
       </div>
+      
+      {isLoading && (
+        <div className="fixed inset-0 bg-white/60 flex items-center justify-center z-50">
+          <div className="flex items-center gap-2 p-4 bg-white rounded-lg shadow-lg">
+            <Loader2 className="w-5 h-5 animate-spin text-primary" />
+            <p className="text-sm font-medium">Loading analytics data...</p>
+          </div>
+        </div>
+      )}
+      
+      {error && (
+        <Card className="mt-6 border-red-200 bg-red-50">
+          <CardContent className="pt-6">
+            <p className="text-red-700">Error loading analytics data. Please try again later.</p>
+          </CardContent>
+        </Card>
+      )}
     </div>
   )
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Building, Clock, Phone, Mail, Save, Calendar, Plug } from 'lucide-react'
+import { Building, Clock, Phone, Mail, Save, Calendar, Plug, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -11,6 +11,7 @@ import { Switch } from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
 import { useLayout } from '@/components/ui/layout-context'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { useBusinessSettings } from '@/hooks/useBusinessSettings'
 
 interface BusinessSettings {
   name: string
@@ -37,46 +38,70 @@ interface BusinessSettings {
   }
 }
 
+// Default settings to use while loading
+const defaultSettings: BusinessSettings = {
+  name: '',
+  description: '',
+  phone: '',
+  email: '',
+  address: '',
+  city: '',
+  country: '',
+  timezone: 'America/Los_Angeles',
+  website: '',
+  businessHours: {
+    monday: { open: '09:00', close: '18:00', isOpen: true },
+    tuesday: { open: '09:00', close: '18:00', isOpen: true },
+    wednesday: { open: '09:00', close: '18:00', isOpen: true },
+    thursday: { open: '09:00', close: '18:00', isOpen: true },
+    friday: { open: '09:00', close: '18:00', isOpen: true },
+    saturday: { open: '10:00', close: '16:00', isOpen: true },
+    sunday: { open: '10:00', close: '16:00', isOpen: false }
+  },
+  notifications: {
+    emailBookings: true,
+    smsReminders: true,
+    callAlerts: true
+  },
+  integrations: {
+    googleCalendar: { enabled: false, connected: false },
+    whatsapp: { enabled: false, connected: false },
+    vapi: { enabled: false, connected: false }
+  }
+}
+
 export default function SettingsPage() {
   const { setTitle, setSubtitle } = useLayout()
+  
+  // Use the business settings hook
+  const { 
+    settings: fetchedSettings, 
+    isLoading, 
+    error, 
+    updateSettings,
+    isUpdating
+  } = useBusinessSettings()
+
+  // Local state for form values
+  const [ settings, setSettings ] = useState<BusinessSettings>(defaultSettings)
+  const [ hasChanges, setHasChanges ] = useState(false)
+  
+  // Initialize settings when data is loaded
+  useEffect(() => {
+    if (fetchedSettings && !isLoading) {
+      // Only update if the settings have actually changed
+      const isEqual = JSON.stringify(settings) === JSON.stringify(fetchedSettings)
+      if (!isEqual) {
+        setSettings(fetchedSettings)
+        setHasChanges(false)
+      }
+    }
+  }, [fetchedSettings, isLoading, settings])
 
   useEffect(() => {
     setTitle('Settings');
     setSubtitle('Manage your business configuration and preferences');
   }, []);
-
-  const [ settings, setSettings ] = useState<BusinessSettings>({
-    name: 'Wellness Center',
-    description: 'Professional wellness and therapy services',
-    phone: '+1 (555) 123-4567',
-    email: 'contact@wellnesscenter.com',
-    address: '123 Health Street',
-    city: 'San Francisco',
-    country: 'United States',
-    timezone: 'America/Los_Angeles',
-    website: 'https://wellnesscenter.com',
-    businessHours: {
-      monday: { open: '09:00', close: '18:00', isOpen: true },
-      tuesday: { open: '09:00', close: '18:00', isOpen: true },
-      wednesday: { open: '09:00', close: '18:00', isOpen: true },
-      thursday: { open: '09:00', close: '18:00', isOpen: true },
-      friday: { open: '09:00', close: '18:00', isOpen: true },
-      saturday: { open: '10:00', close: '16:00', isOpen: true },
-      sunday: { open: '10:00', close: '16:00', isOpen: false }
-    },
-    notifications: {
-      emailBookings: true,
-      smsReminders: true,
-      callAlerts: true
-    },
-    integrations: {
-      googleCalendar: { enabled: true, connected: true },
-      whatsapp: { enabled: true, connected: false },
-      vapi: { enabled: true, connected: true }
-    }
-  })
-  const [ hasChanges, setHasChanges ] = useState(false)
-  const [ saving, setSaving ] = useState(false)
 
   const handleSettingChange = (path: string, value: any) => {
     setSettings(prev => {
@@ -95,15 +120,9 @@ export default function SettingsPage() {
   }
 
   const handleSave = async () => {
-    setSaving(true)
-    try {
-      // Here you would save to Supabase
-      await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate API call
+    const success = await updateSettings(settings)
+    if (success) {
       setHasChanges(false)
-    } catch (error) {
-      console.error('Error saving settings:', error)
-    } finally {
-      setSaving(false)
     }
   }
 
@@ -159,9 +178,13 @@ export default function SettingsPage() {
             </TabsTrigger>
           </TabsList>
           {hasChanges && (
-            <Button onClick={handleSave} disabled={saving} size='sm'>
-              <Save className="w-3 h-3 mr-2" />
-              <p className="text-xs">{saving ? 'Saving...' : 'Save Changes'}</p>
+            <Button onClick={handleSave} disabled={isUpdating} size='sm'>
+              {isUpdating ? (
+                <Loader2 className="w-3 h-3 mr-2 animate-spin" />
+              ) : (
+                <Save className="w-3 h-3 mr-2" />
+              )}
+              <p className="text-xs">{isUpdating ? 'Saving...' : 'Save Changes'}</p>
             </Button>
           )}
         </div>
