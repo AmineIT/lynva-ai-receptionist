@@ -1,6 +1,6 @@
 import React from 'react'
-import { Card, CardContent, CardHeader } from './card'
-import { Skeleton } from './skeleton'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 
 
 export const DashboardSkeleton = () => {

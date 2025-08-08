@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { useLayout } from '@/components/ui/layout-context'
+import { useLayout } from '@/components/providers/layout-provider'
 
 interface HelpArticle {
   id: string

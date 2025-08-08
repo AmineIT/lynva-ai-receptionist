@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/auth'
 
-interface AnalyticsData {
+export interface AnalyticsData {
   totalCalls: number
   callsThisWeek: number
   callsLastWeek: number

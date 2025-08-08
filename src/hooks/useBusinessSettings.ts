@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/auth'
 import { toast } from 'react-hot-toast'
 
-interface BusinessSettings {
+export interface BusinessSettings {
   name: string
   description: string
   phone: string
@@ -26,16 +26,6 @@ interface BusinessSettings {
     whatsapp: { enabled: boolean; connected: boolean }
     vapi: { enabled: boolean; connected: boolean }
   }
-}
-
-interface BusinessSettingsData {
-  id: string
-  business_id: string
-  business_hours: any
-  notifications: any
-  integrations: any
-  created_at: string
-  updated_at: string
 }
 
 export function useBusinessSettings() {
@@ -217,7 +207,7 @@ export function useBusinessSettings() {
     const businessInfo: Partial<BusinessSettings> = {}
     businessInfoFields.forEach(field => {
       if (field in updatedSettings) {
-        businessInfo[field as keyof typeof businessInfo] = updatedSettings[field as keyof typeof updatedSettings]
+        businessInfo[field as keyof typeof businessInfo] = updatedSettings[field as keyof typeof updatedSettings] as any
       }
     })
     
@@ -225,7 +215,7 @@ export function useBusinessSettings() {
     const settingsInfo: Partial<BusinessSettings> = {}
     settingsFields.forEach(field => {
       if (field in updatedSettings) {
-        settingsInfo[field as keyof typeof settingsInfo] = updatedSettings[field as keyof typeof updatedSettings]
+        settingsInfo[field as keyof typeof settingsInfo] = updatedSettings[field as keyof typeof updatedSettings] as any
       }
     })
     

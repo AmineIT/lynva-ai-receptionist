@@ -1,7 +1,7 @@
 'use client'
 
 import { AuthProvider } from '@/lib/auth'
-import { UserProfileProvider } from '@/components/UserProfileProvider'
+import { UserProfileProvider } from '@/components/providers/user-profile-provider'
 import { ThemeProvider } from 'next-themes'
 import { Toaster } from 'sonner'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'

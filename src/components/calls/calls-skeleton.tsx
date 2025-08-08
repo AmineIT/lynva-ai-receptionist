@@ -1,8 +1,8 @@
 import React from 'react'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './card'
-import { Skeleton } from './skeleton'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 
-export const ServicesSkeleton = () => {
+export const CallsSkeleton = () => {
     return (
         <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

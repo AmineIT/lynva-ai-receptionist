@@ -1,4 +1,4 @@
-import { createBrowserSupabase } from '@/utils/supabase/client'
+import { createBrowserSupabase } from '@/supabase/client'
 
 // Next.js environment variables
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!

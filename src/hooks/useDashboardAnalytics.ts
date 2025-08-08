@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/auth'
 import type { Booking, CallLog } from '@/lib/supabase'
 
-interface DashboardStats {
+export interface DashboardStats {
   todayBookings: number
   totalCalls: number
   totalRevenue: number
@@ -11,7 +11,7 @@ interface DashboardStats {
   bookingsTrend: number
 }
 
-interface RecentBooking {
+export interface RecentBooking {
   id: string
   customer_name: string
   customer_phone: string
@@ -21,7 +21,7 @@ interface RecentBooking {
   total_amount?: number
 }
 
-interface RecentCall {
+export interface RecentCall {
   id: string
   caller_phone?: string
   call_duration_seconds?: number

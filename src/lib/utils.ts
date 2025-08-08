@@ -61,3 +61,9 @@ export function isValidPhone(phone: string) {
   const phoneRegex = /^(\+971|0)?[1-9]\d{8}$/
   return phoneRegex.test(phone.replace(/\s/g, ''))
 }
+
+export function formatDuration(seconds: number) {
+  const minutes = Math.floor(seconds / 60)
+  const remainingSeconds = seconds % 60
+  return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
+}

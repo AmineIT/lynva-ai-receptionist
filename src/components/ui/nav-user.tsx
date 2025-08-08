@@ -31,8 +31,8 @@ export function NavUser({ user }: { user: { email: string } }) {
       <Separator className="my-2" />
       <SidebarMenuItem className='mb-2'>
         <div className="flex items-center gap-2">
-          <Avatar className="h-8 w-8 rounded-lg grayscale">
-            <AvatarFallback className="rounded-lg">
+          <Avatar className="h-8 w-8 rounded-lg">
+            <AvatarFallback className="rounded-lg text-white bg-neutral-500">
               {user.email.charAt(0).toUpperCase()}
             </AvatarFallback>
           </Avatar>

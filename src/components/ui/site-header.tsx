@@ -1,6 +1,6 @@
 import { BotMessageSquare } from 'lucide-react';
 import { Badge } from './badge';
-import { useLayout } from './layout-context';
+import { useLayout } from '../providers/layout-provider';
 
 export function SiteHeader() {
   const { title, subtitle } = useLayout();
