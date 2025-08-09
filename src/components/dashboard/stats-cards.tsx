@@ -1,6 +1,5 @@
 import React from 'react'
-import { Calendar, Phone, DollarSign, TrendingUp, ArrowUp, ArrowDown } from 'lucide-react'
-import { formatCurrency } from '@/lib/utils'
+import { Calendar, Phone, DollarSign, ArrowUp, ArrowDown, BarChart3 } from 'lucide-react'
 import { DashboardStats } from '@/hooks/useDashboardAnalytics'
 import StatCard from '../ui/stat-card'
 import UAECurrency from '../ui/uae-currency'
@@ -56,7 +55,7 @@ export default function StatsCards({ stats }: { stats: DashboardStats }) {
 
             <StatCard
                 title="Conversion Rate"
-                icon={<TrendingUp className="h-4 w-4 text-green-600" />}
+                icon={<BarChart3 className="h-4 w-4 text-primary" />}
                 cardContent={
                     <>
                         <div className="text-2xl font-bold text-gray-900">{stats.conversionRate.toFixed(1)}%</div>

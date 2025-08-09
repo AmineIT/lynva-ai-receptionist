@@ -47,6 +47,7 @@ export default function Integrations({ integrations, onSettingChange }: Integrat
               onCheckedChange={(checked) =>
                 onSettingChange('integrations.googleCalendar.enabled', checked)
               }
+              size="sm"
             />
           </div>
         </div>
@@ -75,6 +76,7 @@ export default function Integrations({ integrations, onSettingChange }: Integrat
               onCheckedChange={(checked) =>
                 onSettingChange('integrations.whatsapp.enabled', checked)
               }
+              size="sm"
             />
           </div>
         </div>
@@ -103,6 +105,7 @@ export default function Integrations({ integrations, onSettingChange }: Integrat
               onCheckedChange={(checked) =>
                 onSettingChange('integrations.vapi.enabled', checked)
               }
+              size="sm"
             />
           </div>
         </div>

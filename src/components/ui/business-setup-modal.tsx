@@ -52,10 +52,9 @@ export function BusinessSetupModal({ isOpen, onComplete }: BusinessSetupModalPro
         .insert([{ 
           name: businessName.trim(),
           description: '',
-          country: 'US',
-          timezone: 'America/New_York',
+          country: 'UAE',
           is_active: true,
-          subscription_status: 'active'
+          subscription_status: 'trial'
         }])
         .select()
         .single()

@@ -31,6 +31,7 @@ export default function Notifications({ notifications, onSettingChange }: Notifi
             onCheckedChange={(checked) =>
               onSettingChange('notifications.emailBookings', checked)
             }
+            size="sm"
           />
         </div>
         <div className="flex items-center justify-between">
@@ -43,6 +44,7 @@ export default function Notifications({ notifications, onSettingChange }: Notifi
             onCheckedChange={(checked) =>
               onSettingChange('notifications.smsReminders', checked)
             }
+            size="sm"
           />
         </div>
         <div className="flex items-center justify-between">
@@ -55,6 +57,7 @@ export default function Notifications({ notifications, onSettingChange }: Notifi
             onCheckedChange={(checked) =>
               onSettingChange('notifications.callAlerts', checked)
             }
+            size="sm"
           />
         </div>
       </CardContent>

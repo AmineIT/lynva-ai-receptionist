@@ -42,6 +42,7 @@ export default function BusinessHours({ businessHours, onSettingChange }: Busine
                   onCheckedChange={(checked) =>
                     onSettingChange(`businessHours.${day.key}.isOpen`, checked)
                   }
+                  size="sm"
                 />
                 <Label className="text-sm">Open</Label>
               </div>
