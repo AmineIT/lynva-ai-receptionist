@@ -10,16 +10,6 @@ interface BusinessInfoProps {
 }
 
 export default function BusinessInfo({ settings, onSettingChange }: BusinessInfoProps) {
-  const timezones = [
-    'America/New_York',
-    'America/Chicago',
-    'America/Denver',
-    'America/Los_Angeles',
-    'Europe/London',
-    'Europe/Paris',
-    'Asia/Tokyo',
-    'Australia/Sydney'
-  ]
 
   return (
     <Card className='border pt-0 overflow-hidden h-full shadow-none'>
@@ -92,6 +82,15 @@ export default function BusinessInfo({ settings, onSettingChange }: BusinessInfo
             />
           </div>
           <div>
+            <Label htmlFor="country">Country</Label>
+            <Input
+              id="country"
+              value={settings.country}
+              onChange={(e) => onSettingChange('country', e.target.value)}
+              className="mt-1"
+            />
+          </div>
+          <div>
             <Label htmlFor="city">City</Label>
             <Input
               id="city"
@@ -99,19 +98,6 @@ export default function BusinessInfo({ settings, onSettingChange }: BusinessInfo
               onChange={(e) => onSettingChange('city', e.target.value)}
               className="mt-1"
             />
-          </div>
-          <div>
-            <Label htmlFor="timezone">Timezone</Label>
-            <select
-              id="timezone"
-              value={settings.timezone}
-              onChange={(e) => onSettingChange('timezone', e.target.value)}
-              className="w-full mt-1 px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-            >
-              {timezones.map(tz => (
-                <option key={tz} value={tz}>{tz}</option>
-              ))}
-            </select>
           </div>
         </div>
       </CardContent>

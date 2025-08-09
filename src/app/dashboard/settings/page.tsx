@@ -18,7 +18,6 @@ interface BusinessSettings {
   address: string
   city: string
   country: string
-  timezone: string
   website: string
   businessHours: {
     [key: string]: { open: string; close: string; isOpen: boolean }
@@ -44,7 +43,6 @@ const defaultSettings: BusinessSettings = {
   address: '',
   city: '',
   country: '',
-  timezone: 'America/Los_Angeles',
   website: '',
   businessHours: {
     monday: { open: '09:00', close: '18:00', isOpen: true },
@@ -80,20 +78,30 @@ export default function SettingsPage() {
   } = useBusinessSettings()
 
   // Local state for form values
-  const [settings, setSettings] = useState<BusinessSettings>(defaultSettings)
+  const [settings, setSettings] = useState<BusinessSettings>(() => defaultSettings)
   const [hasChanges, setHasChanges] = useState(false)
+  const [isInitialized, setIsInitialized] = useState(false)
   
   // Initialize settings when data is loaded
   useEffect(() => {
-    if (fetchedSettings && !isLoading) {
-      // Only update if the settings have actually changed
-      const isEqual = JSON.stringify(settings) === JSON.stringify(fetchedSettings)
-      if (!isEqual) {
+    if (fetchedSettings && !isLoading && !isInitialized) {
+      setSettings(fetchedSettings)
+      setIsInitialized(true)
+      setHasChanges(false)
+    }
+  }, [fetchedSettings, isLoading, isInitialized])
+
+  // Reset form after successful save
+  useEffect(() => {
+    if (!isUpdating && fetchedSettings) {
+      const currentSettingsStr = JSON.stringify(settings)
+      const fetchedSettingsStr = JSON.stringify(fetchedSettings)
+      
+      if (currentSettingsStr !== fetchedSettingsStr && !hasChanges) {
         setSettings(fetchedSettings)
-        setHasChanges(false)
       }
     }
-  }, [fetchedSettings, isLoading, settings])
+  }, [fetchedSettings, isUpdating, hasChanges])
 
   useEffect(() => {
     setTitle('Settings');
@@ -103,13 +111,21 @@ export default function SettingsPage() {
   const handleSettingChange = (path: string, value: any) => {
     setSettings(prev => {
       const keys = path.split('.')
-      const newSettings = JSON.parse(JSON.stringify(prev))
-      let current = newSettings
+      const newSettings = { ...prev }
+      let current: Record<string, any> = newSettings
 
+      // Navigate to the parent object of the field we want to update
       for (let i = 0; i < keys.length - 1; i++) {
+        current[keys[i]] = { ...current[keys[i]] }
         current = current[keys[i]]
       }
-      current[keys[keys.length - 1]] = value
+      
+      // Update the value
+      const lastKey = keys[keys.length - 1]
+      if (current[lastKey] === value) {
+        return prev  // No change needed
+      }
+      current[lastKey] = value
 
       return newSettings
     })

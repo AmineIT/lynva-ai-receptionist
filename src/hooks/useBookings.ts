@@ -79,7 +79,8 @@ export function useBookings(filters: BookingFilters = {}) {
     data: bookingsData,
     isLoading,
     error,
-    refetch
+    refetch,
+    status
   } = useQuery({
     queryKey,
     queryFn: async () => {
@@ -227,7 +228,8 @@ export function useBookings(filters: BookingFilters = {}) {
     deleteBooking: deleteBooking.mutate,
     isCreating: createBooking.isPending,
     isUpdating: updateBooking.isPending,
-    isDeleting: deleteBooking.isPending
+    isDeleting: deleteBooking.isPending,
+    status
   }
 }
 

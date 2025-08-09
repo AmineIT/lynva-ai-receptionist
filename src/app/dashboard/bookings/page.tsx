@@ -17,14 +17,15 @@ export default function BookingsPage() {
   // Use the bookings hook with filters
   const {
     bookings,
-    isLoading: loading,
+    isLoading,
     error,
     createBooking,
     updateBooking,
     deleteBooking,
     isCreating,
     isUpdating,
-    isDeleting
+    isDeleting,
+    status
   } = useBookings({
     status: statusFilter !== 'all' ? statusFilter : undefined,
     search: searchTerm || undefined,
@@ -35,7 +36,7 @@ export default function BookingsPage() {
     setSubtitle('Manage your appointment bookings');
   }, [])
 
-  if (loading) {
+  if (isLoading || status === 'pending') {
     return (
       <BookingsSkeleton />
     )

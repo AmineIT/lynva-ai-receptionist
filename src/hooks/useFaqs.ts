@@ -89,7 +89,8 @@ export function useFaqs(filters: FaqFilters = {}) {
     data: faqsData,
     isLoading,
     error,
-    refetch
+    refetch,
+    status
   } = useQuery({
     queryKey,
     queryFn: async () => {
@@ -259,7 +260,8 @@ export function useFaqs(filters: FaqFilters = {}) {
     isCreating: createFaq.isPending,
     isUpdating: updateFaq.isPending,
     isDeleting: deleteFaq.isPending,
-    isToggling: toggleFaqStatus.isPending
+    isToggling: toggleFaqStatus.isPending,
+    status
   }
 }
 

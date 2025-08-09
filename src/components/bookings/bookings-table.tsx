@@ -6,6 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { formatDate, formatTime, formatPhoneNumber, formatCurrency } from '@/lib/utils'
 import { Phone, Mail, Eye, Edit, Trash2, CalendarIcon, Clock, DollarSign } from 'lucide-react'
 import StatusBadge from '@/components/ui/status-badge'
+import UAECurrency from '../ui/uae-currency'
 
 interface BookingsTableProps {
     bookings: any[];
@@ -93,9 +94,8 @@ export default function BookingsTable({ bookings, searchTerm, statusFilter, setS
                       <TableCell>
                         {booking.total_amount ? (
                           <div className="flex items-center gap-2">
-                            <DollarSign className="w-3 h-3 text-gray-400" />
-                            <span className="font-medium">
-                              {formatCurrency(booking.total_amount, booking.currency)}
+                            <span className="font-medium flex items-center gap-1">
+                              <UAECurrency />{booking.total_amount.toFixed(2)}
                             </span>
                           </div>
                         ) : (

@@ -13,20 +13,20 @@ import QuickActions from '@/components/dashboard/quick-actions'
 export default function DashboardPage() {
   const { setTitle, setSubtitle } = useLayout()
   const { isLoading: isLoadingUserProfile } = useUserProfile({ enableRedirect: false })
-  const { data: dashboardData, isLoading: loading, error, refetch } = useDashboardAnalytics()
+  const { data: dashboardData, isLoading: isLoadingDashboard, error, refetch, status } = useDashboardAnalytics()
 
   useEffect(() => {
     setTitle('Dashboard');
     setSubtitle('Discover what\'s happening with your business');
   }, []);
 
-  if (loading || isLoadingUserProfile) {
+  if (isLoadingDashboard || isLoadingUserProfile || status === 'pending') {
     return (
       <DashboardSkeleton />
     )
   }
 
-  if (error && !loading) {
+  if (error && !isLoadingDashboard) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
         <div className="text-center">

@@ -77,7 +77,8 @@ export function useServices(filters: ServiceFilters = {}) {
     data: servicesData,
     isLoading,
     error,
-    refetch
+    refetch,
+    status
   } = useQuery({
     queryKey,
     queryFn: async () => {
@@ -262,7 +263,8 @@ export function useServices(filters: ServiceFilters = {}) {
     isCreating: createService.isPending,
     isUpdating: updateService.isPending,
     isDeleting: deleteService.isPending,
-    isToggling: toggleServiceStatus.isPending
+    isToggling: toggleServiceStatus.isPending,
+    status
   }
 }
 

@@ -40,7 +40,8 @@ export function useCallLogs(filters: CallLogFilters = {}) {
     data: callLogsData,
     isLoading,
     error,
-    refetch
+    refetch,
+    status
   } = useQuery({
     queryKey,
     queryFn: async () => {
@@ -106,7 +107,8 @@ export function useCallLogs(filters: CallLogFilters = {}) {
     } : null,
     isLoading,
     error,
-    refetch
+    refetch,
+    status
   }
 }
 

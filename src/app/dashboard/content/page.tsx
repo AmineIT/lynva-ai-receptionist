@@ -13,14 +13,14 @@ export default function ContentPage() {
   const { setTitle, setSubtitle } = useLayout()
 
   // Use the FAQs hook
-  const { isLoading } = useFaqs();
+  const { isLoading, status } = useFaqs();
 
   useEffect(() => {
     setTitle('Content Management');
     setSubtitle('Manage FAQ content for your AI receptionist');
   }, []);
 
-  if (isLoading) {
+  if (isLoading || status === 'pending') {
     return (
       <ContentSkeleton />
     )

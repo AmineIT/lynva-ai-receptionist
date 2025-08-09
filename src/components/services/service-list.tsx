@@ -1,9 +1,10 @@
 import React from 'react'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Plus, Users, Clock, DollarSign, Edit2, Trash2 } from 'lucide-react'
+import { Plus, Users, Clock, Edit2, Trash2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { useServices } from '@/hooks/useServices'
+import UAECurrency from '../ui/uae-currency'
 
 interface ServiceListProps {
     setIsAddingService: (isAddingService: boolean) => void
@@ -82,8 +83,7 @@ export default function ServiceList({ setIsAddingService }: ServiceListProps) {
                                             </span>
                                             {service.price && (
                                                 <span className="flex items-center gap-1">
-                                                    <DollarSign className="w-3 h-3" />
-                                                    ${service.price}
+                                                    <UAECurrency />{service.price.toFixed(2)}
                                                 </span>
                                             )}
                                             {service.practitioner_name && (

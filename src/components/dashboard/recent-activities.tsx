@@ -10,7 +10,7 @@ import StatusBadge from '@/components/ui/status-badge'
 
 export default function RecentActivities({ recentBookings, recentCalls }: { recentBookings: RecentBooking[], recentCalls: RecentCall[] }) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Recent Bookings */}
         <Card className="border pt-0 overflow-hidden">
           <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">

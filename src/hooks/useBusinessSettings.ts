@@ -11,7 +11,6 @@ export interface BusinessSettings {
   address: string
   city: string
   country: string
-  timezone: string
   website: string
   businessHours: {
     [ key: string ]: { open: string; close: string; isOpen: boolean }
@@ -147,7 +146,6 @@ export function useBusinessSettings() {
           address: updateData.address,
           city: updateData.city,
           country: updateData.country,
-          timezone: updateData.timezone,
           website: updateData.website,
           updated_at: new Date().toISOString()
         })
@@ -219,25 +217,24 @@ export function useBusinessSettings() {
       }
     })
     
-    // Update in parallel if needed
-    const promises = []
-    
-    if (Object.keys(businessInfo).length > 0) {
-      promises.push(updateBusinessInfo.mutateAsync(businessInfo))
-    }
-    
-    if (Object.keys(settingsInfo).length > 0) {
-      promises.push(updateBusinessSettings.mutateAsync(settingsInfo))
-    }
-    
     try {
-      toast.promise(Promise.all(promises), {
+      const promises = []
+      
+      if (Object.keys(businessInfo).length > 0) {
+        promises.push(updateBusinessInfo.mutateAsync(businessInfo))
+      }
+      
+      if (Object.keys(settingsInfo).length > 0) {
+        promises.push(updateBusinessSettings.mutateAsync(settingsInfo))
+      }
+
+      const toastPromise = toast.promise(Promise.all(promises), {
         loading: 'Saving changes...',
         success: 'Settings updated successfully!',
         error: 'Failed to update settings'
       })
       
-      await Promise.all(promises)
+      await Promise.all([...promises, toastPromise])
       return true
     } catch (error) {
       console.error('Error updating settings:', error)

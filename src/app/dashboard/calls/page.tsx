@@ -15,9 +15,9 @@ export default function CallLogsPage() {
     setSubtitle('View and manage incoming call records');
   }, [])
 
-  const { calls, isLoading, refetch } = useCallLogs()
+  const { calls, isLoading, refetch, status } = useCallLogs()
 
-  if (isLoading) {
+  if (isLoading || status === 'pending') {
     return (
       <CallsSkeleton />
     )

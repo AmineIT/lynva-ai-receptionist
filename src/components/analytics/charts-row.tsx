@@ -8,7 +8,7 @@ interface ChartsRowProps {
 
 export default function ChartsRow({ analytics }: ChartsRowProps) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
       {/* Calls by Day */}
       <Card className="border pt-0 overflow-hidden h-full shadow-none">
         <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">

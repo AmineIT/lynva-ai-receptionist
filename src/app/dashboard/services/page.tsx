@@ -13,14 +13,14 @@ export default function ServicesPage() {
   const { setTitle, setSubtitle } = useLayout()
 
   // Use the services hook
-  const { isLoading } = useServices();
+  const { isLoading, status } = useServices();
 
   useEffect(() => {
     setTitle('Services');
     setSubtitle('Manage your business services and pricing');
   }, [])
 
-  if (isLoading) {
+  if (isLoading || status === 'pending') {
     return (
       <ServicesSkeleton />
     )
