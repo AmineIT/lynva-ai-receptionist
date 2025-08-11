@@ -60,15 +60,6 @@ export async function PUT(
       if (!service) {
         return createErrorResponse('Service not found', 404)
       }
-      
-      // Update duration and pricing if service changed
-      if (!validatedData.duration_minutes) {
-        validatedData.duration_minutes = service.duration_minutes
-      }
-      
-      if (!validatedData.total_amount && service.price) {
-        validatedData.total_amount = service.price
-      }
     }
     
     const { data, error } = await supabase

@@ -11,6 +11,7 @@ import { PlusCircle } from 'lucide-react'
 import { useActiveServices } from '@/hooks/useServices'
 import { CreateBookingData, useBookings } from '@/hooks/useBookings'
 import { createBookingSchema } from '@/lib/validators'
+import { DatePicker } from '@/components/ui/date-picker'
 
 interface BookingModalProps {
     showCreateBookingDialog: boolean;
@@ -156,14 +157,10 @@ export default function BookingModal({ showCreateBookingDialog, setShowCreateBoo
           </div>
 
           <div className="grid gap-2">
-            <Label>Appointment Date</Label>
-            <Input
-              type="date"
-              placeholder="Enter appointment date"
-              name="appointment_date"
-              value={bookingData.appointment_date}
-              onChange={handleChange}
-              aria-invalid={!!errors.appointment_date}
+            <DatePicker 
+              name="appointment_date" 
+              onChange={(date) => handleSelectChange('appointment_date', date)} 
+              label="Appointment Date"
             />
             {errors.appointment_date && (
               <span className="text-xs text-red-500">{errors.appointment_date}</span>

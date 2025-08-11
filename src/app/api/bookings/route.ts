@@ -115,15 +115,6 @@ export async function POST(request: NextRequest) {
       if (!service) {
         return createErrorResponse('Service not found', 404)
       }
-      
-      // Use service details if not explicitly provided
-      if (!validatedData.duration_minutes) {
-        validatedData.duration_minutes = service.duration_minutes
-      }
-      
-      if (!validatedData.total_amount && service.price) {
-        validatedData.total_amount = service.price
-      }
     }
     
     const { data, error } = await supabase
