@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { PlusCircle , MessageSquare, Edit2, Trash2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { useFaqs } from '@/hooks/useFaqs'
+import ConfirmationModal from '@/components/ui/confirmation-modal'
 
 interface FaqListProps {
     setShowCreateFaqDialog: (showCreateFaqDialog: boolean) => void
@@ -10,6 +12,13 @@ interface FaqListProps {
 
 export default function FaqList({ setShowCreateFaqDialog }: FaqListProps) {
     const { faqs, isToggling, isDeleting, deleteFaq, toggleFaqStatus } = useFaqs()
+    
+    const [confirmAction, setConfirmAction] = useState<{
+        type: 'delete' | 'toggle'
+        faqId: string
+        faqQuestion: string
+        isActive?: boolean
+    } | null>(null)
 
     const getCategoryColor = (category: string) => {
         const colors = {
@@ -25,11 +34,37 @@ export default function FaqList({ setShowCreateFaqDialog }: FaqListProps) {
     const handleToggleStatus = (faqId: string) => {
         const faq = faqs.find(f => f.id === faqId)
         if (!faq) return
-        toggleFaqStatus({ faqId, isActive: !faq.is_active })
+        setConfirmAction({
+            type: 'toggle',
+            faqId,
+            faqQuestion: faq.question,
+            isActive: faq.is_active
+        })
     }
 
     const handleDeleteFAQ = (faqId: string) => {
-        deleteFaq(faqId)
+        const faq = faqs.find(f => f.id === faqId)
+        if (!faq) return
+        setConfirmAction({
+            type: 'delete',
+            faqId,
+            faqQuestion: faq.question
+        })
+    }
+
+    const confirmToggleStatus = async () => {
+        if (confirmAction && confirmAction.type === 'toggle') {
+            await toggleFaqStatus({ 
+                faqId: confirmAction.faqId, 
+                isActive: !confirmAction.isActive 
+            })
+        }
+    }
+
+    const confirmDeleteFAQ = async () => {
+        if (confirmAction && confirmAction.type === 'delete') {
+            await deleteFaq(confirmAction.faqId)
+        }
     }
 
     return (
@@ -100,6 +135,30 @@ export default function FaqList({ setShowCreateFaqDialog }: FaqListProps) {
                     </div>
                 )}
             </CardContent>
+            
+            {/* Toggle Status Confirmation Modal */}
+            <ConfirmationModal
+                open={confirmAction?.type === 'toggle'}
+                onOpenChange={(open) => !open && setConfirmAction(null)}
+                title={confirmAction?.isActive ? 'Deactivate FAQ' : 'Activate FAQ'}
+                description={`Are you sure you want to ${confirmAction?.isActive ? 'deactivate' : 'activate'} "${confirmAction?.faqQuestion}"? ${confirmAction?.isActive ? 'This will hide the FAQ from your customers.' : 'This will make the FAQ visible to your customers.'}`}
+                confirmText={confirmAction?.isActive ? 'Deactivate' : 'Activate'}
+                variant="default"
+                onConfirm={confirmToggleStatus}
+                isLoading={isToggling}
+            />
+
+            {/* Delete Confirmation Modal */}
+            <ConfirmationModal
+                open={confirmAction?.type === 'delete'}
+                onOpenChange={(open) => !open && setConfirmAction(null)}
+                title="Delete FAQ"
+                description={`Are you sure you want to delete "${confirmAction?.faqQuestion}"? This action cannot be undone and the FAQ will be permanently removed.`}
+                confirmText="Delete"
+                variant="destructive"
+                onConfirm={confirmDeleteFAQ}
+                isLoading={isDeleting}
+            />
         </Card>
     )
 }
