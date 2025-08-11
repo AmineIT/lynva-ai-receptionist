@@ -91,7 +91,7 @@ export default function BookingModal({ showCreateBookingDialog, setShowCreateBoo
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="grid gap-2">
-            <Label>Customer</Label>
+            <Label required>Customer Name</Label>
             <Input
               type="text"
               placeholder="Enter customer name"
@@ -106,7 +106,7 @@ export default function BookingModal({ showCreateBookingDialog, setShowCreateBoo
           </div>
 
           <div className="grid gap-2">
-            <Label>Phone Number</Label>
+            <Label required>Phone Number</Label>
             <Input
               type="text"
               placeholder="Enter phone number"
@@ -121,7 +121,7 @@ export default function BookingModal({ showCreateBookingDialog, setShowCreateBoo
           </div>
 
           <div className="grid gap-2">
-            <Label>Email</Label>
+            <Label>Email (Optional)</Label>
             <Input
               type="email"
               placeholder="Enter email"
@@ -136,7 +136,7 @@ export default function BookingModal({ showCreateBookingDialog, setShowCreateBoo
           </div>
 
           <div className="grid gap-2">
-            <Label>Service</Label>
+            <Label required>Service</Label>
             <Select
               name="service_id"
               value={bookingData.service_id}
@@ -157,10 +157,10 @@ export default function BookingModal({ showCreateBookingDialog, setShowCreateBoo
           </div>
 
           <div className="grid gap-2">
+            <Label required>Appointment Date</Label>
             <DatePicker 
               name="appointment_date" 
               onChange={(date) => handleSelectChange('appointment_date', date)} 
-              label="Appointment Date"
             />
             {errors.appointment_date && (
               <span className="text-xs text-red-500">{errors.appointment_date}</span>
@@ -168,7 +168,7 @@ export default function BookingModal({ showCreateBookingDialog, setShowCreateBoo
           </div>
 
           <div className="grid gap-2">
-            <Label>Appointment Time</Label>
+            <Label required>Appointment Time</Label>
             <Input
               type="time"
               placeholder="Enter appointment time"
@@ -184,7 +184,7 @@ export default function BookingModal({ showCreateBookingDialog, setShowCreateBoo
 
           {/* Notes field spans both columns */}
           <div className="md:col-span-2 grid gap-2">
-            <Label>Notes</Label>
+            <Label>Notes (Optional)</Label>
             <Textarea
               placeholder="Enter notes"
               name="notes"

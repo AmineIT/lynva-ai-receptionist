@@ -24,9 +24,8 @@ export default function ServiceModal({ showCreateServiceDialog, setShowCreateSer
     const [serviceData, setServiceData] = useState<CreateServiceData>({
         name: '',
         description: '',
-        duration_minutes: 60,
+        duration_minutes: 0,
         price: 0,
-        currency: 'AED',
         is_active: true,
         booking_buffer_minutes: 15,
         max_advance_booking_days: 30,
@@ -80,9 +79,8 @@ export default function ServiceModal({ showCreateServiceDialog, setShowCreateSer
         setServiceData({
             name: '',
             description: '',
-            duration_minutes: 60,
+            duration_minutes: 0,
             price: 0,
-            currency: 'AED',
             is_active: true,
             booking_buffer_minutes: 15,
             max_advance_booking_days: 30,
@@ -103,7 +101,7 @@ export default function ServiceModal({ showCreateServiceDialog, setShowCreateSer
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="grid gap-2">
-                        <Label>Service Name</Label>
+                        <Label required>Service Name</Label>
                         <Input
                             type="text"
                             placeholder="Enter service name..."
@@ -118,7 +116,7 @@ export default function ServiceModal({ showCreateServiceDialog, setShowCreateSer
                     </div>
 
                     <div className="grid gap-2">
-                        <Label>Category</Label>
+                        <Label required>Category</Label>
                         <Select
                             name="category"
                             value={serviceData.category}
@@ -139,7 +137,7 @@ export default function ServiceModal({ showCreateServiceDialog, setShowCreateSer
                     </div>
 
                     <div className="md:col-span-2 grid gap-2">
-                        <Label>Description</Label>
+                        <Label required>Description</Label>
                         <Textarea
                             placeholder="Enter service description..."
                             name="description"
@@ -154,7 +152,7 @@ export default function ServiceModal({ showCreateServiceDialog, setShowCreateSer
                     </div>
 
                     <div className="grid gap-2">
-                        <Label>Duration (minutes)</Label>
+                        <Label required>Duration (minutes)</Label>
                         <Input
                             type="number"
                             placeholder="Duration in minutes"
@@ -169,10 +167,10 @@ export default function ServiceModal({ showCreateServiceDialog, setShowCreateSer
                     </div>
 
                     <div className="grid gap-2">
-                        <Label>Price (AED)</Label>
+                        <Label required>Price (AED)</Label>
                         <Input
                             type="number"
-                            step="0.01"
+                            step="1"
                             placeholder="Price in AED"
                             name="price"
                             value={serviceData.price}
@@ -185,7 +183,7 @@ export default function ServiceModal({ showCreateServiceDialog, setShowCreateSer
                     </div>
 
                     <div className="md:col-span-2 grid gap-2">
-                        <Label>Practitioner</Label>
+                        <Label>Practitioner (Optional)</Label>
                         <Input
                             type="text"
                             placeholder="Practitioner name..."
@@ -209,5 +207,4 @@ export default function ServiceModal({ showCreateServiceDialog, setShowCreateSer
             </DialogContent>
         </Dialog>
     )
-}
 }

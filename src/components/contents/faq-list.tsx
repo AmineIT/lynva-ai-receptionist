@@ -1,6 +1,6 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Plus, MessageSquare, Edit2, Trash2 } from 'lucide-react'
+import { PlusCircle , MessageSquare, Edit2, Trash2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { useFaqs } from '@/hooks/useFaqs'
 
@@ -42,7 +42,7 @@ export default function FaqList({ setShowCreateFaqDialog }: FaqListProps) {
                     </div>
                     <div className="flex items-end justify-end">
                         <Button onClick={() => setShowCreateFaqDialog(true)} size="sm">
-                            <Plus className="w-3 h-3 mr-2" />
+                            <PlusCircle className="w-3 h-3 mr-2" />
                             <p className="text-xs">Add FAQ</p>
                         </Button>
                     </div>

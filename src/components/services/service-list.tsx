@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Plus, Users, Clock, Edit2, Trash2 } from 'lucide-react'
+import { PlusCircle, Users, Clock, Edit2, Trash2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { useServices } from '@/hooks/useServices'
 import UAECurrency from '../ui/uae-currency'
@@ -44,7 +44,7 @@ export default function ServiceList({ setShowCreateServiceDialog }: ServiceListP
                     </div>
                     <div className="flex items-end justify-end">
                         <Button onClick={() => setShowCreateServiceDialog(true)} size="sm">
-                            <Plus className="w-3 h-3 mr-2" />
+                            <PlusCircle className="w-3 h-3 mr-2" />
                             <p className="text-xs">Add Service</p>
                         </Button>
                     </div>

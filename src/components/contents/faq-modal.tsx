@@ -82,7 +82,7 @@ export default function FaqModal({ showCreateFaqDialog, setShowCreateFaqDialog }
 
                 <div className="space-y-4">
                     <div className="grid gap-2">
-                        <Label>Category</Label>
+                        <Label required>Category</Label>
                         <Select
                             name="category"
                             value={faqData.category}
@@ -103,7 +103,7 @@ export default function FaqModal({ showCreateFaqDialog, setShowCreateFaqDialog }
                     </div>
 
                     <div className="grid gap-2">
-                        <Label>Question</Label>
+                        <Label required>Question</Label>
                         <Input
                             type="text"
                             placeholder="Enter the question..."
@@ -118,7 +118,7 @@ export default function FaqModal({ showCreateFaqDialog, setShowCreateFaqDialog }
                     </div>
 
                     <div className="grid gap-2">
-                        <Label>Answer</Label>
+                        <Label required>Answer</Label>
                         <Textarea
                             placeholder="Enter the answer..."
                             name="answer"
