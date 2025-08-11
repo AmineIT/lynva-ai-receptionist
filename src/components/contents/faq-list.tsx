@@ -141,7 +141,8 @@ export default function FaqList({ setShowCreateFaqDialog }: FaqListProps) {
                 open={confirmAction?.type === 'toggle'}
                 onOpenChange={(open) => !open && setConfirmAction(null)}
                 title={confirmAction?.isActive ? 'Deactivate FAQ' : 'Activate FAQ'}
-                description={`Are you sure you want to ${confirmAction?.isActive ? 'deactivate' : 'activate'} "${confirmAction?.faqQuestion}"? ${confirmAction?.isActive ? 'This will hide the FAQ from your customers.' : 'This will make the FAQ visible to your customers.'}`}
+                subtitle={`Are you sure you want to ${confirmAction?.isActive ? 'deactivate' : 'activate'} this FAQ?`}
+                description={`${confirmAction?.isActive ? 'This will hide it from your customers.' : 'This will make it visible to your customers.'}`}
                 confirmText={confirmAction?.isActive ? 'Deactivate' : 'Activate'}
                 variant="default"
                 onConfirm={confirmToggleStatus}
@@ -153,7 +154,8 @@ export default function FaqList({ setShowCreateFaqDialog }: FaqListProps) {
                 open={confirmAction?.type === 'delete'}
                 onOpenChange={(open) => !open && setConfirmAction(null)}
                 title="Delete FAQ"
-                description={`Are you sure you want to delete "${confirmAction?.faqQuestion}"? This action cannot be undone and the FAQ will be permanently removed.`}
+                subtitle="Are you sure you want to delete this FAQ?"
+                description="This action cannot be undone and the FAQ will be permanently removed."
                 confirmText="Delete"
                 variant="destructive"
                 onConfirm={confirmDeleteFAQ}

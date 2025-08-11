@@ -158,7 +158,8 @@ export default function ServiceList({ setShowCreateServiceDialog }: ServiceListP
                 open={confirmAction?.type === 'toggle'}
                 onOpenChange={(open) => !open && setConfirmAction(null)}
                 title={confirmAction?.isActive ? 'Deactivate Service' : 'Activate Service'}
-                description={`Are you sure you want to ${confirmAction?.isActive ? 'deactivate' : 'activate'} "${confirmAction?.serviceName}"? ${confirmAction?.isActive ? 'This will hide the service from your customers and prevent new bookings.' : 'This will make the service available for booking by your customers.'}`}
+                subtitle={`Are you sure you want to ${confirmAction?.isActive ? 'deactivate' : 'activate'} this service?`}
+                description={`${confirmAction?.isActive ? 'This will hide the service from your customers and prevent new bookings.' : 'This will make the service available for booking by your customers.'}`}
                 confirmText={confirmAction?.isActive ? 'Deactivate' : 'Activate'}
                 variant="default"
                 onConfirm={confirmToggleStatus}
@@ -170,7 +171,8 @@ export default function ServiceList({ setShowCreateServiceDialog }: ServiceListP
                 open={confirmAction?.type === 'delete'}
                 onOpenChange={(open) => !open && setConfirmAction(null)}
                 title="Delete Service"
-                description={`Are you sure you want to delete "${confirmAction?.serviceName}"? This action cannot be undone and the service will be permanently removed along with any associated data.`}
+                subtitle="Are you sure you want to delete this service?"
+                description="This action cannot be undone and the service will be permanently removed along with any associated data."
                 confirmText="Delete"
                 variant="destructive"
                 onConfirm={confirmDeleteService}
