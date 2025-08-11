@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
@@ -10,7 +10,7 @@ import TableFilters, { FilterOption } from '@/components/ui/table-filters'
 import TableSort from '@/components/ui/table-sort'
 import TablePagination from '@/components/ui/table-pagination'
 import { useTableState } from '@/hooks/useTableState'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
+import { Collapsible, CollapsibleContent } from '@/components/ui/collapsible'
 
 interface BookingsTableProps {
   bookings: any[]
@@ -152,17 +152,21 @@ export default function BookingsTable({ bookings, setShowCreateBookingDialog }: 
     return filtered
   }, [bookings, tableState.searchTerm, tableState.filters, tableState.sortConfig])
 
-  // Update total for pagination
-  React.useEffect(() => {
-    tableState.setTotal(filteredAndSortedBookings.length)
-  }, [filteredAndSortedBookings.length, tableState.setTotal])
-
   // Paginate results
   const paginatedBookings = useMemo(() => {
     const startIndex = (tableState.pagination.page - 1) * tableState.pagination.pageSize
     const endIndex = startIndex + tableState.pagination.pageSize
     return filteredAndSortedBookings.slice(startIndex, endIndex)
   }, [filteredAndSortedBookings, tableState.pagination.page, tableState.pagination.pageSize])
+
+  // Update total when filtered results change
+  useEffect(() => {
+    const newTotal = filteredAndSortedBookings.length
+    if (newTotal !== tableState.pagination.total) {
+      tableState.setTotal(newTotal)
+    }
+  }, [filteredAndSortedBookings.length, tableState.pagination.total, tableState.setTotal])
+
   const [showFilters, setShowFilters] = React.useState(false)
 
   return (

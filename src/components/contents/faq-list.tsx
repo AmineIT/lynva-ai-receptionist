@@ -83,10 +83,11 @@ export default function FaqList({ setShowCreateFaqDialog }: FaqListProps) {
                 case 'category':
                     filtered = filtered.filter(faq => faq.category === value)
                     break
-                case 'status':
+                case 'status': {
                     const isActive = value === 'active'
                     filtered = filtered.filter(faq => faq.is_active === isActive)
                     break
+                }
             }
         })
 
@@ -127,10 +128,13 @@ export default function FaqList({ setShowCreateFaqDialog }: FaqListProps) {
         return filtered
     }, [faqs, tableState.searchTerm, tableState.filters, tableState.sortConfig])
 
-    // Update total for pagination
+    // Update total when filtered results change
     React.useEffect(() => {
-        tableState.setTotal(filteredAndSortedFaqs.length)
-    }, [filteredAndSortedFaqs.length, tableState.setTotal])
+        const newTotal = filteredAndSortedFaqs.length
+        if (newTotal !== tableState.pagination.total) {
+            tableState.setTotal(newTotal)
+        }
+    }, [filteredAndSortedFaqs.length, tableState.pagination.total, tableState.setTotal])
 
     // Paginate results
     const paginatedFaqs = useMemo(() => {

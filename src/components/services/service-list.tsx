@@ -93,10 +93,11 @@ export default function ServiceList({ setShowCreateServiceDialog }: ServiceListP
                 case 'category':
                     filtered = filtered.filter(service => service.category === value)
                     break
-                case 'status':
+                case 'status': {
                     const isActive = value === 'active'
                     filtered = filtered.filter(service => service.is_active === isActive)
                     break
+                }
                 case 'priceRange':
                     if (value.min) {
                         filtered = filtered.filter(service => 
@@ -169,10 +170,13 @@ export default function ServiceList({ setShowCreateServiceDialog }: ServiceListP
         return filtered
     }, [services, tableState.searchTerm, tableState.filters, tableState.sortConfig])
 
-    // Update total for pagination
+    // Update total when filtered results change
     React.useEffect(() => {
-        tableState.setTotal(filteredAndSortedServices.length)
-    }, [filteredAndSortedServices.length, tableState.setTotal])
+        const newTotal = filteredAndSortedServices.length
+        if (newTotal !== tableState.pagination.total) {
+            tableState.setTotal(newTotal)
+        }
+    }, [filteredAndSortedServices.length, tableState.pagination.total, tableState.setTotal])
 
     // Paginate results
     const paginatedServices = useMemo(() => {
