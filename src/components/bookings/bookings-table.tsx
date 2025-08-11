@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { formatDate, formatTime, formatPhoneNumber } from '@/lib/utils'
-import { Phone, Mail, Eye, Edit, Trash2, CalendarIcon, Clock, PlusCircle } from 'lucide-react'
+import { Phone, Mail, Eye, Edit, CalendarIcon, Clock, PlusCircle } from 'lucide-react'
 import StatusBadge from '@/components/ui/status-badge'
 import UAECurrency from '../ui/uae-currency'
 
@@ -111,9 +111,6 @@ export default function BookingsTable({ bookings, searchTerm, statusFilter, setS
                           </Button>
                           <Button variant="outline" size="sm">
                             <Edit className="w-3 h-3" />
-                          </Button>
-                          <Button variant="outline" size="sm" className="text-red-600 hover:text-red-700">
-                            <Trash2 className="w-3 h-3" />
                           </Button>
                         </div>
                       </TableCell>

@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { PlusCircle, Users, Clock, Edit2, Trash2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { useServices } from '@/hooks/useServices'
 import UAECurrency from '../ui/uae-currency'
+import ConfirmationModal from '@/components/ui/confirmation-modal'
 
 interface ServiceListProps {
     setShowCreateServiceDialog: (showCreateServiceDialog: boolean) => void
@@ -12,6 +13,13 @@ interface ServiceListProps {
 
 export default function ServiceList({ setShowCreateServiceDialog }: ServiceListProps) {
     const { services, isToggling, isDeleting, deleteService, toggleServiceStatus } = useServices()
+    
+    const [confirmAction, setConfirmAction] = useState<{
+        type: 'delete' | 'toggle'
+        serviceId: string
+        serviceName: string
+        isActive?: boolean
+    } | null>(null)
 
     const getCategoryColor = (category: string) => {
         const colors = {
@@ -27,11 +35,37 @@ export default function ServiceList({ setShowCreateServiceDialog }: ServiceListP
     const handleToggleStatus = (serviceId: string) => {
         const service = services.find(s => s.id === serviceId)
         if (!service) return
-        toggleServiceStatus({ serviceId, isActive: !service.is_active })
+        setConfirmAction({
+            type: 'toggle',
+            serviceId,
+            serviceName: service.name,
+            isActive: service.is_active
+        })
     }
 
     const handleDeleteService = (serviceId: string) => {
-        deleteService(serviceId)
+        const service = services.find(s => s.id === serviceId)
+        if (!service) return
+        setConfirmAction({
+            type: 'delete',
+            serviceId,
+            serviceName: service.name
+        })
+    }
+
+    const confirmToggleStatus = async () => {
+        if (confirmAction && confirmAction.type === 'toggle') {
+            await toggleServiceStatus({ 
+                serviceId: confirmAction.serviceId, 
+                isActive: !confirmAction.isActive 
+            })
+        }
+    }
+
+    const confirmDeleteService = async () => {
+        if (confirmAction && confirmAction.type === 'delete') {
+            await deleteService(confirmAction.serviceId)
+        }
     }
 
     return (
@@ -118,6 +152,32 @@ export default function ServiceList({ setShowCreateServiceDialog }: ServiceListP
                     </div>
                 )}
             </CardContent>
+            
+            {/* Toggle Status Confirmation Modal */}
+            <ConfirmationModal
+                open={confirmAction?.type === 'toggle'}
+                onOpenChange={(open) => !open && setConfirmAction(null)}
+                title={confirmAction?.isActive ? 'Deactivate Service' : 'Activate Service'}
+                subtitle={`Are you sure you want to ${confirmAction?.isActive ? 'deactivate' : 'activate'} this service?`}
+                description={`${confirmAction?.isActive ? 'This will hide the service from your customers and prevent new bookings.' : 'This will make the service available for booking by your customers.'}`}
+                confirmText={confirmAction?.isActive ? 'Deactivate' : 'Activate'}
+                variant="default"
+                onConfirm={confirmToggleStatus}
+                isLoading={isToggling}
+            />
+
+            {/* Delete Confirmation Modal */}
+            <ConfirmationModal
+                open={confirmAction?.type === 'delete'}
+                onOpenChange={(open) => !open && setConfirmAction(null)}
+                title="Delete Service"
+                subtitle="Are you sure you want to delete this service?"
+                description="This action cannot be undone and the service will be permanently removed along with any associated data."
+                confirmText="Delete"
+                variant="destructive"
+                onConfirm={confirmDeleteService}
+                isLoading={isDeleting}
+            />
         </Card>
     )
 }
