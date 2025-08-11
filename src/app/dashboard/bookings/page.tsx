@@ -38,7 +38,7 @@ export default function BookingsPage() {
       <BookingsHeader searchTerm={searchTerm} setSearchTerm={setSearchTerm} statusFilter={statusFilter} setStatusFilter={setStatusFilter} />
 
       {/* Bookings Table */}
-      <BookingsTable bookings={bookings} searchTerm={searchTerm} statusFilter={statusFilter} setShowCreateBookingDialog={setShowCreateBookingDialog} />
+      <BookingsTable bookings={bookings} setShowCreateBookingDialog={setShowCreateBookingDialog} />
 
       {/* Create Booking Dialog */}
       <BookingModal showCreateBookingDialog={showCreateBookingDialog} setShowCreateBookingDialog={setShowCreateBookingDialog} />
