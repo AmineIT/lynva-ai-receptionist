@@ -1,0 +1,136 @@
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+remote: Enumerating objects: 264, done.        
+remote: Counting objects:   0% (1/264)        remote: Counting objects:   1% (3/264)        remote: Counting objects:   2% (6/264)        remote: Counting objects:   3% (8/264)        remote: Counting objects:   4% (11/264)        remote: Counting objects:   5% (14/264)        remote: Counting objects:   6% (16/264)        remote: Counting objects:   7% (19/264)        remote: Counting objects:   8% (22/264)        remote: Counting objects:   9% (24/264)        remote: Counting objects:  10% (27/264)        remote: Counting objects:  11% (30/264)        remote: Counting objects:  12% (32/264)        remote: Counting objects:  13% (35/264)        remote: Counting objects:  14% (37/264)        remote: Counting objects:  15% (40/264)        remote: Counting objects:  16% (43/264)        remote: Counting objects:  17% (45/264)        remote: Counting objects:  18% (48/264)        remote: Counting objects:  19% (51/264)        remote: Counting objects:  20% (53/264)        remote: Counting objects:  21% (56/264)        remote: Counting objects:  22% (59/264)        remote: Counting objects:  23% (61/264)        remote: Counting objects:  24% (64/264)        remote: Counting objects:  25% (66/264)        remote: Counting objects:  26% (69/264)        remote: Counting objects:  27% (72/264)        remote: Counting objects:  28% (74/264)        remote: Counting objects:  29% (77/264)        remote: Counting objects:  30% (80/264)        remote: Counting objects:  31% (82/264)        remote: Counting objects:  32% (85/264)        remote: Counting objects:  33% (88/264)        remote: Counting objects:  34% (90/264)        remote: Counting objects:  35% (93/264)        remote: Counting objects:  36% (96/264)        remote: Counting objects:  37% (98/264)        remote: Counting objects:  38% (101/264)        remote: Counting objects:  39% (103/264)        remote: Counting objects:  40% (106/264)        remote: Counting objects:  41% (109/264)        remote: Counting objects:  42% (111/264)        remote: Counting objects:  43% (114/264)        remote: Counting objects:  44% (117/264)        remote: Counting objects:  45% (119/264)        remote: Counting objects:  46% (122/264)        remote: Counting objects:  47% (125/264)        remote: Counting objects:  48% (127/264)        remote: Counting objects:  49% (130/264)        remote: Counting objects:  50% (132/264)        remote: Counting objects:  51% (135/264)        remote: Counting objects:  52% (138/264)        remote: Counting objects:  53% (140/264)        remote: Counting objects:  54% (143/264)        remote: Counting objects:  55% (146/264)        remote: Counting objects:  56% (148/264)        remote: Counting objects:  57% (151/264)        remote: Counting objects:  58% (154/264)        remote: Counting objects:  59% (156/264)        remote: Counting objects:  60% (159/264)        remote: Counting objects:  61% (162/264)        remote: Counting objects:  62% (164/264)        remote: Counting objects:  63% (167/264)        remote: Counting objects:  64% (169/264)        remote: Counting objects:  65% (172/264)        remote: Counting objects:  66% (175/264)        remote: Counting objects:  67% (177/264)        remote: Counting objects:  68% (180/264)        remote: Counting objects:  69% (183/264)        remote: Counting objects:  70% (185/264)        remote: Counting objects:  71% (188/264)        remote: Counting objects:  72% (191/264)        remote: Counting objects:  73% (193/264)        remote: Counting objects:  74% (196/264)        remote: Counting objects:  75% (198/264)        remote: Counting objects:  76% (201/264)        remote: Counting objects:  77% (204/264)        remote: Counting objects:  78% (206/264)        remote: Counting objects:  79% (209/264)        remote: Counting objects:  80% (212/264)        remote: Counting objects:  81% (214/264)        remote: Counting objects:  82% (217/264)        remote: Counting objects:  83% (220/264)        remote: Counting objects:  84% (222/264)        remote: Counting objects:  85% (225/264)        remote: Counting objects:  86% (228/264)        remote: Counting objects:  87% (230/264)        remote: Counting objects:  88% (233/264)        remote: Counting objects:  89% (235/264)        remote: Counting objects:  90% (238/264)        remote: Counting objects:  91% (241/264)        remote: Counting objects:  92% (243/264)        remote: Counting objects:  93% (246/264)        remote: Counting objects:  94% (249/264)        remote: Counting objects:  95% (251/264)        remote: Counting objects:  96% (254/264)        remote: Counting objects:  97% (257/264)        remote: Counting objects:  98% (259/264)        remote: Counting objects:  99% (262/264)        remote: Counting objects: 100% (264/264)        remote: Counting objects: 100% (264/264), done.        
+remote: Compressing objects:   1% (1/79)        remote: Compressing objects:   2% (2/79)        remote: Compressing objects:   3% (3/79)        remote: Compressing objects:   5% (4/79)        remote: Compressing objects:   6% (5/79)        remote: Compressing objects:   7% (6/79)        remote: Compressing objects:   8% (7/79)        remote: Compressing objects:  10% (8/79)        remote: Compressing objects:  11% (9/79)        remote: Compressing objects:  12% (10/79)        remote: Compressing objects:  13% (11/79)        remote: Compressing objects:  15% (12/79)        remote: Compressing objects:  16% (13/79)        remote: Compressing objects:  17% (14/79)        remote: Compressing objects:  18% (15/79)        remote: Compressing objects:  20% (16/79)        remote: Compressing objects:  21% (17/79)        remote: Compressing objects:  22% (18/79)        remote: Compressing objects:  24% (19/79)        remote: Compressing objects:  25% (20/79)        remote: Compressing objects:  26% (21/79)        remote: Compressing objects:  27% (22/79)        remote: Compressing objects:  29% (23/79)        remote: Compressing objects:  30% (24/79)        remote: Compressing objects:  31% (25/79)        remote: Compressing objects:  32% (26/79)        remote: Compressing objects:  34% (27/79)        remote: Compressing objects:  35% (28/79)        remote: Compressing objects:  36% (29/79)        remote: Compressing objects:  37% (30/79)        remote: Compressing objects:  39% (31/79)        remote: Compressing objects:  40% (32/79)        remote: Compressing objects:  41% (33/79)        remote: Compressing objects:  43% (34/79)        remote: Compressing objects:  44% (35/79)        remote: Compressing objects:  45% (36/79)        remote: Compressing objects:  46% (37/79)        remote: Compressing objects:  48% (38/79)        remote: Compressing objects:  49% (39/79)        remote: Compressing objects:  50% (40/79)        remote: Compressing objects:  51% (41/79)        remote: Compressing objects:  53% (42/79)        remote: Compressing objects:  54% (43/79)        remote: Compressing objects:  55% (44/79)        remote: Compressing objects:  56% (45/79)        remote: Compressing objects:  58% (46/79)        remote: Compressing objects:  59% (47/79)        remote: Compressing objects:  60% (48/79)        remote: Compressing objects:  62% (49/79)        remote: Compressing objects:  63% (50/79)        remote: Compressing objects:  64% (51/79)        remote: Compressing objects:  65% (52/79)        remote: Compressing objects:  67% (53/79)        remote: Compressing objects:  68% (54/79)        remote: Compressing objects:  69% (55/79)        remote: Compressing objects:  70% (56/79)        remote: Compressing objects:  72% (57/79)        remote: Compressing objects:  73% (58/79)        remote: Compressing objects:  74% (59/79)        remote: Compressing objects:  75% (60/79)        remote: Compressing objects:  77% (61/79)        remote: Compressing objects:  78% (62/79)        remote: Compressing objects:  79% (63/79)        remote: Compressing objects:  81% (64/79)        remote: Compressing objects:  82% (65/79)        remote: Compressing objects:  83% (66/79)        remote: Compressing objects:  84% (67/79)        remote: Compressing objects:  86% (68/79)        remote: Compressing objects:  87% (69/79)        remote: Compressing objects:  88% (70/79)        remote: Compressing objects:  89% (71/79)        remote: Compressing objects:  91% (72/79)        remote: Compressing objects:  92% (73/79)        remote: Compressing objects:  93% (74/79)        remote: Compressing objects:  94% (75/79)        remote: Compressing objects:  96% (76/79)        remote: Compressing objects:  97% (77/79)        remote: Compressing objects:  98% (78/79)        remote: Compressing objects: 100% (79/79)        remote: Compressing objects: 100% (79/79), done.        
+Receiving objects:   0% (1/207)Receiving objects:   1% (3/207)Receiving objects:   2% (5/207)Receiving objects:   3% (7/207)Receiving objects:   4% (9/207)Receiving objects:   5% (11/207)Receiving objects:   6% (13/207)Receiving objects:   7% (15/207)Receiving objects:   8% (17/207)Receiving objects:   9% (19/207)Receiving objects:  10% (21/207)Receiving objects:  11% (23/207)Receiving objects:  12% (25/207)Receiving objects:  13% (27/207)Receiving objects:  14% (29/207)Receiving objects:  15% (32/207)Receiving objects:  16% (34/207)Receiving objects:  17% (36/207)Receiving objects:  18% (38/207)Receiving objects:  19% (40/207)Receiving objects:  20% (42/207)Receiving objects:  21% (44/207)Receiving objects:  22% (46/207)Receiving objects:  23% (48/207)Receiving objects:  24% (50/207)Receiving objects:  25% (52/207)Receiving objects:  26% (54/207)Receiving objects:  27% (56/207)Receiving objects:  28% (58/207)Receiving objects:  29% (61/207)Receiving objects:  30% (63/207)Receiving objects:  31% (65/207)Receiving objects:  32% (67/207)Receiving objects:  33% (69/207)Receiving objects:  34% (71/207)Receiving objects:  35% (73/207)Receiving objects:  36% (75/207)Receiving objects:  37% (77/207)Receiving objects:  38% (79/207)Receiving objects:  39% (81/207)Receiving objects:  40% (83/207)Receiving objects:  41% (85/207)Receiving objects:  42% (87/207)Receiving objects:  43% (90/207)Receiving objects:  44% (92/207)Receiving objects:  45% (94/207)Receiving objects:  46% (96/207)Receiving objects:  47% (98/207)Receiving objects:  48% (100/207)Receiving objects:  49% (102/207)Receiving objects:  50% (104/207)Receiving objects:  51% (106/207)Receiving objects:  52% (108/207)Receiving objects:  53% (110/207)Receiving objects:  54% (112/207)Receiving objects:  55% (114/207)Receiving objects:  56% (116/207)Receiving objects:  57% (118/207)Receiving objects:  58% (121/207)Receiving objects:  59% (123/207)Receiving objects:  60% (125/207)Receiving objects:  61% (127/207)Receiving objects:  62% (129/207)Receiving objects:  63% (131/207)Receiving objects:  64% (133/207)Receiving objects:  65% (135/207)Receiving objects:  66% (137/207)Receiving objects:  67% (139/207)Receiving objects:  68% (141/207)Receiving objects:  69% (143/207)Receiving objects:  70% (145/207)Receiving objects:  71% (147/207)Receiving objects:  72% (150/207)Receiving objects:  73% (152/207)Receiving objects:  74% (154/207)Receiving objects:  75% (156/207)Receiving objects:  76% (158/207)Receiving objects:  77% (160/207)Receiving objects:  78% (162/207)Receiving objects:  79% (164/207)Receiving objects:  80% (166/207)remote: Total 207 (delta 127), reused 187 (delta 107), pack-reused 0 (from 0)        
+Receiving objects:  81% (168/207)Receiving objects:  82% (170/207)Receiving objects:  83% (172/207)Receiving objects:  84% (174/207)Receiving objects:  85% (176/207)Receiving objects:  86% (179/207)Receiving objects:  87% (181/207)Receiving objects:  88% (183/207)Receiving objects:  89% (185/207)Receiving objects:  90% (187/207)Receiving objects:  91% (189/207)Receiving objects:  92% (191/207)Receiving objects:  93% (193/207)Receiving objects:  94% (195/207)Receiving objects:  95% (197/207)Receiving objects:  96% (199/207)Receiving objects:  97% (201/207)Receiving objects:  98% (203/207)Receiving objects:  99% (205/207)Receiving objects: 100% (207/207)Receiving objects: 100% (207/207), 53.53 KiB | 26.76 MiB/s, done.
+Resolving deltas:   0% (0/127)Resolving deltas:   1% (2/127)Resolving deltas:   2% (3/127)Resolving deltas:   3% (4/127)Resolving deltas:   4% (6/127)Resolving deltas:   7% (9/127)Resolving deltas:   8% (11/127)Resolving deltas:   9% (12/127)Resolving deltas:  10% (13/127)Resolving deltas:  11% (14/127)Resolving deltas:  13% (17/127)Resolving deltas:  14% (18/127)Resolving deltas:  15% (20/127)Resolving deltas:  17% (22/127)Resolving deltas:  18% (23/127)Resolving deltas:  19% (25/127)Resolving deltas:  21% (27/127)Resolving deltas:  22% (29/127)Resolving deltas:  23% (30/127)Resolving deltas:  25% (32/127)Resolving deltas:  27% (35/127)Resolving deltas:  28% (36/127)Resolving deltas:  29% (37/127)Resolving deltas:  30% (39/127)Resolving deltas:  31% (40/127)Resolving deltas:  32% (41/127)Resolving deltas:  33% (42/127)Resolving deltas:  34% (44/127)Resolving deltas:  35% (45/127)Resolving deltas:  36% (46/127)Resolving deltas:  37% (47/127)Resolving deltas:  38% (49/127)Resolving deltas:  39% (50/127)Resolving deltas:  40% (51/127)Resolving deltas:  41% (53/127)Resolving deltas:  42% (54/127)Resolving deltas:  43% (55/127)Resolving deltas:  44% (56/127)Resolving deltas:  45% (58/127)Resolving deltas:  46% (59/127)Resolving deltas:  47% (60/127)Resolving deltas:  48% (61/127)Resolving deltas:  49% (63/127)Resolving deltas:  50% (64/127)Resolving deltas:  51% (65/127)Resolving deltas:  52% (67/127)Resolving deltas:  53% (68/127)Resolving deltas:  54% (69/127)Resolving deltas:  55% (70/127)Resolving deltas:  56% (72/127)Resolving deltas:  57% (73/127)Resolving deltas:  58% (74/127)Resolving deltas:  59% (75/127)Resolving deltas:  60% (77/127)Resolving deltas:  61% (78/127)Resolving deltas:  62% (79/127)Resolving deltas:  63% (81/127)Resolving deltas:  64% (82/127)Resolving deltas:  65% (83/127)Resolving deltas:  66% (84/127)Resolving deltas:  67% (86/127)Resolving deltas:  68% (87/127)Resolving deltas:  69% (88/127)Resolving deltas:  70% (89/127)Resolving deltas:  71% (91/127)Resolving deltas:  72% (92/127)Resolving deltas:  73% (93/127)Resolving deltas:  74% (94/127)Resolving deltas:  75% (96/127)Resolving deltas:  76% (97/127)Resolving deltas:  77% (98/127)Resolving deltas:  78% (100/127)Resolving deltas:  79% (101/127)Resolving deltas:  80% (102/127)Resolving deltas:  81% (103/127)Resolving deltas:  82% (105/127)Resolving deltas:  83% (106/127)Resolving deltas:  84% (107/127)Resolving deltas:  85% (108/127)Resolving deltas:  86% (110/127)Resolving deltas:  87% (111/127)Resolving deltas:  88% (112/127)Resolving deltas:  89% (114/127)Resolving deltas:  90% (115/127)Resolving deltas:  91% (116/127)Resolving deltas:  92% (117/127)Resolving deltas:  93% (119/127)Resolving deltas:  94% (120/127)Resolving deltas:  95% (121/127)Resolving deltas:  96% (122/127)Resolving deltas:  97% (124/127)Resolving deltas:  98% (125/127)Resolving deltas:  99% (126/127)Resolving deltas: 100% (127/127)Resolving deltas: 100% (127/127), completed with 39 local objects.
+From https://github.com/AmineIT/lynva-ai-receptionist
+ * branch            main       -> FETCH_HEAD
+   750e843..32208be  main       -> origin/main
+Updating 750e843..32208be
+Fast-forward
+ components.json                                    |  10 +-
+ package.json                                       |   6 +-
+ pnpm-lock.yaml                                     |  37 +-
+ src/app/api/bookings/[id]/route.ts                 |   9 -
+ src/app/api/bookings/route.ts                      |   9 -
+ src/app/auth/login/page.tsx                        |   2 +-
+ src/app/auth/register/page.tsx                     |   2 +-
+ src/app/dashboard/analytics/page.tsx               | 295 +-------------
+ src/app/dashboard/bookings/page.tsx                | 220 +----------
+ src/app/dashboard/calls/page.tsx                   | 175 +--------
+ src/app/dashboard/content/page.tsx                 | 207 +---------
+ src/app/dashboard/help/page.tsx                    |   2 +-
+ src/app/dashboard/layout.tsx                       |   6 +-
+ src/app/dashboard/page.tsx                         | 271 +------------
+ src/app/dashboard/services/page.tsx                | 278 +------------
+ src/app/dashboard/settings/page.tsx                | 435 +++------------------
+ src/app/layout.tsx                                 |   2 +-
+ src/components/analytics/additional-metrics.tsx    |  73 ++++
+ src/components/analytics/analytics-header.tsx      |  36 ++
+ src/components/analytics/charts-row.tsx            |  78 ++++
+ src/components/analytics/popular-services.tsx      |  53 +++
+ src/components/analytics/stats-cards.tsx           |  96 +++++
+ src/components/{ui => auth}/login-form.tsx         |   0
+ src/components/{ui => auth}/register-form.tsx      |   0
+ src/components/bookings/booking-modal.tsx          | 210 ++++++++++
+ src/components/bookings/bookings-header.tsx        |  47 +++
+ .../{ui => bookings}/bookings-skeleton.tsx         |   4 +-
+ src/components/bookings/bookings-table.tsx         | 140 +++++++
+ src/components/{ui => calls}/calls-skeleton.tsx    |   4 +-
+ src/components/calls/logs-list.tsx                 |  78 ++++
+ src/components/calls/stats-cards.tsx               |  72 ++++
+ .../{ui => contents}/content-skeleton.tsx          |   4 +-
+ src/components/contents/faq-form.tsx               |  81 ++++
+ src/components/contents/faq-list.tsx               | 105 +++++
+ src/components/contents/stats-cards.tsx            |  53 +++
+ .../{ui => dashboard}/dashboard-skeleton.tsx       |   4 +-
+ src/components/dashboard/quick-actions.tsx         |  45 +++
+ src/components/dashboard/recent-activities.tsx     | 138 +++++++
+ src/components/dashboard/stats-cards.tsx           |  70 ++++
+ .../layout-provider.tsx}                           |   0
+ src/{app => components/providers}/providers.tsx    |   2 +-
+ .../user-profile-provider.tsx}                     |   0
+ src/components/services/service-form.tsx           | 109 ++++++
+ src/components/services/service-list.tsx           | 123 ++++++
+ .../{ui => services}/services-skeleton.tsx         |   4 +-
+ src/components/services/stats-cards.tsx            |  77 ++++
+ src/components/settings/business-hours.tsx         |  80 ++++
+ src/components/settings/business-info.tsx          | 106 +++++
+ src/components/settings/integrations.tsx           | 115 ++++++
+ src/components/settings/notifications.tsx          |  66 ++++
+ src/components/settings/tabs-header.tsx            |  52 +++
+ src/components/ui/business-setup-modal.tsx         |   5 +-
+ src/components/ui/button.tsx                       |  40 +-
+ src/components/ui/calendar.tsx                     | 211 ++++++++++
+ src/components/ui/date-picker.tsx                  |  61 +++
+ src/components/ui/input.tsx                        |  86 ++++
+ src/components/ui/nav-user.tsx                     |   4 +-
+ src/components/ui/popover.tsx                      |  46 +++
+ src/components/ui/select.tsx                       |  11 +-
+ src/components/ui/site-header.tsx                  |   2 +-
+ src/components/ui/stat-card.tsx                    |  26 ++
+ src/components/ui/status-badge.tsx                 |  33 ++
+ src/components/ui/switch.tsx                       |  81 +++-
+ src/components/ui/uae-currency.tsx                 |   7 +
+ src/hooks/useAnalytics.ts                          |  17 +-
+ src/hooks/useBookings.ts                           |  13 +-
+ src/hooks/useBusinessSettings.ts                   |  62 ++-
+ src/hooks/useCallLogs.ts                           |   7 +-
+ src/hooks/useDashboardAnalytics.ts                 |  12 +-
+ src/hooks/useFaqs.ts                               |   7 +-
+ src/hooks/useServices.ts                           |  10 +-
+ src/index.css                                      |  18 +-
+ src/lib/supabase.ts                                |   2 +-
+ src/lib/utils.ts                                   |  84 ++--
+ src/lib/validators.ts                              |   4 +-
+ src/middleware.ts                                  |   2 +-
+ src/{utils => }/supabase/client.ts                 |   0
+ src/{utils => }/supabase/middleware.ts             |   0
+ src/{utils => }/supabase/server.ts                 |   0
+ 79 files changed, 2970 insertions(+), 1972 deletions(-)
+ create mode 100644 src/components/analytics/additional-metrics.tsx
+ create mode 100644 src/components/analytics/analytics-header.tsx
+ create mode 100644 src/components/analytics/charts-row.tsx
+ create mode 100644 src/components/analytics/popular-services.tsx
+ create mode 100644 src/components/analytics/stats-cards.tsx
+ rename src/components/{ui => auth}/login-form.tsx (100%)
+ rename src/components/{ui => auth}/register-form.tsx (100%)
+ create mode 100644 src/components/bookings/booking-modal.tsx
+ create mode 100644 src/components/bookings/bookings-header.tsx
+ rename src/components/{ui => bookings}/bookings-skeleton.tsx (97%)
+ create mode 100644 src/components/bookings/bookings-table.tsx
+ rename src/components/{ui => calls}/calls-skeleton.tsx (97%)
+ create mode 100644 src/components/calls/logs-list.tsx
+ create mode 100644 src/components/calls/stats-cards.tsx
+ rename src/components/{ui => contents}/content-skeleton.tsx (97%)
+ create mode 100644 src/components/contents/faq-form.tsx
+ create mode 100644 src/components/contents/faq-list.tsx
+ create mode 100644 src/components/contents/stats-cards.tsx
+ rename src/components/{ui => dashboard}/dashboard-skeleton.tsx (96%)
+ create mode 100644 src/components/dashboard/quick-actions.tsx
+ create mode 100644 src/components/dashboard/recent-activities.tsx
+ create mode 100644 src/components/dashboard/stats-cards.tsx
+ rename src/components/{ui/layout-context.tsx => providers/layout-provider.tsx} (100%)
+ rename src/{app => components/providers}/providers.tsx (93%)
+ rename src/components/{UserProfileProvider.tsx => providers/user-profile-provider.tsx} (100%)
+ create mode 100644 src/components/services/service-form.tsx
+ create mode 100644 src/components/services/service-list.tsx
+ rename src/components/{ui => services}/services-skeleton.tsx (97%)
+ create mode 100644 src/components/services/stats-cards.tsx
+ create mode 100644 src/components/settings/business-hours.tsx
+ create mode 100644 src/components/settings/business-info.tsx
+ create mode 100644 src/components/settings/integrations.tsx
+ create mode 100644 src/components/settings/notifications.tsx
+ create mode 100644 src/components/settings/tabs-header.tsx
+ create mode 100644 src/components/ui/calendar.tsx
+ create mode 100644 src/components/ui/date-picker.tsx
+ create mode 100644 src/components/ui/popover.tsx
+ create mode 100644 src/components/ui/stat-card.tsx
+ create mode 100644 src/components/ui/status-badge.tsx
+ create mode 100644 src/components/ui/uae-currency.tsx
+ rename src/{utils => }/supabase/client.ts (100%)
+ rename src/{utils => }/supabase/middleware.ts (100%)
+ rename src/{utils => }/supabase/server.ts (100%)
