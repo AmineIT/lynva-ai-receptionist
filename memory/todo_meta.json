@@ -5,28 +5,28 @@
         "id": "1",
         "content": "Create new branch for modal development",
         "details": "Pull latest from main and create a new feature branch",
-        "status": "pending",
+        "status": "completed",
         "priority": "high"
       },
       "2": {
         "id": "2",
         "content": "Convert FAQ form to modal component",
         "details": "Transform src/components/contents/faq-form.tsx to use Dialog modal pattern with proper Zod validation like booking-modal.tsx",
-        "status": "pending",
+        "status": "completed",
         "priority": "high"
       },
       "3": {
         "id": "3",
         "content": "Convert Service form to modal component",
         "details": "Transform src/components/services/service-form.tsx to use Dialog modal pattern with proper Zod validation",
-        "status": "pending",
+        "status": "completed",
         "priority": "high"
       },
       "4": {
         "id": "4",
         "content": "Update pages to use new modal components",
         "details": "Update content page and services page to use the new modal components instead of inline forms",
-        "status": "pending",
+        "status": "completed",
         "priority": "medium"
       },
       "5": {
