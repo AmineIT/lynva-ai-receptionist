@@ -6,27 +6,17 @@ import { useBookings } from '@/hooks/useBookings'
 import { BookingsSkeleton } from '@/components/bookings/bookings-skeleton'
 import BookingsHeader from '@/components/bookings/bookings-header'
 import BookingsTable from '@/components/bookings/bookings-table'
+import BookingModal from '@/components/bookings/booking-modal'
 
 
 export default function BookingsPage() {
   const [ searchTerm, setSearchTerm ] = useState('');
   const [ statusFilter, setStatusFilter ] = useState('all');
-  const [ showCreateForm, setShowCreateForm ] = useState(false);
+  const [ showCreateBookingDialog, setShowCreateBookingDialog ] = useState(false);
   const { setTitle, setSubtitle } = useLayout();
 
   // Use the bookings hook with filters
-  const {
-    bookings,
-    isLoading,
-    error,
-    createBooking,
-    updateBooking,
-    deleteBooking,
-    isCreating,
-    isUpdating,
-    isDeleting,
-    status
-  } = useBookings({
+  const { bookings, isLoading, status } = useBookings({
     status: statusFilter !== 'all' ? statusFilter : undefined,
     search: searchTerm || undefined,
   });
@@ -48,7 +38,10 @@ export default function BookingsPage() {
       <BookingsHeader searchTerm={searchTerm} setSearchTerm={setSearchTerm} statusFilter={statusFilter} setStatusFilter={setStatusFilter} />
 
       {/* Bookings Table */}
-      <BookingsTable bookings={bookings} searchTerm={searchTerm} statusFilter={statusFilter} setShowCreateForm={setShowCreateForm} />
+      <BookingsTable bookings={bookings} searchTerm={searchTerm} statusFilter={statusFilter} setShowCreateBookingDialog={setShowCreateBookingDialog} />
+
+      {/* Create Booking Dialog */}
+      <BookingModal showCreateBookingDialog={showCreateBookingDialog} setShowCreateBookingDialog={setShowCreateBookingDialog} />
     </div>
   )
 }

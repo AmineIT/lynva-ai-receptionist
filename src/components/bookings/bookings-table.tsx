@@ -12,10 +12,10 @@ interface BookingsTableProps {
     bookings: any[];
     searchTerm: string;
     statusFilter: string;
-    setShowCreateForm: (value: boolean) => void;
+    setShowCreateBookingDialog: (value: boolean) => void;
 }
 
-export default function BookingsTable({ bookings, searchTerm, statusFilter, setShowCreateForm }: BookingsTableProps) {
+export default function BookingsTable({ bookings, searchTerm, statusFilter, setShowCreateBookingDialog }: BookingsTableProps) {
   return (
     <Card className="border pt-0 overflow-hidden h-full shadow-none">
         <CardHeader className="bg-neutral-100 border-b border-neutral-200 py-4 gap-0">
@@ -27,7 +27,7 @@ export default function BookingsTable({ bookings, searchTerm, statusFilter, setS
               </CardDescription>
             </div>
             <div className="flex items-end justify-end">
-              <Button onClick={() => setShowCreateForm(true)} size="sm">
+              <Button onClick={() => setShowCreateBookingDialog(true)} size="sm">
                 <CalendarPlus className="w-3 h-3 mr-2" />
                 <p className="text-xs">Create Booking</p>
               </Button>

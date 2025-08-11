@@ -2,15 +2,13 @@ import { z } from 'zod'
 
 // Booking validation schemas
 export const createBookingSchema = z.object({
-  service_id: z.string().uuid().optional(),
+  service_id: z.string().uuid('Service is required'),
   customer_name: z.string().min(1, 'Customer name is required'),
   customer_phone: z.string().min(1, 'Customer phone is required'),
   customer_email: z.string().email().optional().or(z.literal('')),
   appointment_date: z.string().min(1, 'Appointment date is required'),
   appointment_time: z.string().min(1, 'Appointment time is required'),
-  duration_minutes: z.number().min(15, 'Duration must be at least 15 minutes'),
   notes: z.string().optional(),
-  total_amount: z.number().optional(),
   status: z.enum(['confirmed', 'pending', 'cancelled', 'completed']).default('confirmed')
 })
 

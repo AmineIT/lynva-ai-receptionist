@@ -5,16 +5,14 @@ import { useUserProfile } from './useUserProfile'
 import { toast } from 'react-hot-toast'
 import { useEffect } from 'react'
 
-interface CreateBookingData {
+export interface CreateBookingData {
   service_id?: string
   customer_name: string
   customer_phone: string
   customer_email?: string
   appointment_date: string
   appointment_time: string
-  duration_minutes: number
   notes?: string
-  total_amount?: number
   status?: string
 }
 
@@ -142,6 +140,7 @@ export function useBookings(filters: BookingFilters = {}) {
           ...bookingData,
           business_id: businessId,
           currency: 'AED',
+          duration_minutes: 30,
           status: bookingData.status || 'confirmed'
         })
         .select()

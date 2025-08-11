@@ -45,18 +45,18 @@ const defaultSettings: BusinessSettings = {
   country: '',
   website: '',
   businessHours: {
-    monday: { open: '09:00', close: '18:00', isOpen: true },
-    tuesday: { open: '09:00', close: '18:00', isOpen: true },
-    wednesday: { open: '09:00', close: '18:00', isOpen: true },
-    thursday: { open: '09:00', close: '18:00', isOpen: true },
-    friday: { open: '09:00', close: '18:00', isOpen: true },
-    saturday: { open: '10:00', close: '16:00', isOpen: true },
+    monday: { open: '09:00', close: '18:00', isOpen: false },
+    tuesday: { open: '09:00', close: '18:00', isOpen: false },
+    wednesday: { open: '09:00', close: '18:00', isOpen: false },
+    thursday: { open: '09:00', close: '18:00', isOpen: false },
+    friday: { open: '09:00', close: '18:00', isOpen: false },
+    saturday: { open: '10:00', close: '16:00', isOpen: false },
     sunday: { open: '10:00', close: '16:00', isOpen: false }
   },
   notifications: {
-    emailBookings: true,
-    smsReminders: true,
-    callAlerts: true
+    emailBookings: false,
+    smsReminders: false,
+    callAlerts: false
   },
   integrations: {
     googleCalendar: { enabled: false, connected: false },

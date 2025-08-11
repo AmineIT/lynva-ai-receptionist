@@ -319,7 +319,7 @@ export function useActiveServices() {
       
       const { data, error } = await supabase
         .from('services')
-        .select('id, name, duration_minutes, price, currency')
+        .select('id, name')
         .eq('business_id', businessId)
         .eq('is_active', true)
         .order('name', { ascending: true })
