@@ -5,11 +5,11 @@ import { useLayout } from '@/components/providers/layout-provider'
 import { useFaqs } from '@/hooks/useFaqs'
 import { ContentSkeleton } from '@/components/contents/content-skeleton'
 import StatsCards from '@/components/contents/stats-cards'
-import FaqForm from '@/components/contents/faq-form'
+import FaqModal from '@/components/contents/faq-modal'
 import FaqList from '@/components/contents/faq-list'
 
 export default function ContentPage() {
-  const [isAddingFAQ, setIsAddingFAQ] = useState(false)
+  const [showCreateFaqDialog, setShowCreateFaqDialog] = useState(false)
   const { setTitle, setSubtitle } = useLayout()
 
   // Use the FAQs hook
@@ -31,13 +31,11 @@ export default function ContentPage() {
       {/* Stats */}
       <StatsCards />
 
-      {/* Add FAQ Form */}
-      {isAddingFAQ && (
-        <FaqForm isAddingFAQ={isAddingFAQ} setIsAddingFAQ={setIsAddingFAQ} />
-      )}
+      {/* FAQ Modal */}
+      <FaqModal showCreateFaqDialog={showCreateFaqDialog} setShowCreateFaqDialog={setShowCreateFaqDialog} />
 
       {/* FAQ List */}
-      <FaqList setIsAddingFAQ={setIsAddingFAQ} />
+      <FaqList setShowCreateFaqDialog={setShowCreateFaqDialog} />
     </div>
   )
 }

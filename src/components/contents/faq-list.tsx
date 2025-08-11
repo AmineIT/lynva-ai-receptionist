@@ -1,14 +1,14 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Plus, MessageSquare, Edit2, Trash2 } from 'lucide-react'
+import { PlusCircle , MessageSquare, Edit2, Trash2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { useFaqs } from '@/hooks/useFaqs'
 
 interface FaqListProps {
-    setIsAddingFAQ: (isAddingFAQ: boolean) => void
+    setShowCreateFaqDialog: (showCreateFaqDialog: boolean) => void
 }
 
-export default function FaqList({ setIsAddingFAQ }: FaqListProps) {
+export default function FaqList({ setShowCreateFaqDialog }: FaqListProps) {
     const { faqs, isToggling, isDeleting, deleteFaq, toggleFaqStatus } = useFaqs()
 
     const getCategoryColor = (category: string) => {
@@ -41,8 +41,8 @@ export default function FaqList({ setIsAddingFAQ }: FaqListProps) {
                         <CardDescription className="text-gray-500 text-xs">Manage your frequently asked questions</CardDescription>
                     </div>
                     <div className="flex items-end justify-end">
-                        <Button onClick={() => setIsAddingFAQ(true)} size="sm">
-                            <Plus className="w-3 h-3 mr-2" />
+                        <Button onClick={() => setShowCreateFaqDialog(true)} size="sm">
+                            <PlusCircle className="w-3 h-3 mr-2" />
                             <p className="text-xs">Add FAQ</p>
                         </Button>
                     </div>

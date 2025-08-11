@@ -5,11 +5,11 @@ import { useLayout } from '@/components/providers/layout-provider'
 import { useServices } from '@/hooks/useServices'
 import { ServicesSkeleton } from '@/components/services/services-skeleton'
 import StatsCards from '@/components/services/stats-cards'
-import ServiceForm from '@/components/services/service-form'
+import ServiceModal from '@/components/services/service-modal'
 import ServiceList from '@/components/services/service-list'
 
 export default function ServicesPage() {
-  const [isAddingService, setIsAddingService] = useState(false)
+  const [showCreateServiceDialog, setShowCreateServiceDialog] = useState(false)
   const { setTitle, setSubtitle } = useLayout()
 
   // Use the services hook
@@ -31,13 +31,11 @@ export default function ServicesPage() {
       {/* Stats */}
       <StatsCards />
 
-      {/* Add Service Form */}
-      {isAddingService && (
-        <ServiceForm setIsAddingService={setIsAddingService} />
-      )}
+      {/* Service Modal */}
+      <ServiceModal showCreateServiceDialog={showCreateServiceDialog} setShowCreateServiceDialog={setShowCreateServiceDialog} />
 
       {/* Services List */}
-      <ServiceList setIsAddingService={setIsAddingService} />
+      <ServiceList setShowCreateServiceDialog={setShowCreateServiceDialog} />
     </div>
   )
 }

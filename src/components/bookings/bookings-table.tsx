@@ -1,10 +1,9 @@
 import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { CalendarPlus } from 'lucide-react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { formatDate, formatTime, formatPhoneNumber, formatCurrency } from '@/lib/utils'
-import { Phone, Mail, Eye, Edit, Trash2, CalendarIcon, Clock, DollarSign } from 'lucide-react'
+import { formatDate, formatTime, formatPhoneNumber } from '@/lib/utils'
+import { Phone, Mail, Eye, Edit, Trash2, CalendarIcon, Clock, PlusCircle } from 'lucide-react'
 import StatusBadge from '@/components/ui/status-badge'
 import UAECurrency from '../ui/uae-currency'
 
@@ -28,7 +27,7 @@ export default function BookingsTable({ bookings, searchTerm, statusFilter, setS
             </div>
             <div className="flex items-end justify-end">
               <Button onClick={() => setShowCreateBookingDialog(true)} size="sm">
-                <CalendarPlus className="w-3 h-3 mr-2" />
+                <PlusCircle className="w-3 h-3 mr-2" />
                 <p className="text-xs">Create Booking</p>
               </Button>
             </div>

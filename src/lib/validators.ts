@@ -17,15 +17,14 @@ export const updateBookingSchema = createBookingSchema.partial()
 // Service validation schemas
 export const createServiceSchema = z.object({
   name: z.string().min(1, 'Service name is required'),
-  description: z.string().optional(),
+  description: z.string().min(1, 'Description is required'),
   duration_minutes: z.number().min(15, 'Duration must be at least 15 minutes'),
-  price: z.number().min(0, 'Price must be positive').optional(),
-  currency: z.string().default('AED'),
+  price: z.number().min(1, 'Price must be positive'),
   is_active: z.boolean().default(true),
   booking_buffer_minutes: z.number().default(15),
   max_advance_booking_days: z.number().default(30),
   practitioner_name: z.string().optional(),
-  category: z.string().optional()
+  category: z.string().min(1, 'Category is required')
 })
 
 export const updateServiceSchema = createServiceSchema.partial()
@@ -34,7 +33,7 @@ export const updateServiceSchema = createServiceSchema.partial()
 export const createFaqSchema = z.object({
   question: z.string().min(1, 'Question is required'),
   answer: z.string().min(1, 'Answer is required'),
-  category: z.string().optional(),
+  category: z.string().min(1, 'Category is required'),
   is_active: z.boolean().default(true)
 })
 

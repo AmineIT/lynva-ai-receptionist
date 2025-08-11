@@ -1,16 +1,16 @@
 import React from 'react'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Plus, Users, Clock, Edit2, Trash2 } from 'lucide-react'
+import { PlusCircle, Users, Clock, Edit2, Trash2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { useServices } from '@/hooks/useServices'
 import UAECurrency from '../ui/uae-currency'
 
 interface ServiceListProps {
-    setIsAddingService: (isAddingService: boolean) => void
+    setShowCreateServiceDialog: (showCreateServiceDialog: boolean) => void
 }
 
-export default function ServiceList({ setIsAddingService }: ServiceListProps) {
+export default function ServiceList({ setShowCreateServiceDialog }: ServiceListProps) {
     const { services, isToggling, isDeleting, deleteService, toggleServiceStatus } = useServices()
 
     const getCategoryColor = (category: string) => {
@@ -43,8 +43,8 @@ export default function ServiceList({ setIsAddingService }: ServiceListProps) {
                         <CardDescription className="text-gray-500 text-xs">Manage your available services</CardDescription>
                     </div>
                     <div className="flex items-end justify-end">
-                        <Button onClick={() => setIsAddingService(true)} size="sm">
-                            <Plus className="w-3 h-3 mr-2" />
+                        <Button onClick={() => setShowCreateServiceDialog(true)} size="sm">
+                            <PlusCircle className="w-3 h-3 mr-2" />
                             <p className="text-xs">Add Service</p>
                         </Button>
                     </div>
